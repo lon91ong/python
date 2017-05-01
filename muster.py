@@ -2,8 +2,7 @@
 """
 Created on Sun Apr 30 19:11:14 2017
 
-@author: xiaoniu29
-referance: http://www.cnblogs.com/miranda-tang/p/5511811.html
+@author: lon91ong
 """
 
 import requests
