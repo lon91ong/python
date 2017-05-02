@@ -10,6 +10,7 @@ import requests
 from urllib.parse import quote
 from bs4 import BeautifulSoup
 from time import sleep
+import xlsxwriter
 
 base_link='http://211.81.249.110/hmc/'
 resp = requests.get(base_link+'hmc.asp')
@@ -47,4 +48,19 @@ for g in tab_g:
         tab_s.append({'id':trs[i].text,'name':trs[i+1].text[1:],'class':g['class'],'Grade':''})
     #print(tab_c)
     #tab_s.append(tab_c[:])
-
+workbook = xlsxwriter.Workbook('data.xlsx')
+worksheet = workbook.add_worksheet('tab_g')
+col = 0
+for key in tab_g[0].keys():
+    worksheet.write(0,col,key)
+    for i in range(len(tab_g)):
+        worksheet.write_string(i+1,col,tab_g[i][key])
+    col+=1
+worksheet = workbook.add_worksheet('tab_s')
+col = 0
+for key in tab_s[0].keys():
+    worksheet.write(0,col,key)
+    for i in range(len(tab_s)):
+        worksheet.write_string(i+1,col,tab_s[i][key])
+    col+=1
+workbook.close()
