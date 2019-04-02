@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-删除下面的多行注释可以添加SQLite功能，
-发现WPS居然不支持SQLite，所以就删了
+删除下面的多行注释可以添加SQLite功能
 """
 
 import sys, re, requests
