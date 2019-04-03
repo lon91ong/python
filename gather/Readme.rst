@@ -16,7 +16,14 @@ Python打包exe可执行文件
 是不是有许多的 *missing module named ...blabla...*
 排错路漫漫, 才刚刚开始...
 
-`一些打包心得 <https://zhengzexin.com/2016/11/08/pyinstaller-da-bao-python-jiao-ben-de-yi-xie-xin-de>`_
+参考笔记(按价值排序)
+,,,,,,,,,,,,,,,,,,,,,,
+
+`某侠笔记 <https://www.crifan.com/use_pyinstaller_to_package_python_to_single_executable_exe/>`_
+
+`官方排错参考 <https://pyinstaller.readthedocs.io/en/stable/when-things-go-wrong.html?highlight=win32com>`_
+
+`某虾心得 <https://zhengzexin.com/2016/11/08/pyinstaller-da-bao-python-jiao-ben-de-yi-xie-xin-de>`_
 
 
 方法二：
