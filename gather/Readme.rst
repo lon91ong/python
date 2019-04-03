@@ -36,3 +36,5 @@ Python打包exe可执行文件
 另一种方式是通过批处理或vbs调用python脚本，优点就是文件体积小，缺点就是需要python环境。
 
 打包批处理脚本用的工具：`Bat To Exe Converter <http://www.f2ko.de/en/b2e.php>`_
+
+像是我需要的能直接用py脚本对某个文件进行读写的操作，像绕过命令行调用的方式，直接鼠标拖上去就行的就挺适合方法二
