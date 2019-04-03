@@ -11,9 +11,9 @@ import docx, xlwt
 from urllib.parse import quote
 
 def GetDesktopPath():
-    from win32com.shell import shell, shellcon
-    deskpath =shell.SHGetSpecialFolderLocation(0, shellcon.CSIDL_DESKTOP)
-    return shell.SHGetPathFromIDList(deskpath)
+    import winreg
+    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders')
+    return winreg.QueryValueEx(key, "Desktop")[0]
 
 def main(argv):
     try:
@@ -96,7 +96,7 @@ def main(argv):
         
     conn.commit()
     '''
-    workbook.save(GetDesktopPath().decode('utf-8')+'\\muster.xls') #桌面路径
+    workbook.save(GetDesktopPath()+'\\muster.xls') #桌面路径
     '''
     #cursor.execute('SELECT name FROM students'+grade+' WHERE id="171304011039"')
     #cursor.execute('SELECT * FROM classes'+grade)
