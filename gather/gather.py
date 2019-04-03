@@ -9,6 +9,8 @@ from lxml import etree
 #import sqlite3
 import docx, xlwt
 from urllib.parse import quote
+import tkinter
+import tkinter.messagebox as mbox
 
 def GetDesktopPath():
     import winreg
@@ -16,6 +18,10 @@ def GetDesktopPath():
     return winreg.QueryValueEx(key, "Desktop")[0]
 
 def main(argv):
+    # 准备消息框
+    window = tkinter.Tk()   
+    window.wm_withdraw()
+    
     try:
         word = docx.Document(str(argv[-1]))
         #print('接收到的文件：'+str(argv[-1]))
@@ -29,7 +35,8 @@ def main(argv):
                 if mach != None:
                     classes.append(mach.group())
     except:
-        print('提取班级信息错误，请查验Word文档！')
+        #print('提取班级信息失败，请查验Word文档！')
+        mbox.showerror('错误','提取班级信息失败，请查验Word文档！')
         sys.exit()
     #print(classes)
     
@@ -106,6 +113,7 @@ def main(argv):
     cursor.close()
     conn.close()
     '''
+    mbox.showinfo('完成','请在桌面查看muster.xls文件！')
 
 if __name__ == "__main__":
    main(sys.argv[1:])
