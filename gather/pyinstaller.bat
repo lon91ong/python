@@ -1,0 +1,2 @@
+set PATH=D:\Anaconda3;D:\Anaconda3\Library\mingw-w64\bin;D:\Anaconda3\Library\usr\bin;D:\Anaconda3\Library\bin;D:\Anaconda3\Scripts;D:\Anaconda3\bin;D:\Anaconda3\condabin;D:\Anaconda3\condabin\Library\mingw-w64\bin;D:\Anaconda3\condabin\Library\usr\bin;D:\Anaconda3\condabin\Library\bin;D:\Anaconda3\condabin\Scripts;D:\Anaconda3\condabin\bin;%PATH%
+pyinstaller -F -w gather.py
