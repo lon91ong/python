@@ -12,7 +12,8 @@ Python打包exe可执行文件
 
 打包方法: *pyinstaller -F -w py文件名*
 
-打包完了别急着运行,先看看build目录**项目名**子目录下的**warn-项目名.txt**文件内容, 是不是有许多的*missing module named ...blabla...*
+打包完了别急着运行,先看看build目录 **项目名** 子目录下的 **warn-项目名.txt** 文件内容, 
+是不是有许多的 *missing module named ...blabla...*
 排错的路漫漫其修远兮, 才刚刚开始...
 
 `一些打包心得 <https://zhengzexin.com/2016/11/08/pyinstaller-da-bao-python-jiao-ben-de-yi-xie-xin-de>`_
