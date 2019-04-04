@@ -133,7 +133,7 @@ DataNitro是另一种从Python控制Excel的API。目前尚不清楚它的API和
 
 .. csv-table:: **Feature Matrix For Integrating Python and Excel**
   :header:  "Feature", "DataNitro", "xlwings", "PyXLL", "Comments"
-  :widths: 20, 10, 10, 10, 60
+  :widths: 40, 10, 10, 10, 90
   
   "Basic worksheet functions", "✔", "✔", "✔", "DataNitro and xlwings use an external Python process, xlwings requires VBA wrapper code"
   "Real time data", "✘", "✘", "✔", "Stream real time data into Excel worksheets"
