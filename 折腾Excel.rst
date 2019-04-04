@@ -121,6 +121,38 @@ xlwings提供了上述Excel COM API的包装器，用于简化许多常见任务
  # Read the DataFrame back, using the 'expand' option to read the whole table
  sht.range('A1').options(pd.DataFrame, expand='table').value
 
+xlwings包括一种在Python中编写用户定义函数（UDF）或工作表函数的方法，这些函数从Excel中的公式调用，类似于PyXLL提供的用户定义函数。这些依赖于在Excel和VBA包装外部运行的服务器进程来调用该服务器。这是一个简单的解决方案，有一些缺点，例如性能不佳，并且这些功能只能从包含VBA包装器的工作簿中获得。
+
+DataNitro
+,,,,,,,,,,
+
+DataNitro是另一种从Python控制Excel的API。目前尚不清楚它的API和现有的，易于理解的Microsoft Excel COM API的优势是什么，但它确实允许您在不离开Excel的情况下编写和运行脚本。它对用户定义的函数（工作表函数）有基本的支持，但它们在Excel进程之外运行，只有在只有一个Excel进程运行时才有效。
+
+目前还不知道DataNitro是否仍处于活跃开发状态，但为了完整性而包含在此处。
+
+
+Feature Matrix For Integrating Python and Excel
+
++--------------------------------+-----+-----+--------------------------------+
+|Feature	DataNitro             |xlwings   |PyXLL  |Comments  |
++=================+====+====+===============+
+|Basic worksheet functions|✔|✔|✔|DataNitro and xlwings use an external Python process, xlwings requires VBA wrapper code|
+|Real time data|✘|✘|✔|Stream real time data into Excel worksheets|
+|Ribbon customisation|✘|✘|✔|Give users a rich user experience with custom ribbon menus|
+|Menu functions|✘|✘|✔|Call Python code from the Excel menu|
+|Object Cache|✘|✘|✔|Pass Python objects between worksheet functions seamlessly via an object cache|
+|IntelliSense|✘|✘|✔|IntelliSense tooltip as you type – PyXLL integrates with the ExcelDNA Intellisense Addin|
+|Thread safe worksheet functions|✘|✘|✔|Improve worksheet responsiveness by using Excel's own threadpool to run worksheet functions concurrently|
+|Asynchronous functions|✘|✘|✔|Don't block Excel waiting for long running functions|
+|Macros|✘|✔|✔|Macros are functions that can be attached to UI elements like buttons or called from VBA|
+|Keyboard shortcuts|✘|✘|✔|Keyboard shortcuts can be assigned to macros with PyXLL|
+|Macro sheet equivalent functions|✘|✘|✔|Call back into Excel from a worksheet function|
+|Function documentation|✘|✔|✔|Include Python function docstrings in the Excel function wizard|
+|Automatically resize arrays|✘|✔|✔|Array functions can resize automatically|
+|Volatile Functions|✘|✔|✔|Volatile functions are called every time a worksheet is recalculated|
+|Full Excel API exposed|✘|✔|✔|xlwings uses pywin32, PyXLL users can choose between pywin32, comtypes or xlwings|
+|Reload without restarting Excel|✔|✔|✔|Modules can be reloaded without restarting Excel. PyXLL also supports 'deep reloading' where all module dependencies are also reloaded.
++--------------------------------+-----+-----+--------------------------------+
 
 
 
