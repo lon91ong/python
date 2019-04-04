@@ -69,7 +69,7 @@ Excel COM API可以在Excel之外使用（例如，从正在运行的Python提�
 
 VBA
 
-.. code:: Visual Basic
+.. code:: VBA
 
  Sub Macro1()
     Range('B11:K11').Select
