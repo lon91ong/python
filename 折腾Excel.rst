@@ -67,26 +67,30 @@ Excel COM API可以在Excel之外使用（例如，从正在运行的Python提�
 
 假设把下面的VBA脚本转换成对应的Python语句
 
+VBA
+
 .. code:: Visual Basic
 
-   Sub Macro1()
-      Range('B11:K11').Select
-      Selection.AutoFill Destination:=Range('B11:K16'), Type:=xlFillDefault
-      Columns('B:K').Select
-      Selection.ColumnWidth = 4
-   End Sub
+ Sub Macro1()
+    Range('B11:K11').Select
+    Selection.AutoFill Destination:=Range('B11:K16'), Type:=xlFillDefault
+    Columns('B:K').Select
+    Selection.ColumnWidth = 4
+ End Sub
+
+Python
 
 .. code:: python
 
-  from win32com.client.gencache import EnsureDispatch
-  from win32com.client import constants
+ from win32com.client.gencache import EnsureDispatch
+ from win32com.client import constants
  
-  def Macro1():
-      xl = EnsureDispatch('Excel.Application')
-      xl.Range('B11:K11').Select()
-      xl.Selection.AutoFill(Destination=xl.Range('B11:K16'), Type=constants.xlFillDefault)
-      xl.Columns('B:K').Select()
-      xl.Selection.ColumnWidth = 4
+ def Macro1():
+     xl = EnsureDispatch('Excel.Application')
+     xl.Range('B11:K11').Select()
+     xl.Selection.AutoFill(Destination=xl.Range('B11:K16'), Type=constants.xlFillDefault)
+     xl.Columns('B:K').Select()
+     xl.Selection.ColumnWidth = 4
     
 xlwings
 ,,,,,,,,
