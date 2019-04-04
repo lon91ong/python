@@ -132,94 +132,94 @@ DataNitro是另一种从Python控制Excel的API。目前尚不清楚它的API和
 
 
 .. list-table:: Feature Matrix For Integrating Python and Excel
-   :widths: 50 25 25 25 50
+   :widths: 50 25 25 25 150
    :header-rows: 1
    
- * - Feature
- - DataNitro 
- - xlwings 
- - PyXLL
- - Comments
- * - Basic worksheet functions
- - ✔
- - ✔
- - ✔
- - DataNitro and xlwings use an external Python process, xlwings requires VBA wrapper code
- * - Real time data
- - ✘
- - ✘
- - ✔
- - Stream real time data into Excel worksheets
- * - Ribbon customisation
- - ✘
- - ✘
- - ✔
- - Give users a rich user experience with custom ribbon menus
- * - Menu functions
- - ✘
- - ✘
- - ✔
- - Call Python code from the Excel menu
- * - Object Cache
- - ✘
- - ✘
- - ✔
- - Pass Python objects between worksheet functions seamlessly via an object cache
- * - IntelliSense
- - ✘
- - ✘
- - ✔
- - IntelliSense tooltip as you type – PyXLL integrates with the ExcelDNA Intellisense Addin
- * - Thread safe worksheet functions
- - ✘
- - ✘
- - ✔
- - Improve worksheet responsiveness by using Excel's own threadpool to run worksheet functions concurrently
- * - Asynchronous functions
- - ✘
- - ✘
- - ✔
- - Don't block Excel waiting for long running functions
- * - Macros
- - ✘
- - ✔
- - ✔
- - Macros are functions that can be attached to UI elements like buttons or called from VBA
- * - Keyboard shortcuts
- - ✘
- - ✘
- - ✔
- - Keyboard shortcuts can be assigned to macros with PyXLL
- * - Macro sheet equivalent functions
- - ✘
- - ✘
- - ✔
- - Call back into Excel from a worksheet function
- * - Function documentation
- - ✘
- - ✔
- - ✔
- - Include Python function docstrings in the Excel function wizard
- * - Automatically resize arrays
- - ✘
- - ✔
- - ✔
- - Array functions can resize automatically
- * - Volatile Functions
- - ✘
- - ✔
- - ✔
- - Volatile functions are called every time a worksheet is recalculated
- * - Full Excel API exposed
- - ✘
- - ✔
- - ✔
- - xlwings uses pywin32, PyXLL users can choose between pywin32, comtypes or xlwings
- * - Reload without restarting Excel
- - ✔
- - ✔
- - ✔
- - Modules can be reloaded without restarting Excel. PyXLL also supports 'deep reloading' where all module dependencies are also reloaded.
+  * - Feature
+   - DataNitro 
+   - xlwings 
+   - PyXLL
+   - Comments
+  * - Basic worksheet functions
+   - ✔
+   - ✔
+   - ✔
+   - DataNitro and xlwings use an external Python process, xlwings requires VBA wrapper code
+  * - Real time data
+   - ✘
+   - ✘
+   - ✔
+   - Stream real time data into Excel worksheets
+  * - Ribbon customisation
+   - ✘
+   - ✘
+   - ✔
+   - Give users a rich user experience with custom ribbon menus
+  * - Menu functions
+   - ✘
+   - ✘
+   - ✔
+   - Call Python code from the Excel menu
+  * - Object Cache
+   - ✘
+   - ✘
+   - ✔
+   - Pass Python objects between worksheet functions seamlessly via an object cache
+  * - IntelliSense
+   - ✘
+   - ✘
+   - ✔
+   - IntelliSense tooltip as you type – PyXLL integrates with the ExcelDNA Intellisense Addin
+  * - Thread safe worksheet functions
+   - ✘
+   - ✘
+   - ✔
+   - Improve worksheet responsiveness by using Excel's own threadpool to run worksheet functions concurrently
+  * - Asynchronous functions
+   - ✘
+   - ✘
+   - ✔
+   - Don't block Excel waiting for long running functions
+  * - Macros
+   - ✘
+   - ✔
+   - ✔
+   - Macros are functions that can be attached to UI elements like buttons or called from VBA
+  * - Keyboard shortcuts
+   - ✘
+   - ✘
+   - ✔
+   - Keyboard shortcuts can be assigned to macros with PyXLL
+  * - Macro sheet equivalent functions
+   - ✘
+   - ✘
+   - ✔
+   - Call back into Excel from a worksheet function
+  * - Function documentation
+   - ✘
+   - ✔
+   - ✔
+   - Include Python function docstrings in the Excel function wizard
+  * - Automatically resize arrays
+   - ✘
+   - ✔
+   - ✔
+   - Array functions can resize automatically
+  * - Volatile Functions
+   - ✘
+   - ✔
+   - ✔
+   - Volatile functions are called every time a worksheet is recalculated
+  * - Full Excel API exposed
+   - ✘
+   - ✔
+   - ✔
+   - xlwings uses pywin32, PyXLL users can choose between pywin32, comtypes or xlwings
+  * - Reload without restarting Excel
+   - ✔
+   - ✔
+   - ✔
+   - Modules can be reloaded without restarting Excel. PyXLL also supports 'deep reloading' where all module dependencies are also reloaded.
 
 
 
