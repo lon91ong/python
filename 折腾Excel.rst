@@ -340,3 +340,6 @@ xlrd/xlwt
 ,,,,,,,,,,
 
 xlrd和xlwt分别读取和写入旧的Excel .xls文件。这些包含在此列表中是为了完整性，但现在实际上仅在您被迫处理遗留xls文件格式时使用。它们都非常成熟，非常强大且稳定，但xlwt永远不会扩展为支持更新的xlsx / xlsm文件格式，因此对于处理现代Excel文件格式的新代码，它们不再是最佳选择。
+
+- `xlrd文档 <http://xlrd.readthedocs.io/>`_
+- `xlwt文档 <http://xlwt.readthedocs.io/>`_
