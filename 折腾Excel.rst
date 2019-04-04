@@ -40,6 +40,7 @@ PyXLL是目前唯一允许开发人员在Python中编写功能齐全的Excel插�
       return (a + b) * c
 
 .. image:: https://i0.wp.com/www.pyxll.com/blog/wp-content/uploads/2018/07/zvM2CX1ACA.gif
+  :align: center
 
 更多特色功能：
 
@@ -153,6 +154,189 @@ DataNitro是另一种从Python控制Excel的API。目前尚不清楚它的API和
   "Reload without restarting Excel", "✔", "✔", "✔", "Modules can be reloaded without restarting Excel. PyXLL also supports 'deep reloading' where all module dependencies are also reloaded."
 
 
+简单的读写Excel文件
+-------------------
 
+对于某些任务，您可能需要直接读取或写入Excel文件。对于批处理或在服务器上运行的任务，可能未安装Excel。以下软件包允许您直接读取和写入Excel文件，而无需使用Excel。
 
+.. image:: https://i2.wp.com/www.pyxll.com/blog/wp-content/uploads/2018/07/excel-to-xlsx.png?
+ :align: center
+ 
+ OpenPyXL
+ ,,,,,,,,,,
+ 
+ 对于使用Excel 2010以上，OpenPyXL是一个很好的全面选择。使用OpenPyXL，您可以读取和写入xlsx，xlsm，xltx和xltm文件。以下代码显示了如何使用几行Python将Excel工作簿编写为xlsx文件。
+ 
+.. code:: python
 
+ from openpyxl import Workbook
+ wb = Workbook()
+ # grab the active worksheet
+ ws = wb.active
+ # Data can be assigned directly to cells
+ ws['A1'] = 42
+ # Rows can also be appended
+ ws.append([1, 2, 3])
+ # Save the file
+ wb.save('sample.xlsx')
+
+不要将OpenPyXL与PyXLL混淆。两者完全不同，用途不同。 OpenPyXL是用于读取和写入Excel文件的包，而PyXLL是用于构建功能齐全的Excel加载项以将Python代码集成到Excel中的工具。
+
+OpenPyXL涵盖了Excel的更多高级功能，如图表，样式，数字格式和条件格式。它甚至包括一个用于解析Excel公式的tokenizer！
+
+编写报告的一个非常好的功能是它对NumPy和Pandas数据的内置支持。要编写Pandas DataFrame，所需的只是包含的'dataframe_to_rows'函数：
+
+.. code:: python
+
+ from openpyxl.utils.dataframe import dataframe_to_rows
+ 
+ wb = Workbook()
+ ws = wb.active
+ 
+ for r in dataframe_to_rows(df, index=True, header=True):
+ ws.append(r)
+ 
+ wb.save('pandas_openpyxl.xlsx')
+
+如果您需要读取Excel文件来提取数据，那么OpenPyXL也可以这样做。 Excel文件类型非常复杂，openpyxl在将它们读入易于在Python中访问的表单方面做得非常出色。虽然openpyxl无法加载某些内容，例如图表和图像，因此如果您打开文件并使用相同的名称保存它，则某些元素可能会丢失。
+
+.. code:: python
+
+ from openpyxl import load_workbook
+ 
+ wb = load_workbook(filename = 'book.xlsx')
+ sheet_ranges = wb['range names']
+ print(sheet_ranges['D18'].value)
+
+OpenPyXL的一个可能的缺点是处理大文件可能会非常慢。如果你必须编写包含数千行的报告，并且你的应用程序是时间敏感的，那么XlsxWriter或PyExcelerate可能是更好的选择。
+
+- `openpyxl官方文档 <https://openpyxl.readthedocs.io/en/stable>`_
+
+XlsxWriter
+,,,,,,,,,,,,
+
+如果您只需要编写Excel工作簿而不是阅读它们，那么XlsxWriter是一个易于使用的软件包，可以很好地使用。如果您正在处理大文件或者特别关注速度，那么您可能会发现XlsxWriter比OpenPyXL更好。
+
+XlsxWriter是一个Python模块，可用于在Excel 2007+ XLSX文件中写入多个工作表的文本，数字，公式和超链接。它支持格式化等功能，包括：
+
+- 100% compatible Excel XLSX files.
+- Full formatting.
+- Merged cells.
+- Defined names.
+- Charts.
+- Autofilters.
+- Data validation and drop down lists.
+- Conditional formatting.
+- Worksheet PNG/JPEG/BMP/WMF/EMF images.
+- Rich multi-format strings.
+- Cell comments.
+- Textboxes.
+- Integration with Pandas.
+- Memory optimization mode for writing large files.
+
+使用XlsxWriter编写Excel工作簿非常简单。可以使用Excel地址表示法（如“A1”）或行号和列号来写入单元格。下面是一个基本示例，显示创建工作簿，添加一些数据并将其另存为xlsx文件。
+
+.. code:: python
+
+ import xlsxwriter
+ 
+ workbook = xlsxwriter.Workbook('hello.xlsx')
+ worksheet = workbook.add_worksheet()
+ 
+ worksheet.write('A1', 'Hello world')
+ 
+ workbook.close()
+ 
+如果您正在使用Pandas，那么您将需要使用XlsxWriter的Pandas集成。将Pandas DataFrames写入Excel，甚至创建图表都需要付出艰辛的努力。
+
+.. code:: python
+
+ import pandas as pd
+ 
+ # Create a Pandas dataframe from the data.
+ df = pd.DataFrame({'Data': [10, 20, 30, 20, 15, 30, 45]})
+ 
+ # Create a Pandas Excel writer using XlsxWriter as the engine.
+ writer = pd.ExcelWriter('pandas_simple.xlsx', engine='xlsxwriter')
+ 
+ # Get the xlsxwriter objects from the dataframe writer object.
+ workbook  = writer.book
+ worksheet = writer.sheets['Sheet1']
+ 
+ # Create a chart object.
+ chart = workbook.add_chart({'type': 'column'})
+ 
+ # Configure the series of the chart from the dataframe data.
+ chart.add_series({'values': '=Sheet1!$B$2:$B$8'})
+ 
+ # Insert the chart into the worksheet.
+ worksheet.insert_chart('D2', chart)
+ 
+ # Convert the dataframe to an XlsxWriter Excel object.
+ df.to_excel(writer, sheet_name='Sheet1')
+ 
+ # Close the Pandas Excel writer and output the Excel file.
+ writer.save()
+ 
+在工作表中引用Pandas数据时（如上图中的公式所示），您必须确定数据在工作表中的位置，以便公式指向正确的单元格。对于涉及大量公式或图表的报告，这可能会产生问题，因为做一些简单的事情就像添加额外的行需要调整所有受影响的公式一样。对于像这样的报告'xltable'包可以提供帮助。
+
+XLTable
+,,,,,,,,,
+
+XLTable是一个更高级别的库，用于从pandas DataFrames构建Excel报告。不是逐个单元地或逐行地编写工作簿，而是添加整个表，并且可以包括引用其他表的公式，而不必提前知道这些表的位置。对于涉及公式的更复杂的报告，xltable非常有用。
+
+使xltable比直接编写Excel文件更有用的主要特性是，它可以处理包含与工作簿中的单元格相关的公式的表，而无需事先知道这些表将放在工作表上的位置。因此，只有将所有表添加到工作簿并且正在编写工作簿时，才会将公式解析为其最终单元格地址。
+
+如果您需要编写包含公式而不仅仅是数据的报表，XLTable可以通过跟踪单元格引用使其更容易，因此您不必手动构造公式，并担心在表增长或新行或列时更改引用添加。
+
+.. code:: python
+
+ from xltable import *
+ import pandas as pd
+ 
+ # create a dataframe with three columns where the last is the sum of the first two
+ dataframe = pd.DataFrame({
+        'col_1': [1, 2, 3],
+        'col_2': [4, 5, 6],
+        'col_3': Cell('col_1') + Cell('col_2'),
+    }, columns=['col_1', 'col_2', 'col_3'])
+ 
+ # create the named xltable Table instance
+ table = Table('table', dataframe)
+ 
+ # create the Workbook and Worksheet objects and add table to the sheet
+ sheet = Worksheet('Sheet1')
+ sheet.add_table(table)
+ 
+ workbook = Workbook('example.xlsx')
+ workbook.add_sheet(sheet)
+ 
+ # write the workbook to the file using xlsxwriter
+ workbook.to_xlsx()
+ 
+XLTable可以使用XlsxWriter编写xlsx文件，也可以使用pywin32（win32com）直接写入打开的Excel应用程序（仅限Windows）。直接写入Excel有利于交互式报告。例如，您可以在Excel功能区中使用一个按钮，用户可以按此按钮查询某些数据并生成报告。通过将其直接写入Excel，他们可以立即在Excel中获取该报告，而无需先将其写入文件。有关如何在Excel中自定义Excel功能区的详细信息，请参阅PyXLL：`自定义功能区 <https://www.pyxll.com/docs/userguide/ribbon.html>`_ 。
+
+- `XLTable官方文档 <http://xltable.readthedocs.io/>`_
+
+Pandas
+,,,,,,,
+
+为了处理数据范围并将它们读取或写入没有多余装饰的Excel工作簿，使用pandas可以是一种非常快速有效的方法。如果您不需要太多的格式化，只关心将数据导入或导出Excel工作簿，那么pandas函数“read_excel”和“to_excel”可能正是您所需要的。
+
+.. code:: python
+
+ df = pd.DataFrame([
+        ('string1', 1),
+        ('string2', 2),
+        ('string3', 3)
+    ], columns=['Name', 'Value'])
+ 
+ # Write dataframe to an xlsx file
+ df.to_excel('tmp.xlsx')
+ 
+对于更复杂的任务，因为XlsxWriter，OpenPyXL和XLTable都具有Pandas集成，其中任何一个也可用于将Pandas DataFrames写入Excel。但是，如上所述直接使用Pandas将数据导入Excel非常方便。
+
+xlrd/xlwt
+,,,,,,,,,,
+
+xlrd和xlwt分别读取和写入旧的Excel .xls文件。这些包含在此列表中是为了完整性，但现在实际上仅在您被迫处理遗留xls文件格式时使用。它们都非常成熟，非常强大且稳定，但xlwt永远不会扩展为支持更新的xlsx / xlsm文件格式，因此对于处理现代Excel文件格式的新代码，它们不再是最佳选择。
