@@ -131,16 +131,16 @@ DataNitro是另一种从Python控制Excel的API。目前尚不清楚它的API和
 目前还不知道DataNitro是否仍处于活跃开发状态，但为了完整性而包含在此处。
 
 
-.. csv-table:: table test
+.. csv-table:: **Feature Matrix For Integrating Python and Excel**
   :header:  "Feature", "DataNitro", "xlwings", "PyXLL", "Comments"
   :widths: 20, 10, 10, 10, 100
   
-  “Basic worksheet functions", "✔", "✔", "✔", "DataNitro and xlwings use an external Python process, xlwings requires VBA wrapper code"
-  ”Real time data", "✘", "✘", "✔", "Stream real time data into Excel worksheets"
-  “Ribbon customisation", "✘", "✘", "✔", "Give users a rich user experience with custom ribbon menus"
-  ”Menu functions", "✘", "✘", "✔", "Call Python code from the Excel menu"
-  “Object Cache", "✘", "✘", "✔", "Pass Python objects between worksheet functions seamlessly via an object cache"
-  “IntelliSense", "✘", "✘", "✔", "IntelliSense tooltip as you type – PyXLL integrates with the ExcelDNA Intellisense Addin"
+  "Basic worksheet functions", "✔", "✔", "✔", "DataNitro and xlwings use an external Python process, xlwings requires VBA wrapper code"
+  "Real time data", "✘", "✘", "✔", "Stream real time data into Excel worksheets"
+  "Ribbon customisation", "✘", "✘", "✔", "Give users a rich user experience with custom ribbon menus"
+  "Menu functions", "✘", "✘", "✔", "Call Python code from the Excel menu"
+  "Object Cache", "✘", "✘", "✔", "Pass Python objects between worksheet functions seamlessly via an object cache"
+  "IntelliSense", "✘", "✘", "✔", "IntelliSense tooltip as you type – PyXLL integrates with the ExcelDNA Intellisense Addin"
   "Thread safe worksheet functions", "✘", "✘", "✔", "Improve worksheet responsiveness by using Excel's own threadpool to run worksheet functions concurrently"
   "Asynchronous functions", "✘", "✘", "✔", "Don't block Excel waiting for long running functions"
   "Macros", "✘", "✔", "✔", "Macros are functions that can be attached to UI elements like buttons or called from VBA"
