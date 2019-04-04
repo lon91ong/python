@@ -161,9 +161,9 @@ DataNitro是另一种从Python控制Excel的API。目前尚不清楚它的API和
 
 .. image:: https://i2.wp.com/www.pyxll.com/blog/wp-content/uploads/2018/07/excel-to-xlsx.png?
  :align: center
- 
- OpenPyXL
- ,,,,,,,,,,
+
+OpenPyXL
+,,,,,,,,,,
  
  对于使用Excel 2010以上，OpenPyXL是一个很好的全面选择。使用OpenPyXL，您可以读取和写入xlsx，xlsm，xltx和xltm文件。以下代码显示了如何使用几行Python将Excel工作簿编写为xlsx文件。
  
