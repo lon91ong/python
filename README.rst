@@ -30,6 +30,21 @@ Excel2010以后的格式(\*.xlsx), 用 *openpyxl*
 Tips
 ,,,,,,,
 
+实用的消息框函数
+
+.. code:: python
+
+ def Mbox(title, text, style = ''):
+    import win32api,win32con
+    if style == 'error':  # 错误
+        win32api.MessageBox(0, text, title, win32con.MB_ICONERROR)
+    elif style == 'info': # 信息
+        win32api.MessageBox(0, text, title, win32con.MB_ICONASTERISK)
+    elif style == 'warn': # 警告
+        win32api.MessageBox(0, text, title, win32con.MB_ICONWARNING)
+    else:
+        win32api.MessageBox(0, text, title, win32con.MB_OK)
+
 
 中文正则表达是匹配，很多很多的答案是 **\[\\u4e00-\\u9fa5]** ,但是在Emeditor里这个不好使，它不仅仅匹配中文。
 
