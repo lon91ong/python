@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+Created on Fri Apr  5 14:50:32 2019
 抓取教务网站学生花名册
+@author: xiaoniu29
 """
 
 import sys, re, requests
@@ -8,8 +10,17 @@ from lxml import etree
 import sqlite3, os
 import docx, xlwt
 from urllib.parse import quote
-import tkinter
-import tkinter.messagebox as mbox
+
+def mbox(title, text, style = ''):
+    import win32api,win32con
+    if style == 'error':
+        win32api.MessageBox(0, text, title, win32con.MB_ICONERROR)
+    elif style == 'info':
+        win32api.MessageBox(0, text, title, win32con.MB_ICONASTERISK)
+    elif style == 'warn':
+        win32api.MessageBox(0, text, title, win32con.MB_ICONWARNING)
+    else:
+        win32api.MessageBox(0, text, title, win32con.MB_OK)
 
 def GetDesktopPath():
     import winreg
@@ -17,14 +28,10 @@ def GetDesktopPath():
     return winreg.QueryValueEx(key, "Desktop")[0]
 
 def main(argv):
-    # 准备消息框
-    window = tkinter.Tk()
-    window.wm_withdraw()
-    
     try:
-        #word = docx.Document(str(argv[-1]))
+        word = docx.Document(str(argv[-1]))
         #print('接收到的文件：'+str(argv[-1]))
-        word = docx.Document(r'E:\花名\M2019年春季学期2017级第二轮.docx')
+        #word = docx.Document(r'E:\花名\M2019年春季学期2017级第二轮.docx')
         grade = re.search(r'(?<=20)\d{2}(?=级)',word.paragraphs[0].text).group()
         table = word.tables[0]
         classes = []
@@ -35,15 +42,19 @@ def main(argv):
                     classes.append(mach.group())
     except:
         #print('提取班级信息失败，请查验Word文档！')
-        mbox.showerror('错误','提取班级信息失败，请查验Word文档！')
+        mbox('错误','提取班级信息失败，请查验Word文档!','error')
         sys.exit()
     #print(classes)
     
-    req = requests.get('http://211.81.249.110/hmc/hmc.asp')
+    try:
+        req = requests.get('http://211.81.249.110/hmc/hmc.asp')
+    except ConnectionResetError as err:
+        mbox('错误','网络连接错误:{0}\n请查验Word文档!'.format(err),'error')
+        sys.exit(0)
     content = req.content.decode('gbk', 'ignore')
     allCla = re.findall(r'[\u4e00-\u9fa5]{2,10}(?=' + grade + '-\d{1,2}</a>)', content)
     allCla = list(set(allCla)) #合并重复，只保留专业全称
-    #print(len(allCla))
+    print(len(allCla))
     
     for i in range(len(classes)):
         temp = []
@@ -58,7 +69,7 @@ def main(argv):
                 temp.append(allCla[j])
         #if len(temp)>1:print(classes[i],temp)
         classes[i] = min(temp,key=len)+grade+'-'+classes[i][-1] # 存在多个匹配对象时，取最短的
-    #print(classes)
+    print(classes)
     
     
     conn = sqlite3.connect(os.path.dirname(os.path.realpath(__file__))+'/hwmy'+grade+'.db') #参数路径
@@ -116,7 +127,7 @@ def main(argv):
     curs.close()
     conn.close()
     
-    mbox.showinfo('完成','请在桌面查看muster.xls文件！')
+    mbox('完成','请在桌面查看muster.xls文件!','info')
 
 if __name__ == "__main__":
    main(sys.argv[1:])
