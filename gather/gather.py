@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-
+抓取教务网站学生花名册
 """
 
 import sys, re, requests
