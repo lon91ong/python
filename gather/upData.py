@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr  5 14:50:32 2019
-操作Excel表格录入成绩到数据库
+
 @author: xiaoniu29
 """
 
@@ -9,15 +9,24 @@ import sqlite3
 import xlwings as xw
 import sys, os
 from pywintypes import com_error
-import tkinter
-import tkinter.messagebox as mbox
+
 
 # 准备消息框
-window = tkinter.Tk()
-window.wm_withdraw()
+def mbox(title, text, style = ''):
+    import win32api,win32con
+    if style == 'error':
+        win32api.MessageBox(0, text, title, win32con.MB_ICONERROR)
+    elif style == 'info':
+        win32api.MessageBox(0, text, title, win32con.MB_ICONASTERISK)
+    elif style == 'warn':
+        win32api.MessageBox(0, text, title, win32con.MB_ICONWARNING)
+    else:
+        win32api.MessageBox(0, text, title, win32con.MB_OK)
+
+
 #mbox.showinfo('length',__name__+'\n'+str(sys.argv))
 if __name__ == "__main__" and len(sys.argv) < 2: #命令行参数指定数据库文件
-    mbox.showerror('错误','需要指定数据库文件路径!')
+    mbox( '错误','需要指定数据库文件路径!', 'error')
     sys.exit(0)
 else:
     datapth = os.path.abspath(sys.argv[-1]).replace('\\','/')
@@ -37,7 +46,7 @@ def initonce():
         curs.execute('SELECT class FROM classes')
     except sqlite3.OperationalError as err:
         print("sqlite3.OperationalError: {0}".format(err))
-        mbox.showerror('错误','数据库错误:{0}\n请查验后重试!'.format(err))
+        mbox('错误','数据库错误:{0}\n请查验后重试!'.format(err),'error')
         sys.exit(0)
     try:
         wb.sheets[0].cells(3,1).value=datapth
@@ -86,7 +95,8 @@ def upData():
         except:
             print("Unexpected error:",i,sys.exc_info()[0])
     conn.commit()
-    mbox.showinfo('完成','成功录入 '+str(n)+' 条成绩数据!')
+    mbox('完成','成功录入 '+str(n)+' 条成绩数据!','info')
+    #mbox.showinfo('完成','成功录入 '+str(n)+' 条成绩数据!')
 
 def clean():
     global wb, curs, conn
