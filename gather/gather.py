@@ -72,8 +72,8 @@ def main(argv):
     #print(classes)
     
     
-    conn = sqlite3.connect(os.path.dirname(sys.argv[0])+'/hwmy'+grade+'.db') #参数路径
-    #mbox('info',os.path.dirname(os.path.realpath(__file__)),'info')
+    conn = sqlite3.connect(os.path.dirname(os.path.abspath(sys.argv[0]))+'/hwmy'+grade+'.db') #参数路径
+    #mbox('info',os.path.dirname(os.path.realpath(sys.argv[0])),'info')
     #conn = sqlite3.connect(':memory:') #内存临时
     curs = conn.cursor()
     conn.text_factory = str #lambda x: str(x, "gbk", "ignore")
@@ -83,7 +83,7 @@ def main(argv):
             curs.execute('create table students (id varchar(12) primary key, name varchar(12) not NULL collate nocase, class text collate nocase, score unsigned tinyint, unique (id))')
         curs.execute('select * from sqlite_master where type = "table" and name = "classes"')
         if curs.fetchone() == None:
-            curs.execute('create table classes (id varchar(2), class text not NULL collate nocase, unique (class))')
+            curs.execute('create table classes (id INTEGER PRIMARY KEY AUTOINCREMENT, class text not NULL collate nocase, unique (class))')
     except sqlite3.OperationalError as e:
         print("Error info:",e.args[0])
         pass
@@ -97,8 +97,9 @@ def main(argv):
         worksheet.write(i+1,0,classes[i])
         
         try:
-            curs.execute('insert into classes (id, class) values ("%s","%s")'%(str(i),classes[i]))
-        except (sqlite3.IntegrityError, sqlite3.OperationalError):
+            curs.execute('insert into classes (class) values ("{0}")'.format(classes[i]))
+        except (sqlite3.IntegrityError, sqlite3.OperationalError) as e:
+            print("Error info:",e.args[0])
             pass
         
         req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'))
@@ -128,7 +129,7 @@ def main(argv):
     curs.close()
     conn.close()
     
-    mbox('完成','请在桌面查看muster.xls文件!\n数据库文件在程序目录下!','info')
+    mbox('完成','请在桌面查看muster.xls文件!','info')
 
 if __name__ == "__main__":
    main(sys.argv[1:])
