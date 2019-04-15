@@ -26,6 +26,10 @@ Python打包exe可执行文件
 
 `某侠笔记 <https://www.crifan.com/use_pyinstaller_to_package_python_to_single_executable_exe/>`_
 
+`Pyinstaller打包用spec添加资源文件 <https://www.yuanrenxue.com/tricks/pyinstaller-spec.html>`_
+
+`PyInstaller打包详解 <https://yujunjiex.gitee.io/2018/10/18/PyInstaller%E6%89%93%E5%8C%85%E8%AF%A6%E8%A7%A3/>`_
+
 `官方排错参考 <https://pyinstaller.readthedocs.io/en/stable/when-things-go-wrong.html?highlight=win32com>`_
 
 `某虾心得 <https://zhengzexin.com/2016/11/08/pyinstaller-da-bao-python-jiao-ben-de-yi-xie-xin-de>`_
@@ -38,3 +42,5 @@ Python打包exe可执行文件
 打包批处理脚本用的工具：`Bat To Exe Converter <http://www.f2ko.de/en/b2e.php>`_
 
 如果需要能直接用python脚本对某个文件进行读写的操作，想绕过命令行调用，直接鼠标拖上去执行，方法二就挺适合。
+
+这个方法的缺点在于，会报毒！基本上所有的脚本语言打包成的exe都有这个问题！
