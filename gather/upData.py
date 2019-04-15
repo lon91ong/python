@@ -10,7 +10,6 @@ import xlwings as xw
 import sys, os
 from pywintypes import com_error
 
-
 # 准备消息框
 def mbox(title, text, style = ''):
     import win32api,win32con
@@ -23,19 +22,25 @@ def mbox(title, text, style = ''):
     else:
         win32api.MessageBox(0, text, title, win32con.MB_OK)
 
-
 #mbox.showinfo('length',__name__+'\n'+str(sys.argv))
 if len(sys.argv) < 2: #命令行参数指定数据库文件
     mbox( '错误','需要指定数据库文件路径!', 'error')
     sys.exit(0)
 #print(datapth)
-# 初始化
-wb = xw.Book(r'scoreRecord.xlsm')
+# 初始化,防止重复打开
+try:
+    wb = xw.apps.active.books.active
+except (AttributeError,com_error) as err:
+    print("Error info: {0}".format(err))
+    wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
+    pass
+#wb = xw.Book(r'scoreRecord.xlsm')
 datapth = wb.sheets[0].cells(3,1).value
 
 def initonce():
     global datapth
     wb.sheets[0].cells(3,1).value=datapth
+    wb.sheets[0].cells(4,1).value=os.path.dirname(os.path.realpath(sys.argv[0]))
     try:
         conn = sqlite3.connect(datapth)
         curs = conn.cursor()
@@ -115,7 +120,6 @@ def clean():
     wb.sheets[0].range('A5:J50').api.ClearContents()
     wb.sheets[0].api.Protect('m1101')
     wb.close()
-    sys.exit(0)
 
 def main(argv):
     global datapth
@@ -128,6 +132,7 @@ def main(argv):
     else: #normal
         datapth = os.path.abspath(argv[0]).replace('\\','/') # sqlite not fit \\
         initonce()
-    
+    sys.exit(0)
+
 if __name__ == "__main__":
    main(sys.argv[1:])
