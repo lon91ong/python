@@ -56,19 +56,22 @@ def main(argv):
     allCla = list(set(allCla)) #合并重复，只保留专业全称
     #print(len(allCla))
     
-    for i in range(len(classes)):
+    for ci in classes:
         temp = []
         for j in range(len(allCla)):
-            n = len(classes[i])-1   #尾数不参与比对
-            for c in classes[i][:-1]: #简称所有字符都在全称内
+            n = len(ci)-1   #尾数不参与比对
+            for c in ci[:-1]: #简称所有字符都在全称内
                 if not(c in allCla[j]):
                     break
                 else:
                     n = n-1
             if n==0: #全部找到用全称替换简称
                 temp.append(allCla[j])
-        #if len(temp)>1:print(classes[i],temp)
-        classes[i] = min(temp,key=len)+grade+'-'+classes[i][-1] # 存在多个匹配对象时，取最短的
+        if len(temp)==0: # 无匹配时剔除该班级
+            mbox('警告','{0}无匹配，请查验！'.format(ci),'warn')
+            classes.remove(ci)
+        else:
+            ci = min(temp,key=len)+grade+'-'+ci[-1] # 存在多个匹配对象时，取最短的
     #print(classes)
     
     
