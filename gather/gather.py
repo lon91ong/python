@@ -71,7 +71,7 @@ def main(argv):
             mbox('警告','{0}无匹配，请查验！'.format(ci),'warn')
             classes.remove(ci)
         else:
-            ci = min(temp,key=len)+grade+'-'+ci[-1] # 存在多个匹配对象时，取最短的
+            classes[classes.index(ci)] = min(temp,key=len)+grade+'-'+ci[-1] # 存在多个匹配对象时，取最短的
     #print(classes)
     
     
