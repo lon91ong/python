@@ -21,6 +21,10 @@ Python打包exe可执行文件
 是不是有许多的 *missing module named ...blabla...*，
 排错路漫漫...
 
+UPX压缩参数 --upx-dir='dir of your UPX.exe'
+
+win10系统还是别用了，可能会出错，`参考 <https://github.com/upx/upx/issues/203>`_
+
 参考笔记(按价值排序)
 ,,,,,,,,,,,,,,,,,,,,,,
 
