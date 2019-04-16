@@ -108,6 +108,9 @@ def main(argv):
         req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'))
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
         ids = re.findall(r'\d{12}(?=</td>)', content)   # 所有的学号
+        if len(ids) == 0:
+            mbox('获取名单失败!','无法获取名单，请手动检查教务名单页面！','error')
+            sys.exit(0)
         root = etree.HTML(content)
         name = ''
         for j in range(len(ids)):
