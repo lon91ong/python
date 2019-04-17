@@ -29,7 +29,7 @@ if len(sys.argv) < 2: #命令行参数指定数据库文件
 #print(datapth)
 # 初始化,防止重复打开
 try:
-    wb = xw.apps.active.books.active
+    wb = xw.apps.active.books.active # 活动工作簿
 except (AttributeError,com_error) as err:
     print("Error info: {0}".format(err))
     wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
@@ -37,7 +37,7 @@ except (AttributeError,com_error) as err:
 #wb = xw.Book(r'scoreRecord.xlsm')
 datapth = wb.sheets[0].cells(3,1).value
 
-def initonce():
+def initonce(): # 初始化
     global datapth
     wb.sheets[0].cells(3,1).value=datapth
     wb.sheets[0].cells(4,1).value=os.path.dirname(os.path.realpath(sys.argv[0]))
@@ -66,7 +66,7 @@ def initonce():
 
 def downData():
     global datapth
-    # 清楚原有数据
+    # 清除原有数据
     last_r = max(5,wb.sheets[0].range('A' + str(wb.sheets[0].cells.last_cell.row)).end('up').row)
     wb.sheets[0].range('A5:J'+str(last_r)).api.ClearContents()
     
@@ -79,6 +79,7 @@ def downData():
         initonce()
     conn = sqlite3.connect(datapth)
     curs = conn.cursor()
+    # 从数据库读取学生信息
     curs.execute('SELECT id,name FROM students where class ="'+cla+'"')
     res = curs.fetchall()
     for i in range(len(res)):
@@ -91,17 +92,15 @@ def upData():
     global datapth
     # 成绩所在列为第5行末列
     n = 0
-    if wb.sheets[0].cells(3,13).api.EntireColumn.Hidden:
-        last_c = 12
-    else:
-        last_c = wb.sheets[0].cells(5, wb.sheets[0].cells.last_cell.column).end('left').column
+    last_c = wb.sheets[0].cells(5, wb.sheets[0].cells.last_cell.column).end('left').column # 末列,忽略隐藏列
+    #while last_c >= 12 and wb.sheets[0].api.Columns(last_c).Hidden:last_c = last_c-1
     conn = sqlite3.connect(datapth)
     curs = conn.cursor()
     for i in range(5,wb.sheets[0].range('A' + str(wb.sheets[0].cells.last_cell.row)).end('up').row+1):
         if wb.sheets[0].cells(i,last_c).value == '': #成绩为空
             print("成绩数据为空!")
             continue
-        try:
+        try: # 更新表单成绩数据
             curs.execute('UPDATE students SET score = '+str(int(wb.sheets[0].cells(i,last_c).value))+' WHERE ID = "'+wb.sheets[0].cells(i,1).value+'"')
             n = n+1
         except:
