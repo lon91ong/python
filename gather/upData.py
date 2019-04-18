@@ -29,12 +29,12 @@ if len(sys.argv) < 2: #命令行参数指定数据库文件
 #print(datapth)
 # 初始化,防止重复打开
 try:
-    wb = xw.apps.active.books.active # 活动工作簿
+    wb = xw.apps.active.books['scoreRecord.xlsm']
 except (AttributeError,com_error) as err:
     print("Error info: {0}".format(err))
     wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
     pass
-#wb = xw.Book(r'scoreRecord.xlsm')
+xw.apps.active.api.width = 600  # 窗口宽度
 datapth = wb.sheets[0].cells(3,1).value
 
 def initonce(): # 初始化
@@ -50,10 +50,10 @@ def initonce(): # 初始化
         mbox('错误','数据库错误:{0}\n请查验后重试!'.format(err),'error')
         sys.exit(0)
     try:
-        wb.sheets[0].api.Unprotect('m1101')
+        wb.sheets[0].api.Unprotect('')
         wb.sheets[0].cells(2,11).api.Validation.Delete()
         wb.sheets[0].cells(2,11).api.Validation.Add(3,1,3,','.join([t[0] for t in curs.fetchall()]))
-        wb.sheets[0].api.Protect('m1101')
+        wb.sheets[0].api.Protect('')
     except com_error as err:
         print("com_error: {0}".format(err))
     #except:
@@ -112,12 +112,12 @@ def upData():
     #mbox.showinfo('完成','成功录入 '+str(n)+' 条成绩数据!')
 
 def clean():
-    wb.sheets[0].api.Unprotect('m1101')
+    wb.sheets[0].api.Unprotect('')
     wb.sheets[0].cells(2,11).api.Validation.Delete()
     wb.sheets[0].cells(2,11).api.ClearContents()
     wb.sheets[0].cells(3,1).api.ClearContents()
     wb.sheets[0].range('A5:J50').api.ClearContents()
-    wb.sheets[0].api.Protect('m1101')
+    wb.sheets[0].api.Protect('')
     wb.close()
 
 def main(argv):
