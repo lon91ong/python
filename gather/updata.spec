@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['updata.py'],
+a = Analysis(['E:\\WorkShop\\Python\\updata.py'],
              pathex=['C:\\Users\\xiaoniu29\\pipenv1'],
              binaries=[('scoreRecord.xlsm','.'),('xlwings.xlam','.'),],
              datas=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='updata',
+          name='upScore',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
