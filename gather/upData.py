@@ -49,11 +49,12 @@ except (AttributeError,com_error) as err:
     wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
     pass
 xw.apps.active.api.width = 600
+
 if datapth == '' and wb.sheets[0].cells(3,1).value != '':
     datapth = wb.sheets[0].cells(3,1).value
 else:
     wb.sheets[0].cells(3,1).value = datapth
-    wb.sheets[0].cells(4,1).value=os.path.dirname(os.path.realpath(sys.argv[0]))
+    wb.sheets[0].cells(4,1).value = os.path.dirname(os.path.realpath(sys.argv[0]))
 
 def initonce():
     global datapth
@@ -65,6 +66,9 @@ def initonce():
         print("Error info: {0}".format(err))
         mbox('错误','数据库错误:{0}\n请查验后重试!'.format(err),'error')
         sys.exit(0)
+    #except:
+        #mobx('错误','未知错误:', sys.exc_info()[0])
+        #sys.exit(0)
     try:
         wb.sheets[0].api.Unprotect('')
         wb.sheets[0].cells(2,11).api.Validation.Delete()
@@ -127,15 +131,6 @@ def upData():
     mbox('完成','成功录入 '+str(n)+' 条成绩数据!','info')
     #mbox.showinfo('完成','成功录入 '+str(n)+' 条成绩数据!')
 
-def clean():
-    wb.sheets[0].api.Unprotect('')
-    wb.sheets[0].cells(2,11).api.Validation.Delete()
-    wb.sheets[0].cells(2,11).api.ClearContents()
-    wb.sheets[0].cells(3,1).api.ClearContents()
-    wb.sheets[0].range('A5:J50').api.ClearContents()
-    wb.sheets[0].api.Protect('')
-    wb.close()
-
 def main(argv):
     global datapth
     if len(argv) == 0: #直接运行程序
@@ -145,8 +140,6 @@ def main(argv):
             downData()
         elif argv[0] =='up':
             upData()
-        elif argv[0] == 'clean':
-            clean()
         else: #normal
             datapth = os.path.abspath(argv[0]).replace('\\','/') # sqlite not fit \\
             initonce()
