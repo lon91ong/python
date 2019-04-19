@@ -12,20 +12,34 @@ from pywintypes import com_error
 
 # 准备消息框
 def mbox(title, text, style = ''):
-    import win32api,win32con
+    import win32con
+    from win32api import MessageBox
     if style == 'error':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONERROR)
+        MessageBox(0, text, title, win32con.MB_ICONERROR)
     elif style == 'info':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONASTERISK)
+        MessageBox(0, text, title, win32con.MB_ICONASTERISK)
     elif style == 'warn':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONWARNING)
+        MessageBox(0, text, title, win32con.MB_ICONWARNING)
     else:
-        win32api.MessageBox(0, text, title, win32con.MB_OK)
+        MessageBox(0, text, title, win32con.MB_OK)
+        
+def openDataBaseFile(initdir="C:\\"):
+    import win32con
+    from win32ui import CreateFileDialog
+    dlg = CreateFileDialog(1, None, None,  win32con.OFN_OVERWRITEPROMPT | win32con.OFN_FILEMUSTEXIST, "SQLite数据库 (*.db)|*.db||")
+    dlg.SetOFNTitle('打开数据库')
+    dlg.SetOFNInitialDir(initdir)
+    if dlg.DoModal() == win32con.IDOK:
+        return dlg.GetPathName()
+    else:
+        return ''
 
-#mbox.showinfo('length',__name__+'\n'+str(sys.argv))
-if len(sys.argv) < 2: #命令行参数指定数据库文件
-    mbox( '错误','需要指定数据库文件路径!', 'error')
-    sys.exit(0)
+datapth = ''
+if len(sys.argv) < 2: #直接运行程序
+    datapth = openDataBaseFile(os.path.dirname(os.path.abspath(sys.argv[0])))
+    if datapth == '':
+        mbox( '错误','需要指定数据库文件!', 'error')
+        sys.exit(0)
 #print(datapth)
 # 初始化,防止重复打开
 try:
@@ -34,13 +48,15 @@ except (AttributeError,com_error) as err:
     print("Error info: {0}".format(err))
     wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
     pass
-xw.apps.active.api.width = 600  # 窗口宽度
-datapth = wb.sheets[0].cells(3,1).value
-
-def initonce(): # 初始化
-    global datapth
-    wb.sheets[0].cells(3,1).value=datapth
+xw.apps.active.api.width = 600
+if datapth == '' and wb.sheets[0].cells(3,1).value != '':
+    datapth = wb.sheets[0].cells(3,1).value
+else:
+    wb.sheets[0].cells(3,1).value = datapth
     wb.sheets[0].cells(4,1).value=os.path.dirname(os.path.realpath(sys.argv[0]))
+
+def initonce():
+    global datapth
     try:
         conn = sqlite3.connect(datapth)
         curs = conn.cursor()
@@ -66,7 +82,7 @@ def initonce(): # 初始化
 
 def downData():
     global datapth
-    # 清除原有数据
+    # 清楚原有数据
     last_r = max(5,wb.sheets[0].range('A' + str(wb.sheets[0].cells.last_cell.row)).end('up').row)
     wb.sheets[0].range('A5:J'+str(last_r)).api.ClearContents()
     
@@ -92,7 +108,7 @@ def upData():
     global datapth
     # 成绩所在列为第5行末列
     n = 0
-    last_c = wb.sheets[0].cells(5, wb.sheets[0].cells.last_cell.column).end('left').column # 末列,忽略隐藏列
+    last_c = wb.sheets[0].cells(5, wb.sheets[0].cells.last_cell.column).end('left').column # 末列，忽略隐藏列
     #while last_c >= 12 and wb.sheets[0].api.Columns(last_c).Hidden:last_c = last_c-1
     conn = sqlite3.connect(datapth)
     curs = conn.cursor()
@@ -100,7 +116,7 @@ def upData():
         if wb.sheets[0].cells(i,last_c).value == '': #成绩为空
             print("成绩数据为空!")
             continue
-        try: # 更新表单成绩数据
+        try:
             curs.execute('UPDATE students SET score = '+str(int(wb.sheets[0].cells(i,last_c).value))+' WHERE ID = "'+wb.sheets[0].cells(i,1).value+'"')
             n = n+1
         except:
@@ -122,15 +138,18 @@ def clean():
 
 def main(argv):
     global datapth
-    if argv[0] =='down':
-        downData()
-    elif argv[0] =='up':
-        upData()
-    elif argv[0] == 'clean':
-        clean()
-    else: #normal
-        datapth = os.path.abspath(argv[0]).replace('\\','/') # sqlite not fit \\
+    if len(argv) == 0: #直接运行程序
         initonce()
+    else:
+        if argv[0] =='down':
+            downData()
+        elif argv[0] =='up':
+            upData()
+        elif argv[0] == 'clean':
+            clean()
+        else: #normal
+            datapth = os.path.abspath(argv[0]).replace('\\','/') # sqlite not fit \\
+            initonce()
     sys.exit(0)
 
 if __name__ == "__main__":
