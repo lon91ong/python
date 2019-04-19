@@ -25,6 +25,20 @@ Excel2003以前的格式(\*.xls)，简单的读用 *xlrd* 简单的写用 *xlwt*
 
 Excel2010以后的格式(\*.xlsx), 用 *openpyxl*
 
+**压制(suppress)关闭Excel时的保存提示**
+
+`参考微软官方给的几个方法 <https://support.office.com/en-us/article/-how-to-suppress-save-changes-prompt-when-you-close-a-workbook-in-excel-189a257e-ec1b-40f7-9195-56d82e673071>`_ 
+
+单一的方法都试过了,不起作用，最后实践证明下面的方法有效。在每一次变化后都要设置属性`Saved = True`，这样就可以干掉烦人的提示了！
+
+.. code:: Visual Basic for Application
+
+ Private Sub Worksheet_Change(ByVal Target As Range)
+    ThisWorkbook.Saved = True
+    ...
+ End Sub
+
+
 需要分析数据或数据量大可以用 *pandas*
 
 Tips
