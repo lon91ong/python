@@ -30,23 +30,32 @@ Excel2010以后的格式(\*.xlsx), 用 *openpyxl*
 Tips
 ,,,,,,,
 
-实用的消息框函数
+**实用的消息框函数**
 
 .. code:: python
 
  def Mbox(title, text, style = ''):
-    import win32api,win32con
+    import win32con
+    from win32api import MessageBox
     if style == 'error':  # 错误
-        win32api.MessageBox(0, text, title, win32con.MB_ICONERROR)
+        MessageBox(0, text, title, win32con.MB_ICONERROR)
     elif style == 'info': # 信息
-        win32api.MessageBox(0, text, title, win32con.MB_ICONASTERISK)
+        MessageBox(0, text, title, win32con.MB_ICONASTERISK)
     elif style == 'warn': # 警告
-        win32api.MessageBox(0, text, title, win32con.MB_ICONWARNING)
+        MessageBox(0, text, title, win32con.MB_ICONWARNING)
     else:
-        win32api.MessageBox(0, text, title, win32con.MB_OK)
+        MessageBox(0, text, title, win32con.MB_OK)
+        
+**Win32风格文件保存/打开对话框：**
+
+`函数定义 <http://timgolden.me.uk/pywin32-docs/win32ui__CreateFileDialog_meth.html>`_
+
+`代码示例 <https://www.programcreek.com/python/example/92919/win32ui.CreateFileDialog>`_
 
 
-中文正则表达是匹配，很多很多的答案是 **\[\\u4e00-\\u9fa5]** ,但是在Emeditor里这个不好使，它不仅仅匹配中文。
+**中文正则表达是匹配**
+
+很多很多的答案是 **\[\\u4e00-\\u9fa5]** ,但是在Emeditor里这个不好使，它不仅仅匹配中文。
 
 找了一个仅仅匹配中文的正则式子 **\[\一-\龥]** 好用！！！
 
