@@ -46,10 +46,9 @@ Tips
     else:
         MessageBox(0, text, title, win32con.MB_OK)
         
-**Win32风格文件保存/打开对话框：**
+**Win32风格文件保存/打开对话框**
 
-`函数定义 <http://timgolden.me.uk/pywin32-docs/win32ui__CreateFileDialog_meth.html>`_
-
+`函数定义 <http://timgolden.me.uk/pywin32-docs/win32ui__CreateFileDialog_meth.html>`_ ,
 `代码示例 <https://www.programcreek.com/python/example/92919/win32ui.CreateFileDialog>`_
 
 
