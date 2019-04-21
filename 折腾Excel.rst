@@ -4,6 +4,29 @@
 `原文链接 <https://www.pyxll.com/blog/tools-for-working-with-excel-and-python/>`_
 
 
+插入一些关于Excel的折腾笔记
+-----------------------------
+
+**判断打开表格的程序是Excel还是WPS**
+
+.. code:: VBA
+
+   #If VBA7 Then
+       Private Declare PtrSafe Function GetWindowText Lib "USER32" Alias "GetWindowTextA" (ByVal hWnd As LongPtr, ByVal lpString As String, ByVal cch As LongPtr) As Long
+   #Else
+       Private Declare Function GetWindowText Lib "USER32" Alias "GetWindowTextA" (ByVal hWnd As Long, ByVal lpString As String, ByVal cch As Long) As Long
+   #End If
+
+    Public Function OpenWith() As String
+       Dim Title As String * 255 '窗口标题
+       Call GetWindowText(Application.hWnd, Title, 255&)
+       OpenWith = Left(Title, InStr(Title, Chr(0&)) - 1&)
+    End Function
+   Sub ver()
+       'MsgBox Application.Name
+       MsgBox OpenWith
+   End Sub
+
 Microsoft Excel几乎适用于所有行业。其直观的界面和易用性，可用于组织数据，执行计算和数据集分析，从而使其广泛应用于全球无数不同的领域。
 
 无论您是否是Excel的粉丝，在某些时候您都必须处理它！对于许多应用程序，您不希望在Excel本身中执行复杂计算或管理大型数据集，但您可能需要从Excel中获取值作为输入，以Excel格式生成报表或向Excel用户提供工具。 Python可以是复杂任务的更好选择，幸运的是，有许多工具可供Python开发人员使用，因此Excel和Python可以一起使用。
