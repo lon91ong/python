@@ -4,10 +4,8 @@
 `原文链接 <https://www.pyxll.com/blog/tools-for-working-with-excel-and-python/>`_
 
 
-插入一些关于Excel的折腾笔记
------------------------------
-
-**判断打开表格的程序是Excel还是WPS**
+**插入一些关于Excel的折腾笔记**
+  **判断打开表格的程序是Excel还是WPS**
 
 .. code:: VBA
 
@@ -26,6 +24,9 @@
        'MsgBox Application.Name
        MsgBox OpenWith
    End Sub
+
+参考： `关于不同VBA版本的系统调用声明总结 <https://jkp-ads.com/Articles/apideclarations.asp>`_
+  内容仅供参考，可能存在错误，遇到过一个Private错写成Public的错误。
 
 Microsoft Excel几乎适用于所有行业。其直观的界面和易用性，可用于组织数据，执行计算和数据集分析，从而使其广泛应用于全球无数不同的领域。
 
