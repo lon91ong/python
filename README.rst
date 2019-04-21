@@ -78,7 +78,9 @@ conda create -n env_name [list of packages]
 
 .. image:: /imgs/python_env.png
    :align: center
-   
+
+其它相关命令（`参考 <https://blog.csdn.net/weixin_39278265/article/details/82982937>`_）：
+
   装完之后进入环境：*conda activate py34*
   
   退出：*conda deactivate*
@@ -87,7 +89,6 @@ conda create -n env_name [list of packages]
   
   显示所有环境：*conda env list*
   
-  `参考 <https://blog.csdn.net/weixin_39278265/article/details/82982937>`_
 
 **中文正则表达是匹配**
 
