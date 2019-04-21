@@ -90,6 +90,7 @@ conda create -n env_name [list of packages]
   显示所有环境：*conda env list*
   
 
+
 **中文正则表达是匹配**
 
 很多很多的答案是 **\[\\u4e00-\\u9fa5]** ,但是在Emeditor里这个不好使，它不仅仅匹配中文。
