@@ -44,7 +44,7 @@ if len(sys.argv) < 2: #直接运行程序
 # 初始化,防止重复打开
 try:
     wb = xw.apps.active.books['scoreRecord.xlsm']
-except (AttributeError,com_error) as err:
+except (AttributeError,KeyError,com_error) as err:
     print("Error info: {0}".format(err))
     wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
     pass
