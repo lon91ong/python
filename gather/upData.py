@@ -62,8 +62,6 @@ def initonce():
     curs.close()
     conn.close()
 
-#if __name__ == "__main__":initonce()
-
 def downData():
     global datapth
     # 清楚原有数据
