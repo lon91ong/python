@@ -9,37 +9,17 @@ import sqlite3
 import xlwings as xw
 import sys, os
 from pywintypes import com_error
-
-# 准备消息框
-def mbox(title, text, style = ''):
-    import win32con
-    from win32api import MessageBox
-    if style == 'error':
-        MessageBox(0, text, title, win32con.MB_ICONERROR)
-    elif style == 'info':
-        MessageBox(0, text, title, win32con.MB_ICONASTERISK)
-    elif style == 'warn':
-        MessageBox(0, text, title, win32con.MB_ICONWARNING)
-    else:
-        MessageBox(0, text, title, win32con.MB_OK)
-        
-def openDataBaseFile(initdir="C:\\"):
-    import win32con
-    from win32ui import CreateFileDialog
-    dlg = CreateFileDialog(1, None, None,  win32con.OFN_OVERWRITEPROMPT | win32con.OFN_FILEMUSTEXIST, "SQLite数据库 (*.db)|*.db||")
-    dlg.SetOFNTitle('打开数据库')
-    dlg.SetOFNInitialDir(initdir)
-    if dlg.DoModal() == win32con.IDOK:
-        return dlg.GetPathName()
-    else:
-        return ''
+from myMod import mbox, getFile
 
 datapth = ''
+#mbox('信息','参数长度：'+str(len(sys.argv)),'info')
 if len(sys.argv) < 2: #直接运行程序
-    datapth = openDataBaseFile(os.path.dirname(os.path.abspath(sys.argv[0])))
+    datapth = getFile(os.path.dirname(os.path.abspath(sys.argv[0])),'打开数据库',"SQLite数据库 (*.db)|*.db||")
     if datapth == '':
         mbox( '错误','需要指定数据库文件!', 'error')
         sys.exit(0)
+elif len(sys.argv) == 2: #需要排除 >2 的情况
+    datapth = os.path.abspath(sys.argv[1]).replace('\\','/') # sqlite not fit \\
 #print(datapth)
 # 初始化,防止重复打开
 try:
@@ -55,7 +35,7 @@ if datapth == '' and wb.sheets[0].cells(3,1).value != '':
 else:
     wb.sheets[0].cells(3,1).value = datapth
     wb.sheets[0].cells(4,1).value = os.path.dirname(os.path.realpath(sys.argv[0]))
-
+#mbox('信息','数据库：'+datapth,'info')
 def initonce():
     global datapth
     try:
@@ -91,12 +71,11 @@ def downData():
     wb.sheets[0].range('A5:J'+str(last_r)).api.ClearContents()
     
     cla = wb.sheets[0].cells(2,11).value
-    #print(cla)
+    #mbox('信息','班级：'+cla,'info')
     if cla == None:
         print("没有该班级信息!")
         sys.exit(0)
-    if datapth == None:
-        initonce()
+    #if datapth == None:initonce()
     conn = sqlite3.connect(datapth)
     curs = conn.cursor()
     # 从数据库读取学生信息
@@ -132,17 +111,12 @@ def upData():
     #mbox.showinfo('完成','成功录入 '+str(n)+' 条成绩数据!')
 
 def main(argv):
-    global datapth
-    if len(argv) == 0: #直接运行程序
+    if len(argv) <2:
         initonce()
-    else:
-        if argv[0] =='down':
-            downData()
-        elif argv[0] =='up':
-            upData()
-        else: #normal
-            datapth = os.path.abspath(argv[0]).replace('\\','/') # sqlite not fit \\
-            initonce()
+    elif argv[0] =='down':
+        downData()
+    elif argv[0] =='up':
+        upData()
     sys.exit(0)
 
 if __name__ == "__main__":
