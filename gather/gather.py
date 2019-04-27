@@ -5,90 +5,37 @@ Created on Fri Apr  5 14:50:32 2019
 @author: xiaoniu29
 """
 
-import sys, re, requests
+import sys, os, re
 from lxml import etree 
-import sqlite3, os
-import docx, xlwt
+import sqlite3, requests, xlwt
 from urllib.parse import quote
 
-# 自定义win32消息框
-def mbox(title, text, style = ''):
-    import win32api,win32con
-    if style == 'error':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONERROR)
-    elif style == 'info':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONASTERISK)
-    elif style == 'warn':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONWARNING)
-    else:
-        win32api.MessageBox(0, text, title, win32con.MB_OK)
-
-# 取得桌面文件夹路径
-def GetDesktopPath():
-    import winreg
-    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders')
-    return winreg.QueryValueEx(key, "Desktop")[0]
+from myMod import mbox, GetDesktopPath, getFile
+from getClasses import getClassName
 
 def main(argv):
-    try: # 读取word课表
-        word = docx.Document(str(argv[-1]))
-        #print('接收到的文件：'+str(argv[-1]))
-        #word = docx.Document(r'E:\花名\M2019年春季学期2017级第二轮.docx')
-        grade = re.search(r'(?<=20)\d{2}(?=级)',word.paragraphs[0].text).group()
-        table = word.tables[0]
-        classes = []
-        for i in range(1,len(table.rows)):
-            for j in range(2,len(table.columns)):
-                mach = re.match(r'[\u4e00-\u9fa5]{2,5}\d{1,2}(?=班)',table.cell(i,j).text)
-                if mach != None:
-                    classes.append(mach.group())
-    except:
-        #print('提取班级信息失败，请查验Word文档！')
-        mbox('错误','提取班级信息失败，请查验Word文档!','error')
-        sys.exit()
+    exedir = os.path.dirname(os.path.abspath(sys.argv[0])) # 程序所在目录
+    if len(sys.argv) < 2: #直接运行程序
+        docpth = getFile(exedir,'打开课程表',"Word 10文档 (*.docx)|*.docx|Word 03文档 (*.doc)|*.doc||")
+        if docpth == '':
+            mbox( '错误','需要指定课程表文件!', 'error')
+            sys.exit(0)
+    else:
+        docpth = os.path.abspath(sys.argv[-1])
+    grade, classes = getClassName(docpth) #取年级、班级列表
     #print(classes)
     
-    try: # 取得全部班级
-        req = requests.get('http://211.81.249.110/hmc/hmc.asp')
-    except ConnectionResetError as err:
-        mbox('错误','网络连接错误:{0}\n请查验Word文档!'.format(err),'error')
-        sys.exit(0)
-    content = req.content.decode('gbk', 'ignore')
-    allCla = re.findall(r'[\u4e00-\u9fa5]{2,10}(?=' + grade + '-\d{1,2}</a>)', content)
-    allCla = list(set(allCla)) #合并重复，只保留专业全称
-    #print(len(allCla))
-    
-    # 用全称替代简称
-    for ci in classes:
-        temp = []
-        for j in range(len(allCla)):
-            n = len(ci)-1   #尾数不参与比对
-            for c in ci[:-1]: #简称所有字符都在全称内
-                if not(c in allCla[j]):
-                    break
-                else:
-                    n = n-1
-            if n==0: #全部找到用全称替换简称
-                temp.append(allCla[j])
-        if len(temp)==0: # 无匹配时剔除该班级
-            mbox('警告','{0}无匹配，请查验！'.format(ci),'warn')
-            classes.remove(ci)
-        else:
-            classes[classes.index(ci)] = min(temp,key=len)+grade+'-'+ci[-1] # 存在多个匹配对象时，取最短的
-    #print(classes)
-    
-    # 新建数据库
-    conn = sqlite3.connect(os.path.dirname(os.path.abspath(sys.argv[0]))+'/hwmy'+grade+'.db') #参数路径
+    conn = sqlite3.connect(exedir+'/hwmy'+grade+'.db') #参数路径
     #mbox('info',os.path.dirname(os.path.realpath(sys.argv[0])),'info')
     #conn = sqlite3.connect(':memory:') #内存临时
-    curs = conn.cursor() #数据库游标
+    curs = conn.cursor()
     conn.text_factory = str #lambda x: str(x, "gbk", "ignore")
     try:
-        curs.execute('select * from sqlite_master where type = "table" and name = "students"') # 查询数据库是否有students表单
-        if curs.fetchone() == None: # 若无则新建, 含学号(id)、姓名(name)、班级(class)和成绩(score)4个字段
+        curs.execute('select * from sqlite_master where type = "table" and name = "students"')
+        if curs.fetchone() == None:
             curs.execute('create table students (id varchar(12) primary key, name varchar(12) not NULL collate nocase, class text collate nocase, score unsigned tinyint, unique (id))')
-        curs.execute('select * from sqlite_master where type = "table" and name = "classes"') # 查询数据库是否有classes表单
-        if curs.fetchone() == None: # 若无则新建
+        curs.execute('select * from sqlite_master where type = "table" and name = "classes"')
+        if curs.fetchone() == None:
             curs.execute('create table classes (id INTEGER PRIMARY KEY AUTOINCREMENT, class text not NULL collate nocase, unique (class))')
     except sqlite3.OperationalError as e:
         print("Error info:",e.args[0])
@@ -103,7 +50,7 @@ def main(argv):
         worksheet.write(i+1,0,classes[i])
         
         try:
-            curs.execute('insert into classes (class) values ("{0}")'.format(classes[i])) # 班级列表存入classes
+            curs.execute('insert into classes (class) values ("{0}")'.format(classes[i]))
         except (sqlite3.IntegrityError, sqlite3.OperationalError) as e:
             print("Error info:",e.args[0])
             pass
@@ -112,20 +59,23 @@ def main(argv):
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
         ids = re.findall(r'\d{12}(?=</td>)', content)   # 所有的学号
         if len(ids) == 0:
+            print(ids)
             mbox('获取名单失败!','无法获取名单，请手动检查教务名单页面！','error')
             sys.exit(0)
-        root = etree.HTML(content) # DOM根
+        root = etree.HTML(content)
         name = ''
         for j in range(len(ids)):
             name = root.xpath('//td[text()='+ids[j]+']/following-sibling::td[1]/text()')[0].lstrip('\xa0')
             worksheet.write(i+1,j+1,name)
             worksheet.write(0,j+1,'序号'+str(j+1))
             
-            try: # 学生名单存入students
+            try:
                 curs.execute('INSERT INTO students (id, name, class) VALUES ("%s", "%s", "%s")' % (ids[j],name,classes[i]))
             except (sqlite3.IntegrityError, sqlite3.OperationalError):
                 pass
-    conn.commit() # 数据库改动提交
+        
+    conn.commit()
+    
     workbook.save(GetDesktopPath()+'\\muster.xls') #桌面路径
     
     #curs.execute('SELECT name FROM students WHERE id="171304011039"')
