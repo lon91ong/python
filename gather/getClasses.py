@@ -11,7 +11,6 @@ import re, requests, sys
 from myMod import mbox
 
 def getClassName(docpth):
-    
     import docx
     try:
         word = docx.Document(docpth)
