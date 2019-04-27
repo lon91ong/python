@@ -5,22 +5,7 @@ Created on Thu Apr 18 16:57:59 2019
 @author: xiaoniu29
 """
 import sqlite3, os, sys
-
-def mbox(title, text, style = ''):
-    import win32api,win32con
-    if style == 'error':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONERROR)
-    elif style == 'info':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONASTERISK)
-    elif style == 'warn':
-        win32api.MessageBox(0, text, title, win32con.MB_ICONWARNING)
-    else:
-        win32api.MessageBox(0, text, title, win32con.MB_OK)
-        
-def GetDesktopPath():
-    import winreg
-    key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders')
-    return winreg.QueryValueEx(key, "Desktop")[0]
+from myMod import mbox, GetDesktopPath
 
 def main(argv):
     if len(argv)<1:
