@@ -35,15 +35,16 @@ except (sqlite3.OperationalError, TypeError) as err:
 wb =xlwt.Workbook(encoding="utf-8")
 table = wb.add_sheet("成绩", cell_overwrite_ok=True)
 table.write(0, 0,'班级')
+for i in range(2,81,2):
+    table.write(0,i-1,'姓名'+str(i>>1))
+    table.write(0,i,'成绩'+str(i>>1))
 for i,cla in enumerate(classes):
     curs.execute('SELECT name,score FROM students where class ="'+cla+'"')
     table.write(i+1, 0,cla)
     ns = curs.fetchall()
     for j in range(len(ns)):
-        table.write(0,j*2+1,'姓名'+str(j+1))
         table.write(i+1,j*2+1,ns[j][0])
-        table.write(0,j*2+2,'成绩'+str(j+1))
-        table.write(i+1,j*2+2,ns[j][1])
+        table.write(i+1,j*2+2,ns[j][1] if ns[j][1] != None else 'NaN')
 
 wb.save(GetDesktopPath()+'\\Score.xls') #桌面路径
 mbox('完成','请在桌面查看Score.xls文件!','info')
