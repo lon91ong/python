@@ -30,16 +30,21 @@ def main(argv):
     #conn = sqlite3.connect(':memory:') #内存临时
     curs = conn.cursor()
     conn.text_factory = str #lambda x: str(x, "gbk", "ignore")
+    '''
     try:
         curs.execute('select * from sqlite_master where type = "table" and name = "students"')
         if curs.fetchone() == None:
             curs.execute('create table students (id varchar(12) primary key, name varchar(12) not NULL collate nocase, class text collate nocase, score unsigned tinyint, unique (id))')
-        curs.execute('select * from sqlite_master where type = "table" and name = "classes"')
-        if curs.fetchone() == None:
+        curs.execute('select count(*) from sqlite_master where type = "table" and name = "classes"')
+        if curs.fetchone() == 0:
             curs.execute('create table classes (id INTEGER PRIMARY KEY AUTOINCREMENT, class text not NULL collate nocase, unique (class))')
     except sqlite3.OperationalError as e:
         print("Error info:",e.args[0])
         pass
+    '''
+    curs.execute('create table if not exists students (id varchar(12) primary key, name varchar(12) not NULL collate nocase, class text collate nocase, score unsigned tinyint, unique (id))')
+    curs.execute('create table if not exists classes (id INTEGER PRIMARY KEY AUTOINCREMENT, class text not NULL collate nocase, unique (class))')
+    
     #curs.executemany('INSERT INTO classes VALUES (?,?,?)',[(3,'name3',19),(4,'name4',26)])
     
     #花名电子表
