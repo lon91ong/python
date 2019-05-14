@@ -14,7 +14,13 @@ from myMod import mbox, getFile
 datapth = ''
 #mbox('信息','参数长度：'+str(len(sys.argv)),'info')
 if len(sys.argv) < 2: #直接运行程序
-    datapth = getFile(os.path.dirname(os.path.abspath(sys.argv[0])),'打开数据库',"SQLite数据库 (*.db)|*.db||")
+    df_count = 0 # 当前目录下的db文件计数
+    for f in os.listdir(os.path.dirname(os.path.realpath(sys.argv[0]))):
+        if os.path.splitext(f)[1]=='.db':
+            datapth = os.path.realpath(f)
+            df_count +=1
+    if df_count!=1: # 非单一
+        datapth = getFile(os.path.dirname(os.path.abspath(sys.argv[0])),'打开数据库',"SQLite数据库 (*.db)|*.db||")
     if datapth == '':
         mbox( '错误','需要指定数据库文件!', 'error')
         sys.exit(0)
