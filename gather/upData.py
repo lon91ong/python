@@ -34,7 +34,7 @@ except (AttributeError,KeyError,com_error) as err:
     print("Error info: {0}".format(err))
     wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
     pass
-xw.apps.active.api.width = 600
+#xw.apps.active.api.width = 600 # WPS下会卡死
 
 if datapth == '' and wb.sheets[0].cells(3,1).value != '':
     datapth = wb.sheets[0].cells(3,1).value
