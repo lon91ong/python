@@ -84,10 +84,11 @@ def downData():
     curs = conn.cursor()
     # 从数据库读取学生信息
     curs.execute('SELECT id,name FROM students where class ="'+cla+'"')
-    res = curs.fetchall()
-    for i in range(len(res)):
-        wb.sheets[0].cells(i+5,1).value = res[i][0]
-        wb.sheets[0].cells(i+5,2).value = res[i][1]
+    #res = curs.fetchall()
+    #for i in range(len(res)):
+        #wb.sheets[0].cells(i+5,1).value = res[i][0]
+        #wb.sheets[0].cells(i+5,2).value = res[i][1]
+    wb.sheets[0].range("A5").value = curs.fetchall()
     curs.close()
     conn.close()
 
