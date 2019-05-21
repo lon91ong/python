@@ -53,13 +53,8 @@ def main(argv):
     worksheet.write(0, 0,'班级')
     for i in range(len(classes)):
         worksheet.write(i+1,0,classes[i])
-        
-        try:
-            curs.execute('insert into classes (class) values ("{0}")'.format(classes[i]))
-        except (sqlite3.IntegrityError, sqlite3.OperationalError) as e:
-            print("Error info:",e.args[0])
-            pass
-        
+        curs.execute('Insert Or Replace into classes (class) values ("{0}")'.format(classes[i]))
+
         req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'))
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
         ids = re.findall(r'\d{12}(?=</td>)', content)   # 所有的学号
@@ -73,18 +68,11 @@ def main(argv):
             name = root.xpath('//td[text()='+ids[j]+']/following-sibling::td[1]/text()')[0].lstrip('\xa0')
             worksheet.write(i+1,j+1,name)
             worksheet.write(0,j+1,'序号'+str(j+1))
-            
-            try:
-                curs.execute('INSERT INTO students (id, name, class) VALUES ("%s", "%s", "%s")' % (ids[j],name,classes[i]))
-            except (sqlite3.IntegrityError, sqlite3.OperationalError):
-                pass
-        
+            curs.execute('Insert Or Replace into students (id, name, class) VALUES ("%s", "%s", "%s")' % (ids[j],name,classes[i]))
     conn.commit()
     
     workbook.save(GetDesktopPath()+'\\muster.xls') #桌面路径
     
-    #curs.execute('SELECT name FROM students WHERE id="171304011039"')
-    #curs.execute('SELECT * FROM classes)
     #print(curs.fetchone()[0])
     #print(len(curs.fetchall()))
     #curs.execute("drop table classes") #删除表
