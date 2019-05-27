@@ -89,6 +89,14 @@ conda create -n env_name [list of packages]
   
   显示所有环境：*conda env list*
   
+**前缀序列**
+
+.. code:: python
+
+from itertools import chain
+list(chain(*['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]))
+import numpy as np
+np.ravel(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]).tolist()
 
 
 **中文正则表达是匹配**
