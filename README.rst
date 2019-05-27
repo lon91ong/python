@@ -93,6 +93,7 @@ conda create -n env_name [list of packages]
 **前缀序列**
 
 .. code:: python
+
  sum(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)],[])
  from itertools import chain
  list(chain(*['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]))
