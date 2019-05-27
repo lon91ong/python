@@ -94,12 +94,26 @@ conda create -n env_name [list of packages]
 
 .. code:: python
 
+ # 最简单
  sum(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)],[])
+ # or
  from itertools import chain
  list(chain(*['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]))
  list(chain.from_iterable(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]))
+ # or
  import numpy as np
  np.ravel(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]).tolist()
+ 
+ # 自定义函数
+ def flaten(nested_list):
+    for item in nested_list:
+        if isinstance(item, (list, tuple)):
+            for sub_item in flaten(item):
+                yield sub_item
+        else:
+            yield item
+
+ list(flaten([[1,2,3], [5, 2, 8], [7,8,9]]))
 
 
 **中文正则表达是匹配**
