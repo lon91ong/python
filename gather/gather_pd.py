@@ -8,7 +8,7 @@ Created on Fri Apr  5 14:50:32 2019
 import sys, os, re
 from lxml import etree 
 import sqlite3, requests
-import pandas as pd
+from pandas import DataFrame, ExcelWriter
 from urllib.parse import quote
 
 from myMod import mbox, GetDesktopPath, getFile
@@ -42,7 +42,7 @@ def main(argv):
         root = etree.HTML(content)
         for idn in ids:
             students.append({'id':idn,'name':root.xpath('//td[text()='+idn+']/following-sibling::td[1]/text()')[0].lstrip('\xa0'),'class':cla,'score':''})
-    df_stu = pd.DataFrame(students,columns=['id','name','class','score'])
+    df_stu = DataFrame(students,columns=['id','name','class','score'])
     students = []
     #pd.io.sql.to_sql(df_cla,name='classes',con=conn,index=False,index_label=None,if_exists='replace')
     df_stu.to_sql(name='students',con=conn,index=False,index_label='id',if_exists='replace')
@@ -50,8 +50,8 @@ def main(argv):
     conn.close()
     for cla in classes:
         students.append([cla]+df_stu[df_stu['class']==cla]['name'].tolist())
-    writer = pd.ExcelWriter(GetDesktopPath()+'\\muster.xls')
-    pd.DataFrame(students,columns=['班级']+['序号{}'.format(i) for i in range(1, max(map(len,students)))]).to_excel(writer,'花名',index=False)
+    writer = ExcelWriter(GetDesktopPath()+'\\muster.xls')
+    DataFrame(students,columns=['班级']+['序号{}'.format(i) for i in range(1, max(map(len,students)))]).to_excel(writer,'花名',index=False)
     writer.save()
     mbox('完成','请在桌面查看muster.xls文件!','info')
 
