@@ -88,13 +88,15 @@ conda create -n env_name [list of packages]
   删除不需要的环境：*conda env remove -n env_name*
   
   显示所有环境：*conda env list*
-  
+
+
 **前缀序列**
 
 .. code:: python
-
+ sum(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)],[])
  from itertools import chain
  list(chain(*['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]))
+ list(chain.from_iterable(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]))
  import numpy as np
  np.ravel(['a{0},b{0}'.format(i).split(',') for i in range(1, 20)]).tolist()
 
