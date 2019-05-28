@@ -45,8 +45,6 @@ def main(argv):
     curs.execute('create table if not exists students (id varchar(12) primary key, name varchar(12) not NULL collate nocase, class text collate nocase, score unsigned tinyint, unique (id))')
     curs.execute('create table if not exists classes (id INTEGER PRIMARY KEY AUTOINCREMENT, class text not NULL collate nocase, unique (class))')
     
-    #curs.executemany('INSERT INTO classes VALUES (?,?,?)',[(3,'name3',19),(4,'name4',26)])
-    
     #花名电子表
     workbook=xlwt.Workbook(encoding="utf-8")
     worksheet = workbook.add_sheet("花名", cell_overwrite_ok=True)
@@ -54,13 +52,11 @@ def main(argv):
     for i in range(len(classes)):
         worksheet.write(i+1,0,classes[i])
         curs.execute('Insert Or Replace into classes (class) values ("{0}")'.format(classes[i]))
-
-        req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'))
+        req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'),verify=False)
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
-        ids = re.findall(r'\d{12}(?=</td>)', content)   # 所有的学号
+        ids = re.findall(r'\d{12}(?=</td>)', content) # 所有的学号
         if len(ids) == 0:
-            print(ids)
-            mbox('获取名单失败!','无法获取名单，请手动检查教务名单页面！','error')
+            mbox('获取名单失败!','无法获取{}班名单，请手动检查教务名单页面！'.format(classes[i]),'error')
             sys.exit(0)
         root = etree.HTML(content)
         name = ''
