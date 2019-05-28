@@ -33,11 +33,15 @@ def main(argv):
     students = []
     for cla in classes:
         curs.execute('Insert Or Replace into classes (class) values ("{0}")'.format(cla))
-        req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(cla,encoding='gb2312'))
+        try:
+            req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'),verify=False,timeout=(0.5,3))
+        except requests.exceptions.RequestException as err:
+            mbox('错误','网络连接错误:{0}\n错误类型:{1}\n请查验后重试!'.format(err,type(err)),'error')
+            sys.exit(0)
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
         ids = re.findall(r'\d{12}(?=</td>)', content)   # 所有的学号
         if len(ids) == 0:
-            mbox('获取名单失败!','无法获取名单，请手动检查教务名单页面！','error')
+            mbox('获取名单失败!','无法获取{}班名单，请手动检查教务名单页面！'.format(cla),'error')
             sys.exit(0)
         root = etree.HTML(content)
         for idn in ids:
