@@ -6,7 +6,6 @@ Created on Fri Apr  5 14:50:32 2019
 """
 
 import sys, os, re
-from lxml import etree 
 import sqlite3, requests, xlwt
 from urllib.parse import quote
 
@@ -59,18 +58,17 @@ def main(argv):
             mbox('错误','网络连接错误:{0}\n错误类型:{1}\n请查验后重试!'.format(err,type(err)),'error')
             sys.exit(0)
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
-        ids = re.findall(r'\d{12}(?=</td>)', content) # 所有的学号
-        if len(ids) == 0:
+        #res = re.findall(r'\d{12}(?=</td>)', content) # 所有的学号
+        res = re.findall(r'(\d{12})</td>\s+<td align="left">&nbsp;([一-龥]{2,5})</td>', content, re.S) # 成对提取学号和姓名
+        if len(res) == 0:
             mbox('获取名单失败!','无法获取{}班名单，请手动检查教务名单页面！'.format(classes[i]),'error')
             sys.exit(0)
-        root = etree.HTML(content)
-        name = ''
-        for j in range(len(ids)):
-            name = root.xpath('//td[text()='+ids[j]+']/following-sibling::td[1]/text()')[0].lstrip('\xa0')
-            worksheet.write(i+1,j+1,name)
+        for j in range(len(res)):
+            #name = etree.HTML(content).xpath('//td[text()='+res[j]+']/following-sibling::td[1]/text()')[0].lstrip('\xa0') #from lxml import etree 
+            worksheet.write(i+1,j+1,res[j][1])
             worksheet.write(0,j+1,'序号'+str(j+1))
             #curs.execute('Insert Or Replace into students (id, name, class) VALUES (?, ?, ?)',(ids[j],name,classes[i]))
-            students.append((ids[j],name,classes[i]))
+        students = students+list((x[0],x[1],classes[i]) for x in res)
     curs.executemany('Insert Or Replace into students (id, name, class) values(?,?,?)',students)
     conn.commit()
     #print(curs.fetchone()[0])
