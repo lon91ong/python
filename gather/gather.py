@@ -44,14 +44,15 @@ def main(argv):
     '''
     curs.execute('create table if not exists students (id varchar(12) primary key, name varchar(12) not NULL collate nocase, class text collate nocase, score unsigned tinyint, unique (id))')
     curs.execute('create table if not exists classes (id INTEGER PRIMARY KEY AUTOINCREMENT, class text not NULL collate nocase, unique (class))')
-    
+    curs.executemany('Insert Or Replace into classes (class) values (?)',[(cla,) for cla in classes])
     #花名电子表
     workbook=xlwt.Workbook(encoding="utf-8")
     worksheet = workbook.add_sheet("花名", cell_overwrite_ok=True)
     worksheet.write(0, 0,'班级')
+    students = []
     for i in range(len(classes)):
         worksheet.write(i+1,0,classes[i])
-        curs.execute('Insert Or Replace into classes (class) values ("{0}")'.format(classes[i]))
+        #curs.execute('Insert Or Replace into classes (class) values ("{}")'.format(classes[i]))
         try:
             req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'),verify=False,timeout=(0.5,3))
         except requests.exceptions.RequestException as err:
@@ -68,7 +69,9 @@ def main(argv):
             name = root.xpath('//td[text()='+ids[j]+']/following-sibling::td[1]/text()')[0].lstrip('\xa0')
             worksheet.write(i+1,j+1,name)
             worksheet.write(0,j+1,'序号'+str(j+1))
-            curs.execute('Insert Or Replace into students (id, name, class) VALUES ("%s", "%s", "%s")' % (ids[j],name,classes[i]))
+            #curs.execute('Insert Or Replace into students (id, name, class) VALUES (?, ?, ?)',(ids[j],name,classes[i]))
+            students.append((ids[j],name,classes[i]))
+    curs.executemany('Insert Or Replace into students (id, name, class) values(?,?,?)',students)
     conn.commit()
     #print(curs.fetchone()[0])
     #print(len(curs.fetchall()))
