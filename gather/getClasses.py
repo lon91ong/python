@@ -29,9 +29,10 @@ def getClassName(docpth):
     #print(classes)
     
     try:
-        req = requests.get('http://211.81.249.110/hmc/hmc.asp')
-    except ConnectionResetError as err:
-        mbox('错误','网络连接错误:{0}\n请查验Word文档!'.format(err),'error')
+        req = requests.get('http://211.81.249.110/hmc/hmc.asp',verify=False,timeout=(0.5,3))
+    except requests.exceptions.RequestException as err:
+        #print("Error class:",sys.exc_info()[0])
+        mbox('错误','网络连接错误:{0}\n错误类型:{1}\n请查验后重试!'.format(err,type(err)),'error')
         sys.exit(0)
     content = req.content.decode('gbk', 'ignore')
     allCla = re.findall(r'[\u4e00-\u9fa5]{2,10}(?=' + grade + '-\d{1,2}</a>)', content)
