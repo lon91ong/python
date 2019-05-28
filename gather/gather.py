@@ -52,7 +52,11 @@ def main(argv):
     for i in range(len(classes)):
         worksheet.write(i+1,0,classes[i])
         curs.execute('Insert Or Replace into classes (class) values ("{0}")'.format(classes[i]))
-        req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'),verify=False)
+        try:
+            req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'),verify=False,timeout=(0.5,3))
+        except requests.exceptions.RequestException as err:
+            mbox('错误','网络连接错误:{0}\n错误类型:{1}\n请查验后重试!'.format(err,type(err)),'error')
+            sys.exit(0)
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
         ids = re.findall(r'\d{12}(?=</td>)', content) # 所有的学号
         if len(ids) == 0:
@@ -66,15 +70,12 @@ def main(argv):
             worksheet.write(0,j+1,'序号'+str(j+1))
             curs.execute('Insert Or Replace into students (id, name, class) VALUES ("%s", "%s", "%s")' % (ids[j],name,classes[i]))
     conn.commit()
-    
-    workbook.save(GetDesktopPath()+'\\muster.xls') #桌面路径
-    
     #print(curs.fetchone()[0])
     #print(len(curs.fetchall()))
     #curs.execute("drop table classes") #删除表
     curs.close()
     conn.close()
-    
+    workbook.save(GetDesktopPath()+'\\muster.xls') #桌面路径
     mbox('完成','请在桌面查看muster.xls文件!','info')
 
 if __name__ == "__main__":
