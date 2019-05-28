@@ -7,13 +7,15 @@ getClassName：
 从课程表读取年级、班级简称信息，从网络补全班级简称
 返回：年级，班级列表
 """
-import re, requests, sys
+import re, sys
+from requests import get as browser
+from requests.exceptions import RequestException
 from myMod import mbox
 
 def getClassName(docpth):
-    import docx
+    from docx import Document
     try:
-        word = docx.Document(docpth)
+        word = Document(docpth)
         grade = re.search(r'(?<=20)\d{2}(?=级)',word.paragraphs[0].text).group()
         table = word.tables[0]
         classes = []
@@ -29,8 +31,8 @@ def getClassName(docpth):
     #print(classes)
     
     try:
-        req = requests.get('http://211.81.249.110/hmc/hmc.asp',verify=False,timeout=(0.5,3))
-    except requests.exceptions.RequestException as err:
+        req = browser('http://211.81.249.110/hmc/hmc.asp',verify=False,timeout=(0.5,3))
+    except RequestException as err:
         #print("Error class:",sys.exc_info()[0])
         mbox('错误','网络连接错误:{0}\n错误类型:{1}\n请查验后重试!'.format(err,type(err)),'error')
         sys.exit(0)
