@@ -5,26 +5,30 @@ Created on Fri Apr  5 14:50:32 2019
 @author: xiaoniu29
 """
 
-import sys, os, re
-import sqlite3, requests, xlwt
+import sys, re
+from sqlite3 import connect
+from os import path
+from xlwt import Workbook
+from requests import get as browser
+from requests.exceptions import RequestException
 from urllib.parse import quote
 
 from myMod import mbox, GetDesktopPath, getFile
 from getClasses import getClassName
 
 def main(argv):
-    exedir = os.path.dirname(os.path.abspath(sys.argv[0])) # 程序所在目录
+    exedir = path.dirname(path.abspath(sys.argv[0])) # 程序所在目录
     if len(sys.argv) < 2: #直接运行程序
         docpth = getFile(exedir,'打开课程表',"Word 10文档 (*.docx)|*.docx|Word 03文档 (*.doc)|*.doc||")
         if docpth == '':
             mbox( '错误','需要指定课程表文件!', 'error')
             sys.exit(0)
     else:
-        docpth = os.path.abspath(sys.argv[-1])
+        docpth = path.abspath(sys.argv[-1])
     grade, classes = getClassName(docpth) #取年级、班级列表
     #print(classes)
     
-    conn = sqlite3.connect(exedir+'/hwmy'+grade+'.db') #参数路径
+    conn = connect(exedir+'/hwmy'+grade+'.db') #参数路径
     #mbox('info',os.path.dirname(os.path.realpath(sys.argv[0])),'info')
     #conn = sqlite3.connect(':memory:') #内存临时
     curs = conn.cursor()
@@ -45,16 +49,16 @@ def main(argv):
     curs.execute('create table if not exists classes (id INTEGER PRIMARY KEY AUTOINCREMENT, class text not NULL collate nocase, unique (class))')
     curs.executemany('Insert Or Replace into classes (class) values (?)',[(cla,) for cla in classes])
     #花名电子表
-    workbook=xlwt.Workbook(encoding="utf-8")
-    worksheet = workbook.add_sheet("花名", cell_overwrite_ok=True)
+    wb = Workbook(encoding="utf-8")
+    worksheet = wb.add_sheet("花名", cell_overwrite_ok=True)
     worksheet.write(0, 0,'班级')
     students = []
     for i in range(len(classes)):
         worksheet.write(i+1,0,classes[i])
         #curs.execute('Insert Or Replace into classes (class) values ("{}")'.format(classes[i]))
         try:
-            req = requests.get('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'),verify=False,timeout=(0.5,3))
-        except requests.exceptions.RequestException as err:
+            req = browser('http://211.81.249.110/hmc/hmc_p.asp?trbj='+quote(classes[i],encoding='gb2312'),verify=False,timeout=(0.5,3))
+        except RequestException as err:
             mbox('错误','网络连接错误:{0}\n错误类型:{1}\n请查验后重试!'.format(err,type(err)),'error')
             sys.exit(0)
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
@@ -76,7 +80,7 @@ def main(argv):
     #curs.execute("drop table classes") #删除表
     curs.close()
     conn.close()
-    workbook.save(GetDesktopPath()+'\\muster.xls') #桌面路径
+    wb.save(GetDesktopPath()+'\\muster.xls') #桌面路径
     mbox('完成','请在桌面查看muster.xls文件!','info')
 
 if __name__ == "__main__":
