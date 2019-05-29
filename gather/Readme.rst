@@ -95,6 +95,6 @@ UPX压缩参数 --upx-dir='dir of your UPX.exe'
  conda remove --name test_py3 --all
 
  # 添加Anaconda的TUNA镜像, 地址不需要加引号
- conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+ conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
  # 设置搜索时显示通道地址
  conda config --set show_channel_urls yes
