@@ -5,17 +5,18 @@ Created on Wed May 29 11:24:17 2019
 @author: xiaoniu29
 """
 
-import socket,sqlite3
+from sqlite3 import connect, OperationalError
+from socket import socket, timeout
 from time import localtime
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock = socket(2, 1) #socket.AF_INET=2, socket.SOCK_STREAM=1
 sock.bind(('0.0.0.0', 8001))
 sock.listen(5)
 if localtime().tm_mon < 8:
     dbpath = "E:/Programs/hwmy"+str(localtime().tm_year-2)[-2:]+".db"
 else:
     dbpath = "E:/Programs/hwmy"+str(localtime().tm_year-1)[-2:]+".db"
-conn = sqlite3.connect(dbpath)
+conn = connect(dbpath)
 curs = conn.cursor()
 while True:
     connection,address = sock.accept()
@@ -28,7 +29,7 @@ while True:
                 conn.commit()
                 datas = curs.fetchall()
                 connection.send(str(datas).encode('gbk'))
-            except sqlite3.OperationalError as e:
+            except OperationalError as e:
                 connection.send(str(e).encode('gbk'))
         elif len(sql)>0 and sql[:6]=='UPDATE':
             print(sql[7:11])
@@ -43,6 +44,6 @@ while True:
             connection.send('"OK"'.encode('gbk'))
         else:
             connection.send('"Sql command format error!"'.encode('gbk'))
-    except socket.timeout:
+    except timeout:
         print('time out')
         connection.close()
