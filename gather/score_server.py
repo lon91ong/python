@@ -8,10 +8,11 @@ Created on Wed May 29 11:24:17 2019
 from sqlite3 import connect, OperationalError
 from socket import socket, timeout
 from time import localtime
-from os import path
+from os import path, system
 from sys import exit as sysexit
 from myMod import mbox
 
+system("mode con cols=72 lines=50")
 sock = socket(2, 1) #socket.AF_INET=2, socket.SOCK_STREAM=1
 sock.bind(('0.0.0.0', 8001))
 sock.listen(5)
