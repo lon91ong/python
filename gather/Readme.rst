@@ -98,3 +98,5 @@ UPX压缩参数 --upx-dir='dir of your UPX.exe'
  conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
  # 设置搜索时显示通道地址
  conda config --set show_channel_urls yes
+ 
+参考知乎文章：`Anaconda国内镜像停止后，怎么办？ <https://zhuanlan.zhihu.com/p/64766956>`_
