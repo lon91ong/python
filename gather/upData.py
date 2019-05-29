@@ -40,7 +40,7 @@ if datapth == '' and wb.sheets[0].cells(3,1).value != '':
     datapth = wb.sheets[0].cells(3,1).value
 else:
     wb.sheets[0].cells(3,1).value = datapth
-    wb.sheets[0].cells(4,1).value = os.path.dirname(os.path.realpath(sys.argv[0]))
+    wb.sheets[0].cells(4,1).value = os.path.realpath(sys.argv[0])
 #mbox('信息','数据库：'+datapth,'info')
 def initonce():
     global datapth
