@@ -11,17 +11,18 @@ from pywintypes import com_error
 from myMod import mbox
 
 # 初始化,防止重复打开
+wb = None
 try:
     wb = xw.apps.active.books['scoreRecord.xlsm']
-except (AttributeError,KeyError,com_error) as err:
-    print("Error info: {0}".format(err))
-    wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
+except:
+    print("No opened scoreRecord.xlsm!")
     pass
 
 def netsql(sqlcmd):
     from socket import socket,error
     from time import sleep
     sock = socket(2,1) #socket.AF_INET=2, socket.SOCK_STREAM=1
+    sock.settimeout(3)
     try:
         sock.connect(('10.0.18.207', 8001))
         sleep(1)
@@ -36,10 +37,14 @@ def netsql(sqlcmd):
     return datas
 
 def initonce():
+    global wb
     classes = netsql('SELECT class FROM classes')
     if len(classes)==0:
-        print("班级列表查询失败，请检查服务端!")
+        mbox('错误','数据库服务连接失败！\n请查验后重试！','error')
         sys.exit(0)
+    if wb == None:
+        wb = xw.Book(getattr(sys,'_MEIPASS',os.path.dirname(os.path.realpath(__file__)))+r'\scoreRecord.xlsm')
+        wb.sheets[0].cells(4,1).value = os.path.realpath(sys.argv[0])
     try:
         wb.sheets[0].api.Unprotect()
         wb.sheets[0].cells(2,11).api.Validation.Delete()
@@ -73,7 +78,6 @@ def upData():
             print("成绩数据为空!")
             continue
         scores = scores + [(wb.sheets[0].cells(i,1).value,int(round(wb.sheets[0].cells(i,last_c).value * 100) / 100.0))]
-        #curs.execute('UPDATE students SET score = '+str(int(wb.sheets[0].cells(i,last_c).value))+' WHERE ID = "'+wb.sheets[0].cells(i,1).value+'"')
         n = n+1
     status = netsql('UPDATE list'+str(scores))
     if status == 'OK':
@@ -90,4 +94,4 @@ def main(argv):
     sys.exit(0)
 
 if __name__ == "__main__":
-   main(sys.argv[1:])
+    main(sys.argv[1:])
