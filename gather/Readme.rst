@@ -54,7 +54,9 @@ UPX压缩参数 --upx-dir='dir of your UPX.exe'
 主要有两种方法，一种是通过pipenv控制，另一种是conda控制
 
 **pipenv方法** `参考 <https://zhuanlan.zhihu.com/p/57674343>`_
+
 .. code:: bash
+
  #建立虚拟环境
  pipenv install
  #进入虚拟环境（上一步可省略,因为没有虚拟环境的话会自动建立一个）
@@ -69,6 +71,7 @@ UPX压缩参数 --upx-dir='dir of your UPX.exe'
 **conda方法** `参考一 <https://foofish.net/compatible-py2-and-py3.html>`_ , `参考二 <https://blog.csdn.net/lis_12/article/details/74011680>`_
  
 .. code:: bash
+
  # 查看已安装的环境和目前所使用的Python版本(分支)
  conda info -e # -e == --envs
  
