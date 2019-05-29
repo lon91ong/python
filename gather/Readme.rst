@@ -65,8 +65,8 @@ UPX压缩参数 --upx-dir='dir of your UPX.exe'
  pip install pyinstaller
  #开始打包
  pyinstaller -Fw E:\test\test.py
- 
- **conda方法** `参考一 <https://foofish.net/compatible-py2-and-py3.html>`_ , `参考二 <https://blog.csdn.net/lis_12/article/details/74011680>`_
+
+**conda方法** `参考一 <https://foofish.net/compatible-py2-and-py3.html>`_ , `参考二 <https://blog.csdn.net/lis_12/article/details/74011680>`_
  
 .. code:: bash
  # 查看已安装的环境和目前所使用的Python版本(分支)
