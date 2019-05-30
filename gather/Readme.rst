@@ -100,3 +100,10 @@ UPX压缩参数 --upx-dir='dir of your UPX.exe'
  conda config --set show_channel_urls yes
  
 参考知乎文章：`Anaconda国内镜像停止后，怎么办？ <https://zhuanlan.zhihu.com/p/64766956>`_
+
+**WebSocket相关**
+
+`参考1 <http://phantom0301.cc/2016/04/12/Websocket/>`_, 
+`websocket-client <https://github.com/websocket-client/websocket-client>`_,
+`Websocket Server <https://github.com/Pithikos/python-websocket-server>`_,
+`参考4 <https://bbs.csdn.net/topics/392233501>`_,
