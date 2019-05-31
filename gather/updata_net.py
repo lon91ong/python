@@ -8,36 +8,28 @@ Created on Fri Apr  5 14:50:32 2019
 import xlwings as xw
 import sys, os
 from pywintypes import com_error
+from urllib.parse import quote
 from myMod import mbox
 
 # 初始化,防止重复打开
-wb = None
-try:
-    wb = xw.apps.active.books['scoreRecord.xlsm']
-except:
-    print("No opened scoreRecord.xlsm!")
-    pass
-
 def netsql(sqlcmd):
-    from socket import socket,error
+    from websocket import create_connection
     from time import sleep
-    sock = socket(2,1) #socket.AF_INET=2, socket.SOCK_STREAM=1
-    sock.settimeout(3)
     try:
-        sock.connect(('10.0.18.207', 8001))
+        ws = create_connection('ws://10.0.18.207:8001')
         sleep(1)
-        #sock.send('hwmy17.db,SELECT class FROM classes'.encode('utf-8'))
-        sock.send(sqlcmd.encode('utf-8'))
-        datas = eval(sock.recv(1280).decode('gbk'))
-    except error:
+        ws.send(sqlcmd)
+        sleep(1)
+        datas = eval(ws.recv()) #eval(sock.recv(1280).decode('gbk'))
+    except:
         print("Server connect error! Code:",sys.exc_info()[1])
         datas = []
-    finally:
-        sock.close()
+    else:
+        ws.close()
     return datas
 
-def initonce():
-    global wb
+def initonce(filename):
+    wb = xw.apps.active.books[filename]
     classes = netsql('SELECT class FROM classes')
     if len(classes)==0:
         mbox('错误','数据库服务连接失败！\n请查验后重试！','error')
@@ -54,7 +46,8 @@ def initonce():
         print("com_error: {}".format(err))
         pass
     
-def downData():
+def downData(filename):
+    wb = xw.apps.active.books[filename]
     # 清楚原有数据
     last_r = max(5,wb.sheets[0].range('A' + str(wb.sheets[0].cells.last_cell.row)).end('up').row)
     wb.sheets[0].range('A5:J'+str(last_r)).api.ClearContents()
@@ -65,9 +58,10 @@ def downData():
         print("没有该班级信息!")
         sys.exit(0)
     # 从数据库读取学生信息
-    wb.sheets[0].range("A5").value = netsql('SELECT id,name FROM students where class ="'+cla+'"')
+    wb.sheets[0].range("A5").value = netsql('SELECT id,name FROM students where class ="'+quote(cla)+'"')
 
-def upData():
+def upData(filename):
+    wb = xw.apps.active.books[filename]
     # 成绩所在列为第5行末列
     last_c = wb.sheets[0].cells(5, wb.sheets[0].cells.last_cell.column).end('left').column # 末列，忽略隐藏列
     last_r = max(5,wb.sheets[0].range('A' + str(wb.sheets[0].cells.last_cell.row)).end('up').row) # 末行
@@ -78,6 +72,7 @@ def upData():
             print("成绩数据为空!")
             continue
         scores = scores + [(wb.sheets[0].cells(i,1).value,int(round(wb.sheets[0].cells(i,last_c).value * 100) / 100.0))]
+        #curs.execute('UPDATE students SET score = '+str(int(wb.sheets[0].cells(i,last_c).value))+' WHERE ID = "'+wb.sheets[0].cells(i,1).value+'"')
         n = n+1
     status = netsql('UPDATE list'+str(scores))
     if status == 'OK':
@@ -86,11 +81,13 @@ def upData():
 
 def main(argv):
     if len(argv) <2: # 直接执行程序
-        initonce()
+        mbox('错误','服务性后台程序，勿点击运行！','error')
+    elif argv[0] =='init':
+        initonce(argv[1])
     elif argv[0] =='down':
-        downData()
+        downData(argv[1])
     elif argv[0] =='up':
-        upData()
+        upData(argv[1])
     sys.exit(0)
 
 if __name__ == "__main__":
