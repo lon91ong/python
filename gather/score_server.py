@@ -27,24 +27,23 @@ if not path.isfile(dbpath):
 def message_received(client, server, sqlcmd):
     global dbpath
     sqlcmd = unquote(sqlcmd)
-    print('SQL command:',sqlcmd)
     conn = connect(dbpath)
     curs = conn.cursor()
-    if len(sqlcmd)>0 and sqlcmd[:6].upper()=='SELECT':
+    if sqlcmd[:6].upper()=='SELECT':
+        print('SQL command:',sqlcmd)
         try:
             curs.execute(sqlcmd)
-            conn.commit()
             datas = list(map(list,curs.fetchall()))
         except OperationalError as e:
             datas = str(e)
-    elif len(sqlcmd)>0 and sqlcmd[:6].upper()=='UPDATE':
+    elif sqlcmd[:6].upper()=='UPDATE':
         if sqlcmd[7:11].lower() =='list': # 批量更新成绩
             scores = eval(sqlcmd[11:])
-            #print(scores)
             for i in range(len(scores)):
                 curs.execute('UPDATE students SET score = '+str(scores[i][1])+' WHERE ID = "'+scores[i][0]+'"')
-            print('更新{}条记录！'.format(str(len(scores))))
+            print('更新{}条记录！'.format(len(scores)))
         else:
+            print('SQL command:',sqlcmd)
             curs.execute(sqlcmd)
         conn.commit()
         datas = '"OK"'
