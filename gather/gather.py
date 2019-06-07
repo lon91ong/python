@@ -62,7 +62,7 @@ def main(argv):
             mbox('错误','网络连接错误:{0}\n错误类型:{1}\n请查验后重试!'.format(err,type(err)),'error')
             sys.exit(0)
         content = req.content.decode('gbk', 'ignore') # 忽略非法字符，replace则用?取代非法字符；
-        #res = re.findall(r'\d{12}(?=</td>)', content) # 所有的学号
+        '''
         res = re.findall(r'(\d{12})</td>\s+<td align="left">&nbsp;([一-龥]{2,5})</td>', content, re.S) # 成对提取学号和姓名
         if len(res) == 0:
             mbox('获取名单失败!','无法获取{}班名单，请手动检查教务名单页面！'.format(classes[i]),'error')
@@ -73,6 +73,12 @@ def main(argv):
             worksheet.write(0,j+1,'序号'+str(j+1))
             #curs.execute('Insert Or Replace into students (id, name, class) VALUES (?, ?, ?)',(ids[j],name,classes[i]))
         students = students+list((x[0],x[1],classes[i]) for x in res)
+        '''
+        res = re.finditer(r'(\d{12})</td>\s+<td align="left">&nbsp;([一-龥]{2,5})</td>', content, re.S) # 学号和姓名迭代器
+        for j,stu in enumerate(res):
+            worksheet.write(i+1,j+1,stu.group(2))
+            worksheet.write(0,j+1,'序号'+str(j+1))
+            students += [(stu.group(1),stu.group(2),cla)]
     curs.executemany('Insert Or Replace into students (id, name, class) values(?,?,?)',students)
     conn.commit()
     #print(curs.fetchone()[0])
