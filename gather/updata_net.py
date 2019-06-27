@@ -94,7 +94,7 @@ def downData():
 def upData():
     global ws
     # 成绩所在列为第5行末列
-    last_c = ws.cells(5, ws.cells.last_cell.column).end('left').column # 末列，忽略隐藏列
+    last_c = max(3,ws.cells(5, ws.cells.last_cell.column).end('left').column) # 末列，忽略隐藏列
     last_r = max(3,ws.range('A' + str(ws.cells.last_cell.row)).end('up').row) # 末行
     n = 0
     scores = []
