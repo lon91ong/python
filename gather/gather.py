@@ -19,7 +19,7 @@ from getClasses import getClassName
 def main(argv):
     exedir = path.dirname(path.abspath(sys.argv[0])) # 程序所在目录
     if len(sys.argv) < 2: #直接运行程序
-        docpth = getFile(exedir,'打开课程表',"Word 10文档 (*.docx)|*.docx|Word 03文档 (*.doc)|*.doc||")
+        docpth = getFile(exedir,'打开课程表(仅支持docx格式)',"Word 10文档 (*.docx)|*.docx||")
         if docpth == '':
             mbox( '错误','需要指定课程表文件!', 'error')
             sys.exit(0)
