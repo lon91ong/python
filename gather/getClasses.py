@@ -26,7 +26,7 @@ def getClassName(docpth):
                     classes.append(mach.group())
     except:
         #print('提取班级信息失败，请查验Word文档！')
-        mbox('错误','提取班级信息失败，请查验Word文档!','error')
+        mbox('错误','提取班级信息失败，请查验Word文档(DocX Only)!','error')
         sys.exit()
     #print(classes)
     
