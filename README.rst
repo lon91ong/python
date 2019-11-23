@@ -65,6 +65,23 @@ Tips
 `函数定义 <http://timgolden.me.uk/pywin32-docs/win32ui__CreateFileDialog_meth.html>`_ ,
 `代码示例 <https://www.programcreek.com/python/example/92919/win32ui.CreateFileDialog>`_
 
+
+**精简版Anaconda--Miniconda使用笔记**
+
+Anaconda集成了太多的东西，功能强大，唯一不爽的就是太过臃肿，每次重装系统之后都要删除重装，一堆麻烦！所以改用精简版的 `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_ ，仅包含了python环境和conda管理器prompt。
+
+安装完后，补充一些自用的包：
+
+.. code:: bash
+
+ pip install spyder  !不需要先折腾PyQt
+ pip install jupyter
+ pip install python-docx  !仅支持2010(*.docx)格式
+ pip install xlwt
+
+
+遇到了一个sqlite3动态链接库无法加载的错误，参考 `StackOverflow <https://stackoverflow.com/questions/54876404/unable-to-import-sqlite3-using-anaconda-python>` 的方法，无需下载，在Anaconda安装路径中搜索一个sqlite3.dll文件，复制到Anaconda安装目录下的DLLs目录中，问题解决。
+
 **Anaconda下多Python版本的玩法**
 
 使用以下命令创建新环境：	
