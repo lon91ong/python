@@ -72,13 +72,14 @@ Anaconda集成了太多的东西，功能强大，唯一不爽的就是太过臃
 
 安装完后，补充一些自用的包：
 
-.. code:: bash
-
- pip install spyder  !不需要先折腾PyQt
- pip install jupyter
- pip install python-docx  !仅支持2010(*.docx)格式
- pip install xlwt
-
+  pip install spyder  !不需要先折腾PyQt
+  
+  pip install jupyter
+  
+  pip install spyder-notebook !集成jupyter到spyder环境
+  
+  pip install python-docx  !仅支持2010(*.docx)格式
+  
 
 遇到了一个sqlite3动态链接库无法加载的错误，参考 `StackOverflow <https://stackoverflow.com/questions/54876404/unable-to-import-sqlite3-using-anaconda-python>`_ 的方法，无需下载，在Anaconda安装路径中搜索一个sqlite3.dll文件，复制到Anaconda安装目录下的DLLs目录中，问题解决。
 
