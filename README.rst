@@ -97,7 +97,7 @@ conda create -n env_name [list of packages]
 .. image:: /imgs/python_env.png
    :align: center
 
-其它相关命令（`参考 <https://blog.csdn.net/weixin_39278265/article/details/82982937>`_）：
+其它相关命令（`参考1 <https://blog.csdn.net/weixin_39278265/article/details/82982937>`_ ， `参考2 <https://www.cnblogs.com/ruhai/p/10847220.html>`_ ）：
 
   安装环境遇到PackagesNotFoundError错误：
   
