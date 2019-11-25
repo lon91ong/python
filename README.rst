@@ -99,6 +99,12 @@ conda create -n env_name [list of packages]
 
 其它相关命令（`参考 <https://blog.csdn.net/weixin_39278265/article/details/82982937>`_）：
 
+  安装环境遇到PackagesNotFoundError错误：
+  
+  *conda config --show-sources*  //查看源
+  
+  *conda config --set restore_free_channel true*  //重置免费源
+  
   装完之后进入环境：*conda activate py34*
   
   退出：*conda deactivate*
