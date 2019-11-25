@@ -117,6 +117,10 @@ conda create -n env_name [list of packages]
            
            *conda install --rev revnum*
 
+**使用pyinstaller打包程序注意事项**
+
+`Pyinstaller 打包发布经验总结 <https://blog.csdn.net/weixin_42052836/article/details/82315118>`_ 
+
 
 **前缀序列**
 
