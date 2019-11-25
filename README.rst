@@ -114,6 +114,7 @@ conda create -n env_name [list of packages]
   显示所有环境：*conda env list*
   
   回溯版本：*conda list --revisions*
+           
            *conda install --rev revnum*
 
 
