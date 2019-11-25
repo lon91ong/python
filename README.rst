@@ -121,6 +121,8 @@ conda create -n env_name [list of packages]
 
 `Pyinstaller 打包发布经验总结 <https://blog.csdn.net/weixin_42052836/article/details/82315118>`_ 
 
+`python 版的守护进程和Windows服务 <http://blog.orleven.com/2016/10/22/python-linux-daemon-windows-service/>`_ 
+
 
 **前缀序列**
 
