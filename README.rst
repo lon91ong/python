@@ -128,6 +128,12 @@ conda create -n env_name [list of packages]
 `python 版的守护进程和Windows服务 <http://blog.orleven.com/2016/10/22/python-linux-daemon-windows-service/>`_ 
 
 
+**SQLite3查询结果返回字典格式** `参考 <https://blog.csdn.net/zhengxiaoyao0716/article/details/50278069>`_ 
+
+`参考 <https://cloud.tencent.com/developer/section/1367013>`_ , `参考 <https://dormousehole.readthedocs.io/en/latest/patterns/sqlite3.html>`_ 
+
+
+
 **前缀序列**
 
 .. code:: python
