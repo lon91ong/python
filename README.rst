@@ -38,6 +38,7 @@ Excel2010以后的格式(\*.xlsx), 用 *openpyxl*
     ...
  End Sub
 
+`Import Json to excel and export excel to Json <https://codingislove.com/excel-json/>`_ 
 
 需要分析数据或数据量大可以用 *pandas*
 
@@ -129,10 +130,9 @@ conda create -n env_name [list of packages]
 
 
 **SQLite3查询结果返回字典格式** `参考 <https://blog.csdn.net/zhengxiaoyao0716/article/details/50278069>`_ 
-
 `参考 <https://cloud.tencent.com/developer/section/1367013>`_ , `参考 <https://dormousehole.readthedocs.io/en/latest/patterns/sqlite3.html>`_ 
 
-
+**Falcon** `参考 <https://www.osgeo.cn/falcon/api/request_and_response.html>`_ 
 
 **前缀序列**
 
