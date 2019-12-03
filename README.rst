@@ -95,7 +95,7 @@ conda create -n env_name [list of packages]
 
 其中 -n 代表 name，env_name 环境名称，[list of packages] 可选参数，在新环境中需要安装的工具包。
 
-例如：安装一个名为py34的3.4.4版python环境：*conda create -n py34 python=3.4.4*
+例如：安装一个名为py34的3.4.4版python环境：*conda create -n xpy3 python=3.4.4*
 
 *3.4.4是支持win xp系统的最后一个Python3版本*，安装对应的 `pywin32 <https://github.com/mhammond/pywin32>`_ 时，pip返回找不到对应的包的错误, 手动下载对应的安装包 `pywin32-221.win32-py3.4.exe <https://github.com/mhammond/pywin32/releases/download/b221/pywin32-221.win32-py3.4.exe>`_ ，运行时遇到找不到对应的python环境的错误，此时需要手动修改系统注册表：`HKEY_CURRENT_USER\\SOFTWARE\\Python\\PythonCore`项下添加*项3.4-InstallPath*, 参数变量设置为环境安装路径即可，如下图所示。
 
@@ -110,7 +110,7 @@ conda create -n env_name [list of packages]
   
   *conda config --set restore_free_channel true*  //重置免费源
   
-  装完之后进入环境：*conda activate py34*
+  装完之后进入环境：*conda activate xpy3*
   
   退出：*conda deactivate*
   
