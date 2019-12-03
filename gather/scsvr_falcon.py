@@ -23,24 +23,24 @@ class HandleCORS(object):
         resp.set_header('Access-Control-Allow-Origin', '*')
         resp.set_header('Access-Control-Allow-Methods', '*')
         resp.set_header('Access-Control-Allow-Headers', '*')
-        resp.set_header('Access-Control-Max-Age', 1728000)  # 20 days
+        resp.set_header('Access-Control-Max-Age', 18000)  # 5 hours
         if req.method == 'OPTIONS':
             raise HTTPStatus(falcon.HTTP_200, body='\n')
 
 class Resource(object):
-    def __init__(self, dbpth, act):
+    def __init__(self, dbpth):
         self.dbpth = dbpth
-        self.act = act
     def dict_factory(self, cursor, row):
             return dict((col[0], row[idx]) for idx, col in enumerate(cursor.description))
     def on_get(self, req, resp):
+        print("URL:", req.url)
         conn = connect(self.dbpth)
         #print('Query Cmd:', unquote(req.url))
-        if self.act == 'classes':
+        if req.path == '/classes':
             curs = conn.cursor()
             curs.execute('SELECT class FROM classes')
             resp.body = ','.join(t[0] for t in map(list,curs.fetchall()))
-        elif self.act=='class':
+        elif req.path =='/class':
             if req.headers["CLIENT"]=='Excel':
                 conn.row_factory = self.dict_factory
                 curs = conn.cursor()
@@ -56,9 +56,10 @@ class Resource(object):
         resp.status = falcon.HTTP_200
         conn.close()
     def on_post(self, req, resp):
+        print("URL:", req.url)
         conn = connect(self.dbpth)
         curs = conn.cursor()
-        if req.headers["CLIENT"]=='Excel':
+        if req.path == '/updata' and req.headers["CLIENT"]=='Excel':
             scores = loads(req.media)
             for score in scores:
                 curs.execute('UPDATE students SET score = '+str(score["score"])+' WHERE ID = "'+str(score["id"])+'"')
@@ -81,8 +82,8 @@ if not path.isfile(dbpath):
     
 app = falcon.API(middleware=[HandleCORS()])
 
-app.add_route('/classes', Resource(dbpath,'classes'))
-app.add_route('/class', Resource(dbpath,'class'))
-app.add_route('/updata', Resource(dbpath,'updata'))
+app.add_route('/classes', Resource(dbpath))
+app.add_route('/class', Resource(dbpath))
+app.add_route('/updata', Resource(dbpath))
 
 serve(app, listen='*:8001')
