@@ -107,7 +107,7 @@ conda create -n env_name [list of packages]
    :align: center
 
 scipy和numpy也有类似的问题，xpy344_x86安装包地址: `scipy-1.2.2-cp34-cp34m-win32.whl <https://pypi.doubanio.com/packages/43/62/09d2b135ef7794aad6e837da5a18df9aceaa1ec2062e8a399e710f555739/scipy-1.2.2-cp34-cp34m-win32.whl#md5=780ce592f99ade01a9b0883ac767f798>`_ , `numpy-1.15.4-cp34-none-win32.whl <https://pypi.doubanio.com/packages/e6/10/798bd58c97068aad4cb24e9ba60dcc7ce2e8aac7a871ea493708039a8100/numpy-1.15.4-cp34-none-win32.whl#md5=c1e1f381de7abc96509d4c5463903755>`_ 
-pywin32可以用pypiwin32==219替代，`参考 <https://github.com/cherrypy/cherrypy/issues/1700>`_ 
+`pywin32 <https://download.lfd.uci.edu/pythonlibs/s2jqpv5t/cp34/pywin32-224-cp34-cp34m-win32.whl>`_ 可以用pypiwin32==219替代，`参考 <https://github.com/cherrypy/cherrypy/issues/1700>`_ 
 
 `其它版本 <https://pypi.doubanio.com/simple/numpy/>`_ 
 
