@@ -7,7 +7,7 @@ Created on Sun Apr 26 15:04:14 2020
 
 def CnFirstLetter(stc):
     if len(stc)>1: # Multi
-        return CnFirstLetter(stc[0]) + CnFirstLetter(stc[1:])
+        return ''.join(list(map(CnFirstLetter,stc)))
     else:   # Single
         stc=stc.encode('gbk')
         gbkls = [b'\xb0\xc5',b'\xb2\xc1',b'\xb4\xee',b'\xb6\xea',b'\xb7\xa2',b'\xb8\xc1',b'\xb9\xfe',b'\xbb\xf7', \
