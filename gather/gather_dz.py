@@ -30,7 +30,6 @@ def getClassName(docpth):
     classes = []
     try:
         word = Document(docpth)
-        #print('LEN:',len(word.paragraphs))
         for pg in word.paragraphs:
             #print(pg.text)
             grade = re.search(r'\d{2}(?=级)',pg.text)
@@ -47,7 +46,6 @@ def getClassName(docpth):
                     mc = mc[:-1]+grade+'-'+mc[-1]
                     classes.append(mc)
                 #print(mach)
-                #classes += mach
     except:
         print("Unexpected error:", sys.exc_info())
         mbox('错误','提取班级信息失败，请查验Word文档(DocX Only)!','error')
