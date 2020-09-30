@@ -176,3 +176,17 @@ scipy和numpy也有类似的问题，xpy344_x86安装包地址: `scipy-1.2.2-cp3
 
 找了一个仅仅匹配中文的正则式子 **\[\一-\龥]** 好用！！！
 
+**错误追踪**
+
+输出sys.exc_info()列表, [错误类型,错误值,traceback对象]
+traceback对象可以用traceback.print_tb()输出查看
+
+.. code:: python
+
+ from traceback import print_tb
+ try:
+   ...
+ except:
+   print("Unexpected error:", sys.exc_info()[0:2])
+   print_tb(sys.exc_info()[-1])
+
