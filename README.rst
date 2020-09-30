@@ -103,7 +103,7 @@ conda create -n env_name [list of packages]
 
 *3.4.4是支持win xp系统的最后一个Python3版本*，安装对应的 `pywin32 <https://github.com/mhammond/pywin32>`_ 时，pip返回找不到对应的包的错误, 手动下载对应的安装包 `pywin32-221.win32-py3.4.exe <https://github.com/mhammond/pywin32/releases/download/b221/pywin32-221.win32-py3.4.exe>`_ ，运行时遇到找不到对应的python环境的错误，此时需要手动修改系统注册表：`HKEY_CURRENT_USER\\SOFTWARE\\Python\\PythonCore`项下添加*项3.4-InstallPath*, 参数变量设置为环境安装路径即可，如下图所示。
 
-.. image:: /imgs/python_env.png
+.. image:: ./imgs/python_env.png
    :align: center
 
 scipy和numpy也有类似的问题，xpy344_x86安装包地址: `scipy-1.2.2-cp34-cp34m-win32.whl <https://pypi.doubanio.com/packages/43/62/09d2b135ef7794aad6e837da5a18df9aceaa1ec2062e8a399e710f555739/scipy-1.2.2-cp34-cp34m-win32.whl#md5=780ce592f99ade01a9b0883ac767f798>`_ , `numpy-1.15.4-cp34-none-win32.whl <https://pypi.doubanio.com/packages/e6/10/798bd58c97068aad4cb24e9ba60dcc7ce2e8aac7a871ea493708039a8100/numpy-1.15.4-cp34-none-win32.whl#md5=c1e1f381de7abc96509d4c5463903755>`_ 
