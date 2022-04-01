@@ -139,6 +139,8 @@ scipy和numpy也有类似的问题，xpy344_x86安装包地址: `scipy-1.2.2-cp3
 
 `Pyinstaller打包用spec添加资源文件 <https://www.yuanrenxue.com/tricks/pyinstaller-spec.html>`_
 
+`Nuitka打包参考 <https://zhuanlan.zhihu.com/p/165978688>`_ 相较于Pyinstaller侧重打包功能, Nuitka更侧重与加速功能
+
 **SQLite3查询结果返回字典格式** `参考 <https://blog.csdn.net/zhengxiaoyao0716/article/details/50278069>`_ 
 `参考 <https://cloud.tencent.com/developer/section/1367013>`_ , `参考 <https://dormousehole.readthedocs.io/en/latest/patterns/sqlite3.html>`_ 
 
