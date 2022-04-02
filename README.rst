@@ -133,7 +133,7 @@ scipy和numpy也有类似的问题，xpy344_x86安装包地址: `scipy-1.2.2-cp3
 
 **使用pyinstaller打包程序注意事项**
 
-`Pyinstaller 打包发布经验总结 <https://blog.csdn.net/weixin_42052836/article/details/82315118>`_ , `参考二 <https://zhuanlan.zhihu.com/p/57674343>`_
+`Pyinstaller 打包发布经验总结 <https://blog.csdn.net/weixin_42052836/article/details/82315118>`_ , `参考1 <https://www.misaraty.com/2022-02-08_python打包>`_ , `参考2 <https://zhuanlan.zhihu.com/p/57674343>`_
 
 `python 版的守护进程和Windows服务 <http://blog.orleven.com/2016/10/22/python-linux-daemon-windows-service/>`_ 
 
