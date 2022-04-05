@@ -135,6 +135,8 @@ scipy和numpy也有类似的问题，xpy344_x86安装包地址: `scipy-1.2.2-cp3
 
 `Pyinstaller 打包发布经验总结 <https://blog.csdn.net/weixin_42052836/article/details/82315118>`_ , `参考1 <https://www.misaraty.com/2022-02-08_python打包>`_ , `参考2 <https://zhuanlan.zhihu.com/p/57674343>`_
 
+Pyinstaller打包导致的路径错误, *os.path.dirname(os.path.realpath(sys.executable))* `参考 <https://blog.csdn.net/sy20173081277/article/details/116541195>`_
+
 `python 版的守护进程和Windows服务 <http://blog.orleven.com/2016/10/22/python-linux-daemon-windows-service/>`_ 
 
 `Pyinstaller打包用spec添加资源文件 <https://www.yuanrenxue.com/tricks/pyinstaller-spec.html>`_
