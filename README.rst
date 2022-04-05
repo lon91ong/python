@@ -147,6 +147,8 @@ scipy和numpy也有类似的问题，xpy344_x86安装包地址: `scipy-1.2.2-cp3
 
 *nuitka --mingw64 --onefile --plugin-enable=upx --windows-onefile-tempdir-spec=%TEMP%\\labOffline --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py*
 
+编译pyd模块:*nuitka --mingw64 --module --show-progress --full-compat --plugin-enable=upx --output-dir=o falRes.py*
+
 **SQLite3查询结果返回字典格式** `参考 <https://blog.csdn.net/zhengxiaoyao0716/article/details/50278069>`_ 
 `参考 <https://cloud.tencent.com/developer/section/1367013>`_ , `参考 <https://dormousehole.readthedocs.io/en/latest/patterns/sqlite3.html>`_ 
 
