@@ -153,6 +153,14 @@ Pyinstaller打包导致的路径错误, *os.path.dirname(os.path.realpath(sys.ex
 
 *nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py*
 
+**Nuitka参数说明**
+*--plugin-enable=upx* 启用upx压缩; 
+*--windows-onefile-tempdir-spec=%TEMP%\\someDir*  配合--onefile的单一文件模式使用,指定零时解压路径
+*--full-compat*  适配嵌入式的python包
+*--file-reference-choice=runtime*  需要读取程序运行路径下的文件时适用
+*--include-package=requests*  解决报错 requests - urllib3 - six - No module named http.client
+
+
 **SQLite3查询结果返回字典格式** `参考 <https://blog.csdn.net/zhengxiaoyao0716/article/details/50278069>`_ 
 `参考 <https://cloud.tencent.com/developer/section/1367013>`_ , `参考 <https://dormousehole.readthedocs.io/en/latest/patterns/sqlite3.html>`_ 
 
