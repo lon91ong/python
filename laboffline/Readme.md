@@ -16,6 +16,7 @@
 > --plugin-enable=upx 启用upx压缩;
 > 
 > --windows-onefile-tempdir-spec=%TEMP%\someDir 配合--onefile的单一文件模式使用,指定零时解压路径
+> 
 > --full-compat 适配嵌入式的python包
 > 
 > --file-reference-choice=runtime 需要读取程序运行路径下的文件时适用
