@@ -151,6 +151,8 @@ Pyinstaller打包导致的路径错误, *os.path.dirname(os.path.realpath(sys.ex
 
 编译pyd模块:*nuitka --mingw64 --module --show-progress --full-compat --plugin-enable=upx --output-dir=o falRes.py*
 
+*nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py*
+
 **SQLite3查询结果返回字典格式** `参考 <https://blog.csdn.net/zhengxiaoyao0716/article/details/50278069>`_ 
 `参考 <https://cloud.tencent.com/developer/section/1367013>`_ , `参考 <https://dormousehole.readthedocs.io/en/latest/patterns/sqlite3.html>`_ 
 
