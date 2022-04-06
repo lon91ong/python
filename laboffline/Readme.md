@@ -17,7 +17,7 @@
 > 
 > --follow-imports 在嵌入环境中等于把site-packages打包进exe文件
 > 
-> --nofollow-imports 对应的就是不打包任何依赖包进exe, 编译速度快, 也可以减少问题, 比如不再需要--include-package=requests
+> --nofollow-imports 对应的就是不打包任何依赖包进exe, 编译速度快, 也可以减少问题
 >
 > --windows-onefile-tempdir-spec=%TEMP%\someDir 配合--onefile的单一文件模式使用,指定零时解压路径
 > 
@@ -25,7 +25,7 @@
 > 
 > --file-reference-choice=runtime 需要读取程序运行路径下的文件时适用
 > 
-> --include-package=requests 解决报错 requests - urllib3 - six - No module named http.client
+> --include-package=requests 等于单独把把site-packages中的requests打包进exe文件, 可以解决系列报错 requests - urllib3 - six - No module named http.client
 
 **编译模块** `nuitka --mingw64 --module --show-progress --full-compat --plugin-enable=upx --output-dir=o falRes.py`
 
