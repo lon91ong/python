@@ -15,6 +15,10 @@
 
 > --plugin-enable=upx 启用upx压缩;
 > 
+> --follow-imports 在嵌入环境中等于把site-packages打包进exe文件
+> 
+> --nofollow-imports 对应的就是不打包任何依赖包进exe, 编译速度快, 也可以减少问题, 比如不再需要--include-package=requests
+>
 > --windows-onefile-tempdir-spec=%TEMP%\someDir 配合--onefile的单一文件模式使用,指定零时解压路径
 > 
 > --full-compat 适配嵌入式的python包
@@ -26,6 +30,8 @@
 **编译模块** `nuitka --mingw64 --module --show-progress --full-compat --plugin-enable=upx --output-dir=o falRes.py`
 
 `nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
+
+`nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
 ### pyinstaller笔记
 
