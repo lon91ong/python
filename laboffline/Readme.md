@@ -27,7 +27,7 @@
 > 
 > --include-package=requests 等于单独把把site-packages中的requests打包进exe文件, 可以解决系列报错 requests - urllib3 - six - No module named http.client
 
-**编译模块** `nuitka --mingw64 --module --show-progress --full-compat --plugin-enable=upx --output-dir=o falRes.py`
+**编译模块** `nuitka --mingw64 --module --nofollow-imports --show-progress --full-compat --plugin-enable=upx --output-dir=o falRes.py`
 
 `nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
