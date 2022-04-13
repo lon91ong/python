@@ -25,11 +25,6 @@ class FalRes(object):
     def __init__(self):
         self.tree = ElementTree()
         self.labroot = self.tree.parse(workpth + '/Download/Updata/Download/download.xml')
-        
-    def file_generator(self, url):
-        with requests.get(url,stream=True) as r:
-            for chunk in r.iter_content(chunk_size=8192):
-                yield chunk
     
     def treeHtml(self, labxml=''):
         if labxml: self.labroot = self.tree.parse(labxml)
@@ -72,11 +67,13 @@ class FalRes(object):
             resp.data = self.treeHtml(join(dirname(realpath(executable)),labfile))
         else:
             print('Get Labfile:',labfile)
+            requ ='http://aryun.ustcori.com:9542'+quote(req.path,encoding='gb2312')
             resp.downloadable_as=labfile.encode("utf-8").decode("latin1") #编码问题,参见https://github.com/Pylons/waitress/issues/318
-            r = requests.head('http://aryun.ustcori.com:9542'+quote(req.path,encoding='gb2312'))
+            r = requests.head(requ)
             resp.content_length = r.headers['content-length']
             resp.content_type = r.headers['content-type']
-            resp.stream = self.file_generator('http://aryun.ustcori.com:9542'+quote(req.path,encoding='gb2312'))
+            chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))
+            resp.stream = chunk(requ)
 
     def on_post(self, req, resp):
         resp.content_type = 'text/xml; charset=utf-8'
