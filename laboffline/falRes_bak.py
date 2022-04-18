@@ -69,9 +69,7 @@ class FalRes(object):
             print('Get Labfile:',labfile)
             requ ='http://aryun.ustcori.com:9542'+quote(req.path,encoding='gb2312')
             resp.downloadable_as=labfile.encode("utf-8").decode("latin1") #编码问题,参见https://github.com/Pylons/waitress/issues/318
-            r = requests.head(requ)
-            resp.content_length = r.headers['content-length']
-            resp.content_type = r.headers['content-type']
+            resp.set_headers(dict(list(requests.head(requ).headers.items())[:3])) #'Content-Length', 'Content-Type', 'Last-Modified'
             chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))
             resp.stream = chunk(requ)
 
