@@ -29,9 +29,9 @@
 
 **编译模块** `nuitka --mingw64 --module --nofollow-imports --show-progress --full-compat --plugin-enable=upx --output-dir=o falRes.py`
 
-`nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
+全包: `nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
-`nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
+全不包, 无回显黑窗: `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --windows-disable-console --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
 ### pyinstaller笔记
 
