@@ -3,15 +3,14 @@
 @Author  : lon91ong (lon91ong@gmail.com)
 @Version : 0.9.9
 """
-from threading import Thread
-from os import system, path
+from os import system
 from falRes import workpth, FalRes, Serv
-import falcon
 
 system('mode con cols=52 lines=120')
 
 # web服务
 class QuRes(FalRes):
+    from falcon import HTTP_400
     def __init__(self):
         self.curLab = ''
         self.labSort = '未分类'
@@ -24,10 +23,10 @@ class QuRes(FalRes):
         print('LabID:{},LabName:{}'.format(self.curLab,labfile[:-4]))
         self.lablist.write('  <Experiment Sort="{}" Name="{}" UpTime="2021-11-11T11:11:11" ID="{}" />\n'.format(self.labSort,labfile[:-4],self.curLab))
         self.curLab = labfile[:-4]
-        resp.status = falcon.HTTP_400
+        resp.status = HTTP_400
 
 def cleanDir(dir, sname):
-    from os import listdir, rmdir, remove
+    from os import path, listdir, rmdir, remove
     for dire in listdir(dir):
         dire = path.join(dir,dire)
         if path.isfile(dire):
