@@ -9,7 +9,7 @@ from falRes import workpth, FalRes, Serv
 
 system('mode con cols=52 lines=120')
 
-# web服务
+# falcon类
 class QuRes(FalRes):
     def __init__(self):
         self.curLab = ''
@@ -58,12 +58,10 @@ if __name__ == '__main__':
         print("查询到如下的实验项目:")
         #现有的实验分布在356~396,500~512区间; 本地已有的不显示
         for labId in chal:
-        #for labId in range(355,360):
             falRes.curLab = str(labId)
             burl = bytes('/'+str(labId)+'/127.0.0.1/'+port+'/userid/op/1/2',encoding='utf-8')
             href='lab://{}/'.format(b64encode(burl).decode('utf-8'))
             pp = Popen([exeProg, href])
-            #print('LabID:',labId)
             sleep(1)
             pp.kill()
             sleep(0.5)
