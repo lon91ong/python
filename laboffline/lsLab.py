@@ -5,7 +5,7 @@
 """
 from threading import Thread
 from os import system, path
-from falRes import workpth, FalRes
+from falRes import workpth, FalRes, Serv
 import falcon
 
 system('mode con cols=52 lines=120')
@@ -26,25 +26,6 @@ class QuRes(FalRes):
         self.curLab = labfile[:-4]
         resp.status = falcon.HTTP_400
 
-class Serv(Thread):
-    def __init__(self, threadID, mRes, svrp):
-        Thread.__init__(self)
-        self.threadID = threadID
-        self.port = svrp
-        self.svrRes = mRes
-        self.app = falcon.API()
-
-    def run(self):
-        from waitress import serve
-        apilst = ['/Upload/lab/{labfile}','/BizService.svc','/ServiceAPI/SetLabTimeRecordStart','/ServiceAPI/UpdateRecord','/FileTransfer.svc']
-        for apistr in apilst: self.app.add_route(apistr, self.svrRes)
-        print("\n服务端启动...\n")
-        try:
-            serve(self.app, listen = '127.0.0.1:'+self.port)
-        except:
-            print('错误:网络端口({})可能被占用!'.format(self.port))
-            exit(0)
-        
 def cleanDir(dir, sname):
     from os import listdir, rmdir, remove
     for dire in listdir(dir):
