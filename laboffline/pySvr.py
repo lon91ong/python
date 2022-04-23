@@ -3,24 +3,20 @@
 @Author  : lon91ong (lon91ong@gmail.com)
 @Version : 0.9.9
 """
-import falcon
-from waitress import serve
-#from os import system
-from sys import argv
-from os.path import basename
-from webbrowser import open as wOpen
-from falRes import FalRes, Serv
-from os import popen
-
 def releasePort(port):
+    from os import popen
     rut=popen('netstat -aon | findstr {}'.format(port)).read()
     pids = [u.split()[-1] for u in rut.split('\n') if 'LISTENING' in u]
     for pid in pids:
         popen('taskkill -f -pid {}'.format(pid))
 
 if __name__ == '__main__':
+    from sys import argv
     from time import sleep
-    #system('mode con cols=42 lines=29')
+    from falRes import FalRes, Serv
+    from os.path import basename
+    from webbrowser import open as wOpen
+    
     svrRes = FalRes()
     port = '9542'
     releasePort(port) #释放端口
