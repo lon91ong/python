@@ -11,7 +11,6 @@ system('mode con cols=52 lines=120')
 
 # web服务
 class QuRes(FalRes):
-    from falcon import HTTP_400
     def __init__(self):
         self.curLab = ''
         self.labSort = '未分类'
@@ -20,6 +19,7 @@ class QuRes(FalRes):
         #self.tree = ElementTree()
         
     def on_get(self, req, resp, labfile):
+        from falcon import HTTP_400
         #print('URL:{}\nPath:{}'.format(req.url,req.path))
         print('LabID:{},LabName:{}'.format(self.curLab,labfile[:-4]))
         self.lablist.write('  <Experiment Sort="{}" Name="{}" UpTime="2021-11-11T11:11:11" ID="{}" />\n'.format(self.labSort,labfile[:-4],self.curLab))
