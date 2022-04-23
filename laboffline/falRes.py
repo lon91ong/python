@@ -7,6 +7,7 @@ from base64 import b64encode
 from re import search
 from urllib.parse import quote
 import requests, falcon
+from threading import Thread
 from xml.etree.ElementTree import ElementTree, fromstring, tostring
 from os.path import join, dirname, realpath
 from sys import exit, executable
@@ -116,3 +117,22 @@ class FalRes(object):
         else:   # /FileTransfer.svc
             resp.data = '<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><UploadFileResponse xmlns="http://tempuri.org/"/></s:Body></s:Envelope>'.encode('utf-8')
         resp.status = falcon.HTTP_200
+        
+class Serv(Thread):
+    def __init__(self, threadID, mRes, svrp):
+        Thread.__init__(self)
+        self.threadID = threadID
+        self.port = svrp
+        self.svrRes = mRes
+        self.app = falcon.API()
+
+    def run(self):
+        from waitress import serve
+        apilst = ['/Upload/lab/{labfile}','/BizService.svc','/ServiceAPI/SetLabTimeRecordStart','/ServiceAPI/UpdateRecord','/FileTransfer.svc']
+        for apistr in apilst: self.app.add_route(apistr, self.svrRes)
+        print("\n服务端启动...\n")
+        try:
+            serve(self.app, listen = '127.0.0.1:'+self.port)
+        except:
+            print('错误:网络端口({})可能被占用!'.format(self.port))
+            exit(0)
