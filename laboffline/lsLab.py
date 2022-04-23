@@ -2,6 +2,7 @@
 """
 @Author  : lon91ong (lon91ong@gmail.com)
 @Version : 0.9.9
+参数说明: 三种情况 [[port], [start, end], [port, start, end]]
 """
 from os import system
 from falRes import workpth, FalRes, Serv
@@ -46,16 +47,12 @@ if __name__ == '__main__':
     from itertools import chain
     
     falRes = QuRes()
-    chal = chain(range(355,400),range(495,520))
-    port = '9650'
-    if len(argv)==2:
-        port = argv[1] #服务端口
-    elif len(argv)==3:
-        chal = range(int(argv[1]),int(argv[2]))
+    port = argv[1] if len(argv) in [2,4] else '9650' # 指定端口
     mySvr=Serv(1,falRes,port)
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
     exeProg = workpth+r'\Download\Updata\WebLabClient.exe'
+    chal = range(int(argv[-2]),int(argv[-1])) if len(argv)>2 else chain(range(355,400),range(495,520))
     sleep(2)
     if(mySvr.is_alive()):
         print("查询到如下的实验项目:")
