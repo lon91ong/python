@@ -36,3 +36,7 @@
 ### pyinstaller笔记
 
 **用例**: `pyinstaller --onefile --clean -i Artua.ico pySvr.py`
+
+### 感谢 @[SeaHOH](https://github.com/SeaHOH)
+#[228](https://github.com/SeaHOH/GotoX/discussions/228)
+使用winsystray实现摆脱之前使用网页必须调用浏览器的限制
