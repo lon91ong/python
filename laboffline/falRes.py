@@ -3,54 +3,16 @@
 @Author  : lon91ong (lon91ong@gmail.com)
 @Version : 0.9.9
 """
-from base64 import b64encode
+
 from re import search
 from urllib.parse import quote
 import requests, falcon
 from threading import Thread
-from xml.etree.ElementTree import ElementTree, fromstring, tostring
-from os.path import join, dirname, realpath
-from sys import exit, executable
-from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
+from xml.etree.ElementTree import ElementTree, fromstring
+from sys import exit
+from funApi import lab_root as workpth
 
-try:
-    key = OpenKey(HKEY_CLASSES_ROOT,'Lab\shell\open\command')
-    workpth = dirname(QueryValue(key,'').split('"')[1])
-    CloseKey(key)
-except:
-    print('\n未找到注册表项, 请先执行安装!')
-    exit(0)
-
-def treeHtml(root, tree):
-    #userid = 'userid'
-    tree._setroot(fromstring('''
-        <!DOCTYPE html>
-        <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>实验目录</title><style>
-        body {font-family: Arial, "Microsoft YaHei"}
-        .container {max-width: 320px;margin: 0 auto 20px auto;}
-        .section {padding: 0.5em 1em;background-color: #fff;}
-        h1,h2 {text-align: center;padding: 0;font-style: bold;}
-        h1 {font-size: 32px;color: #2d2e36;margin: 20px 0 5px;border-bottom: 3px solid #999;}
-        h2 {font-size: 24px;color: #009688;margin: 15px 0 5px;border-bottom: 1px solid #aaa;background-color: #eee;}
-        p {font-size: 20px;text-align: left;margin: 10px 0 10px 1em;}
-        a:link {color: #5cb3cc;} 
-        a:visited {color: #c02c38;} 
-        a:hover {color: #2b73af;text-decoration: underline;}
-        a:active {color: gray;}
-        a {text-decoration: none;}</style></head>
-        <body><div class="container"><h1>实验目录</h1><div class="section"></div></div></body></html>
-        '''))
-    for lab in root.findall("Experiment"):
-        insp = tree.find('.//div[@sort="{}"]'.format(lab.attrib['Sort'][0]))
-        if insp is None: # 初始化分类
-            insp = tree.find('.//div[@class="section"]')
-            insp.insert(len(insp),fromstring('<div sort="{}"><h2>{}</h2></div>'.format(lab.attrib['Sort'][0],lab.attrib['Sort'])))
-            insp = tree.find('.//div[@sort="{}"]'.format(lab.attrib['Sort'][0]))
-        burl = bytes('/'+lab.attrib['ID']+'/127.0.0.1/9542/userid/op/1/2',encoding='utf-8')
-        insp.insert(1,fromstring('<p><a class="reference" href="lab://{}/">{}</a></p>'.format(b64encode(burl).decode('utf-8'),lab.attrib['Name'])))
-    return tostring(tree.getroot(), encoding='utf-8', method='html')
-
-# web服务
+# falcon类
 class FalRes(object):
     def __init__(self):
         self.tree = ElementTree()
@@ -58,21 +20,12 @@ class FalRes(object):
         
     def on_get(self, req, resp, labfile):
         #print('URL:{}\nPath:{}'.format(req.url,req.path))
-        if labfile =='0': # tocfile
-            resp.content_type = 'text/html; charset=utf-8'
-            resp.data = treeHtml(self.labroot,self.tree)
-        elif labfile[-3:] =='xml':
-            print(labfile)
-            resp.content_type = 'text/html; charset=utf-8'
-            self.labroot = self.tree.parse(join(dirname(realpath(executable)),labfile))
-            resp.data = self.treeHtml(self.labroot,self.tree)
-        else:
-            print('Get Labfile:',labfile)
-            requ ='http://aryun.ustcori.com:9542'+quote(req.path,encoding='gb2312')
-            resp.downloadable_as=labfile.encode("utf-8").decode("latin1") #编码问题,参见https://github.com/Pylons/waitress/issues/318
-            resp.set_headers(dict(list(requests.head(requ).headers.items())[:3])) #'Content-Length', 'Content-Type', 'Last-Modified'
-            chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))
-            resp.stream = chunk(requ)
+        print('Get Labfile:',labfile)
+        requ ='http://aryun.ustcori.com:9542'+quote(req.path,encoding='gb2312')
+        resp.downloadable_as=labfile.encode("utf-8").decode("latin1") #编码问题,参见https://github.com/Pylons/waitress/issues/318
+        resp.set_headers(dict(list(requests.head(requ).headers.items())[:3])) #'Content-Length', 'Content-Type', 'Last-Modified'
+        chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))
+        resp.stream = chunk(requ)
 
     def on_post(self, req, resp):
         resp.content_type = 'text/xml; charset=utf-8'
@@ -119,9 +72,8 @@ class FalRes(object):
         resp.status = falcon.HTTP_200
         
 class Serv(Thread):
-    def __init__(self, threadID, mRes, svrp):
+    def __init__(self, mRes, svrp):
         Thread.__init__(self)
-        self.threadID = threadID
         self.port = svrp
         self.svrRes = mRes
         self.app = falcon.API()
