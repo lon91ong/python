@@ -48,7 +48,7 @@ if __name__ == '__main__':
     
     falRes = QuRes()
     port = argv[1] if len(argv) in [2,4] else '9650' # 指定端口
-    mySvr=Serv(1,falRes,port)
+    mySvr=Serv(falRes,port)
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
     exeProg = workpth+r'\Download\Updata\WebLabClient.exe'
