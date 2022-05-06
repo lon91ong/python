@@ -4,13 +4,14 @@ winXray配置丢失补丁
 """
 
 import requests
-from os import path, getenv
+from os import path, getenv, startfile
 from base64 import b64decode
-from re import split
+from re import split, search
 from sys import executable
 from urllib3 import disable_warnings
 disable_warnings()
-app_root = path.join(path.dirname(path.realpath(executable)))
+
+app_root = path.dirname(path.realpath(executable))
 
 def decode_b64(data):
     from base64 import urlsafe_b64decode
@@ -18,11 +19,23 @@ def decode_b64(data):
     if missing_padding != 0:
         data += '='* (4 - missing_padding)
     return urlsafe_b64decode(data).decode()
+    
+with open(path.join(app_root,'proxy_bak.table'), 'r', encoding='utf-8-sig') as f:
+    prtab = f.readlines()
+f.close()
 
-rawurl = 'https://gitee.com/sobweb/FreeD/raw/master/tv/movies.m3u'
+for st in prtab:
+    if st[:13]=='subscribeUrls':
+        rawurl = search('http[\w,:,/,\.]+',st)[0]
+
 headers = {"Referer": "https://www.gitee.com",
            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
     }
+#app_root = r'D:\Toys\WinXray'
+if path.isfile(path.join(app_root,r'WinXray.exe')):
+    wx_exe = path.join(app_root,r'WinXray.exe')
+elif path.isfile(path.join(app_root,'..\\WinXray.exe')):
+    wx_exe = path.join(path.dirname(app_root), r'WinXray.exe')
 
 resp = requests.get(rawurl,headers=headers,verify=False,timeout=6)
 proxies = b64decode(resp.content).decode().split('\n') if resp.status_code == 200 else []
@@ -31,16 +44,11 @@ for locp in proxies:
     if locp[:3] == 'ssr':
         ssrl = split(':|&|/|=',decode_b64(locp[6:]))
         result += f'[{n}]='+'{protocol="ssr";'+'id="{}";'.format(decode_b64(ssrl[5]))+ \
-            f'obfsParam="";port="{ssrl[1]}";'+ \
-            'subscribeUrl="https://gitee.com/sobweb/FreeD/raw/master/tv/movies.m3u";'+ \
+            f'obfsParam="";port="{ssrl[1]}";'+ f'subscribeUrl="{rawurl}";'+ \
             f'address="{ssrl[0]}";obfs="{ssrl[4]}";'+'ps="{}";'.format(decode_b64(ssrl[-3]))+ \
             f'network="{ssrl[2]}";security="{ssrl[3]}"'+'};'
         n +=1
-
-with open(path.join(app_root,'proxy_bak.table'), 'r', encoding='utf-8-sig') as f:
-    prtab = f.readlines()
-f.close()
-
+print(f'Total of {n-1} nodes written!')
 with open(getenv('LocalAppData')+'/winXray/proxy.table', 'w', encoding='utf-8-sig') as f:
     for sl in prtab:
         if sl[:9] == 'outbounds':
@@ -48,5 +56,4 @@ with open(getenv('LocalAppData')+'/winXray/proxy.table', 'w', encoding='utf-8-si
         else:
             f.write(sl)
 f.close()
-
-    
+startfile(wx_exe)
