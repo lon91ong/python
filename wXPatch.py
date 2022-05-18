@@ -28,9 +28,7 @@ for st in prtab:
     if st[:13]=='subscribeUrls':
         rawurl = search('http[\w,:,/,\.]+',st)[0]
 
-headers = {"Referer": "https://www.gitee.com",
-           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
-    }
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"}
 #app_root = r'D:\Toys\WinXray'
 if path.isfile(path.join(app_root,r'WinXray.exe')):
     wx_exe = path.join(app_root,r'WinXray.exe')
