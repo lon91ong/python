@@ -6,6 +6,11 @@ gather
 
 抓取教务网站的学生名单，updata成绩录入数据库，hvzs汇总数据库记录
 
+ssLink
+--------
+
+`sslink64 <https://raw.fastgit.org/lon91ong/python/master/sslink64>`_
+
 muster.py
 ------------
 
