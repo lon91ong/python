@@ -1,0 +1,31 @@
+113.96.208.29	pingma.qq.com
+52.78.231.108  github.com
+104.21.59.233  bianyuan.xyz
+104.21.59.233  pub-api-1.bianyuan.xyz
+124.156.138.74  op.supes.top
+23.224.46.121  winos.me
+150.109.57.23  cxwl.com
+69.63.176.143  lncn.org
+104.200.26.154  greasyfork.org
+18.181.13.223  github.com
+
+#### 屏蔽流氓软件flash player地区验证 ####
+127.0.0.1 geo2.adobe.com
+127.0.0.1 flash.2144.com
+127.0.0.1 www.2144.cn
+127.0.0.1 fpdownload2.macromedia.com
+127.0.0.1 fpdownload.macromedia.com
+127.0.0.1 macromedia.com
+127.0.0.1 flash.cn
+######## 屏蔽 WPS OFFICE 密匙验证 ######## 
+127.0.0.1  doccloud.cib.com.cn/cts
+127.0.0.1  activate.navicat.com
+
+######### CCleaner Pro ########
+0.0.0.0 analytics.ff.avast.com
+0.0.0.0 ipm-provider.ff.avast.com
+0.0.0.0 license.piriform.com
+0.0.0.0 www.ccleaner.com
+0.0.0.0 shepherd.ff.avast.concc.avast.com
+0.0.0.0 ncc.avast.com.edgesuite.net
+0.0.0.0 ip-info.ff.avast.com
