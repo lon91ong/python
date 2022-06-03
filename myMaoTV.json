@@ -34,6 +34,7 @@
 {"key":"csp_appysv2_小白动漫","name":"小白动漫〔Z〕","type":3,"api":"csp_AppYsV2"    ,"searchable":1,"quickSearch":0,"filterable":1,"ext":"http://121.62.60.222:20222/mogai_api.php/v1.vod"},
 {"key":"csp_appysv2_雪人"    ,"name":"雪人影视〔Z〕","type":3,"api":"csp_AppYsV2"    ,"searchable":1,"quickSearch":0,"filterable":1,"ext":"https://zy.qd234.cn/mogai_api.php/v1.vod"},
 {"key":"csp_appysv2_益达"    ,"name":"益达影视〔Z〕","type":3,"api":"csp_AppYsV2"    ,"searchable":1,"quickSearch":0,"filterable":1,"ext":"http://luobu.yss6080.com/mogai_api.php/v1.vod"},
+{"key":"木子看剧","name":"木子看剧","type":1,"api":"https://mzkj.maccms.cf/api.php/provide/vod","playUrl":"","searchable":1,"quickSearch":1},
 {"key":"csp_appysv2_月色"    ,"name":"月色影视〔Z〕","type":3,"api":"csp_AppYsV2"    ,"searchable":1,"quickSearch":0,"filterable":1,"ext":"http://69ty.cc/mogai_api.php/v1.vod"}],
 
 "lives": [
