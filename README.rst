@@ -11,6 +11,13 @@ ssLink
 
 `sslink64 <https://raw.fastgit.org/lon91ong/python/master/sslink64>`_
 
+MaoTV
+---------
+
+`IPTV <https://github.com/zbefine/iptv/blob/main/iptv.m3u>`_
+
+`BiuBiu <https://github.com/GDaily/Biubiu/blob/main/Biubiu.json>`_
+
 muster.py
 ------------
 
