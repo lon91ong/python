@@ -1,3 +1,14 @@
+### WPSOA配置
+
+```
+[support]
+...
+JsApiPlugin=true
+JsApiShowWebDebugger=false
+[Server]
+JSPluginsServer=http://127.0.0.1:3888/jsplugins.xml
+```
+
 ### 成绩录入
 
 运行 `python dbLocSvr.py` 开启数据库服务
