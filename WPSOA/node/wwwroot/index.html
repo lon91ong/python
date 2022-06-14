@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>成绩录库</title>
+        <style>
+            body {font-family: Arial, "Microsoft YaHei"}
+            .container {max-width: 320px;margin: 0 auto 20px auto;}
+            .section {padding: 0.5em 1em;background-color: #fff;}
+            h1,h2 {text-align: center;padding: 0;font-style: bold;}
+            h1 {font-size: 32px;color: #2d2e36;margin: 20px 0 5px;border-bottom: 3px solid #999;}
+            h2 {font-size: 24px;color: #009688;margin: 15px 0 5px;border-bottom: 1px solid #aaa;background-color: #eee;}
+            p {font-size: 20px;text-align: left;margin: 10px 0 10px 1em;}
+            a:link {color: #5cb3cc;} 
+            a:visited {color: #c02c38;} 
+            a:hover {color: #2b73af;text-decoration: underline;}
+            a:active {color: gray;}
+            a {text-decoration: none;}
+			li {margin: 10px 18px 6px 0;}
+        </style>
+        <script type="text/javascript" src="./js/utils/json2.js"></script>
+        <script type="text/javascript" src="./js/wps_sdk.js"></script>
+        <script type="text/javascript" src="./js/et.js"></script>
+    </head>
+<body>
+    <div class="container">
+        <h1>实验成绩录库</h1>
+        <div class="section"><div>
+            <h2>操作说明</h2>
+			<ul>
+				<li>需要支援JS脚本的WPS环境</li>
+            	<li>两个工作表，“成绩录入”计算平均分并录库，“直录”只录库</li>
+            	<li>教务自动录成绩需安装浏览器<a href="https://ext.chrome.360.cn/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo">油猴插件</a>,并安装<a href="https://gitee.com/sobweb/FillScore/raw/master/AutoFillScore.user.js">脚本</a></li>
+			</ul>
+        </div>
+        <div>
+			<h2>成绩录库</h2>
+			<p><a class="reference"><img id="onlineEditDoc" src="./WPS.png" title="成绩录入数据库"/></a></p>
+            <!-- <h2><a id="onlineEditDoc">成绩录库</a></h2> -->
+        </div>
+        <div>
+			<h2>教务入口</h2>
+			<p><a class="reference" href="http://211.81.249.99/default2.aspx">
+			<img src="./LiRen.png" alt="教务入口" title="教务入口"/></a></p>
+            <!-- <h2><a href="http://211.81.249.99/default2.aspx">教务录成绩入口</a></h2> -->
+        </div>
+    </div>
+</body>
+</html>
