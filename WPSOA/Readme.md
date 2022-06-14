@@ -4,7 +4,7 @@
 
 执行`node.exe StartupServer.js`开启WPSOA服务, 打开`http://127.0.0.1:3888`页面
 
-![WPSOA](..\imgs\WPSOA.png)
+![WPSOA](../imgs/WPSOA.png)
 
 点击成绩录入开启WPS
 
