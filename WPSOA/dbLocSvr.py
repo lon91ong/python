@@ -52,7 +52,7 @@ class Resource(object):
             curs.execute('SELECT class FROM classes')
             resp.body = ','.join(t[0] for t in map(list,curs.fetchall()))
         elif req.path =='/class':
-            if req.headers["CLIENT"]=='Excel':
+            if 'CLIENT' in req.headers and req.headers["CLIENT"]=='Excel':
                 conn.row_factory = self.dict_factory
                 curs.execute('SELECT id,name,score FROM students where class ="'+unquote(req.query_string)+'"')
                 resp.body = dumps(curs.fetchall(),ensure_ascii=False)
