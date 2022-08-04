@@ -22,6 +22,7 @@
 ######## 屏蔽 WPS OFFICE 密匙验证 ######## 
 127.0.0.1  doccloud.cib.com.cn/cts
 127.0.0.1  activate.navicat.com
+127.0.0.1 jrebel.npegeek.com
 
 ######### CCleaner Pro ########
 0.0.0.0 analytics.ff.avast.com
