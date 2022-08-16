@@ -2,7 +2,6 @@
 """
 winXray配置丢失补丁
 """
-from typing import List
 
 import requests
 from os import path, getenv, startfile
