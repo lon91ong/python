@@ -10,9 +10,6 @@ ssr://MTg4LjExOS42NC4yNDoxMDU1OTpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ2F6Yy8_b2
 ssr://MTk0LjE1Ni4xMjEuMjUwOjEwNTU5Om9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnYXpjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2VWcmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://MTk0LjE1Ni4xMjAuMzE6MTA1NTk6b3JpZ2luOnJjNDpwbGFpbjpiRzVqYmk1dmNtY2dhemMvP29iZnNwYXJhbT0mcmVtYXJrcz01TC1FNTcyWDVwYXZVdyZncm91cD1URzVqYmk1dmNtYw
 ssr://NDUuOC4xNTkuMTQwOjEwNTU5Om9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnYXpjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2VkEmZ3JvdXA9VEc1amJpNXZjbWM
-trojan://296ca33b-a840-45c0-a0cc-460c5dd45ae3@tw.crunode.top:1600?security=tls&type=tcp&headerType=none#TW
-trojan://3d6e81e4-c6df-32ad-a808-e83d4fd1ca1a@azhj001.xiba1.xyz:20714?security=tls&sni=ssl.ssl12.xyz&type=tcp&headerType=none#HK%204
-ss://YWVzLTI1Ni1nY206ZTRGQ1dyZ3BramkzUVk=@38.143.66.20:9101#US_1370
-trojan://3d6e81e4-c6df-32ad-a808-e83d4fd1ca1a@azhj001.xiba1.xyz:20800?security=tls&sni=ssl.ssl12.xyz&type=tcp&headerType=none#US%206
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTopMU4xRTZ2MFNVX3JHVHBn@92.223.93.233:1035#IT_331
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpnaGlkaGF2SQ==@52.79.181.152:59341#KR_357
+ss://YWVzLTI1Ni1nY206cEtFVzhKUEJ5VFZUTHRN@167.88.61.14:443#US_1238
+ss://YWVzLTI1Ni1nY206cEtFVzhKUEJ5VFZUTHRN@172.99.188.71:443#US_1397
+trojan://5y8y3CwxRVYhyfSY@ce.rutracker-cn.com:443?flow=xtls-rprx-direct&security=xtls&sni=ce.rutracker-cn.com&type=tcp&headerType=none#VR
