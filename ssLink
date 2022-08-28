@@ -10,8 +10,8 @@ ssr://MTc2LjMyLjMyLjE2MToxMDc1MzpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ05Xdy8_b2
 ssr://OTEuMjA2LjkzLjUwOjEwNzUzOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnTld3Lz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2U2cmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://NDYuMjkuMTY1LjIzMToxMDc1MzpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ05Xdy8_b2Jmc3BhcmFtPSZyZW1hcmtzPTVMLUU1NzJYNXBhdlN3Jmdyb3VwPVRHNWpiaTV2Y21j
 ssr://NDYuMjkuMTY3LjIxOjEwNzUzOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnTld3Lz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2VEEmZ3JvdXA9VEc1amJpNXZjbWM
-ss://YWVzLTI1Ni1nY206WEtGS2wyclVMaklwNzQ=@38.121.43.204:8009#US_49
-ss://YWVzLTI1Ni1nY206S2l4THZLendqZWtHMDBybQ==@38.75.136.34:5500#US
-ss://YWVzLTEyOC1nY206MjY5ZjcxYjktYzQ1Yi00M2YzLThjNDgtZWI1Zjk4NmFhNzA3@yum-y.update.mipglxi.cn:6022#CN
-vless://e9c14629-fcd5-4584-bb9e-d1431c20ee00@cf.rutracker-cn.com:443?encryption=none&security=tls&sni=cf.rutracker-cn.com&type=ws&path=%2F1GDNonF#VR
+ss://YWVzLTEyOC1nY206MjY5ZjcxYjktYzQ1Yi00M2YzLThjNDgtZWI1Zjk4NmFhNzA3@yum-y.update.mipglxi.cn:6009#SG
+ss://YWVzLTEyOC1nY206MjY5ZjcxYjktYzQ1Yi00M2YzLThjNDgtZWI1Zjk4NmFhNzA3@yum-y.update.mipglxi.cn:6004#CN
+ss://YWVzLTEyOC1nY206MjY5ZjcxYjktYzQ1Yi00M2YzLThjNDgtZWI1Zjk4NmFhNzA3@yum-y.update.mipglxi.cn:6002#CN
+ss://YWVzLTI1Ni1nY206MjY5ZjcxYjktYzQ1Yi00M2YzLThjNDgtZWI1Zjk4NmFhNzA3@linux.nameserversv3.com:9205#CN
 trojan://0bdf3a1f-c046-41c2-a7e5-ed92b8155997@mshk1.369boy.com:23511?security=tls&type=tcp&headerType=none#US%2021
