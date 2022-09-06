@@ -12,3 +12,6 @@ ssr://NDUuMTMwLjE0Ni42OjEwMzc6b3JpZ2luOnJjNDpwbGFpbjpiRzVqYmk1dmNtY2daRGsvP29iZn
 ssr://MTk1LjEzMy4xMS4xNzk6MTAzNzpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ1pEay8_b2Jmc3BhcmFtPSZyZW1hcmtzPTVMLUU1NzJYNXBhdlRBJmdyb3VwPVRHNWpiaTV2Y21j
 ss://YWVzLTI1Ni1nY206WTZSOXBBdHZ4eHptR0M=@134.195.196.85:5001#ZZ_1525
 ss://YWVzLTI1Ni1nY206WTZSOXBBdHZ4eHptR0M=@169.197.141.5:3306#ZZ_1424
+trojan://80bcf4f2-12f7-11ed-bb74-f23c9164ca5d@tw.tcpbbr.net:443?security=tls&type=tcp&headerType=none#TW%201
+trojan://046c4ca7-9c88-4ad5-92e8-591723b52b25@ion.755657.xyz:443?security=tls&sni=ion.755657.xyz&type=tcp&headerType=none#CN
+trojan://b3845d95-c82e-47f8-b626-0f27d861e8f7@los.ydnode.us:443?security=tls&sni=los.ydnode.us&type=tcp&headerType=none#US
