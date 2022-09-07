@@ -29,7 +29,7 @@ netTime.py
 Python折腾Excel
 -----------------
 
-`中文参考 <https://blog.csdn.net/sinat_28576553/article/details/81275650#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8xlwt%E6%A8%A1%E5%9D%97%E5%AF%B9%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%86%99%E6%93%8D%E4%BD%9C>`_ , `英文参考 <https://www.pyxll.com/blog/tools-for-working-with-excel-and-python/>`_
+`中文参考 <https://blog.csdn.net/sinat_28576553/article/details/81275650#二、使用xlwt模块对文件进行写操作>`_ , `英文参考 <https://www.pyxll.com/blog/tools-for-working-with-excel-and-python/>`_
 
 Excel2003以前的格式(\*.xls)，简单的读用 *xlrd* 简单的写用 *xlwt* ，功能需求更多用 `xlwings <https://blog.csdn.net/asanscape/article/details/80372743>`_
 
@@ -234,6 +234,7 @@ r.content返回的是**bytes**型的数据。
 修改r.text的编码：
 
 .. code:: python
+
  url = 'http://music.163.com'
  r = requests.get(url)
  html = r.content
@@ -242,5 +243,3 @@ r.content返回的是**bytes**型的数据。
  
  r.encoding='utf-8'
  print(r.text)
- 
-
