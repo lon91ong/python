@@ -228,7 +228,9 @@ Requests
 `中文乱码 <https://blog.csdn.net/chaowanghn/article/details/54889835>`_
 
 r = requests.get(“http://www.baidu.com“)
+
 r.text返回的是**Unicode**型的数据。
+
 r.content返回的是**bytes**型的数据。
 
 修改r.text的编码：
