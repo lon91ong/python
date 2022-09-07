@@ -222,3 +222,25 @@ traceback对象可以用traceback.print_tb()输出查看
    print("Unexpected error:", sys.exc_info()[0:2])
    print_tb(sys.exc_info()[-1])
 
+Requests
+-------------
+
+`中文乱码 <https://blog.csdn.net/chaowanghn/article/details/54889835>`_
+
+r = requests.get(“http://www.baidu.com“)
+r.text返回的是**Unicode**型的数据。
+r.content返回的是**bytes**型的数据。
+
+修改r.text的编码：
+
+.. code:: python
+ url = 'http://music.163.com'
+ r = requests.get(url)
+ html = r.content
+ html_doc=str(html,'utf-8') # html_doc=html.decode('utf-8','ignore')
+ print(html_doc)
+ 
+ r.encoding='utf-8'
+ print(r.text)
+ 
+
