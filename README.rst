@@ -245,3 +245,18 @@ r.content返回的是**bytes**型的数据。
  
  r.encoding='utf-8'
  print(r.text)
+
+Selenium
+-------------
+
+.. code:: python
+
+ from selenium import webdriver
+ from selenium.webdriver.chrome.options import Options
+
+ options = Options()
+ options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+ driver = webdriver.Chrome(options = options, executable_path="D:\\Program Files (x86)\\webdriver\\chromedriver_win32\\chromedriver.exe")
+ driver.get('http://data.eastmoney.com/bbsj/201806/lrb.html')
+ print("Chrome Browser Invoked")
+ 
