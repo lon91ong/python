@@ -255,8 +255,8 @@ Selenium
  from selenium.webdriver.chrome.options import Options
 
  options = Options()
- options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
- driver = webdriver.Chrome(options = options, executable_path="D:\\Program Files (x86)\\webdriver\\chromedriver_win32\\chromedriver.exe")
- driver.get('http://data.eastmoney.com/bbsj/201806/lrb.html')
+ options.binary_location = "D:\\MyChrome\\Chrome\\chrome.exe"
+ driver = webdriver.Chrome(options = options, executable_path="D:\\Python\\Scripts\\chromedriver_105.0.5195.52.exe")
+ driver.get('http://data.eastmoney.com/bbsj/202206/lrb.html')
  print("Chrome Browser Invoked")
  
