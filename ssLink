@@ -10,9 +10,5 @@ ssr://MTc2LjMyLjMzLjI0MjoxMTE2NjpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ2NqZy8_b2
 ssr://Mi41Ni4yNDEuMTYzOjExMTY2Om9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnT0c0Lz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2U2cmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://MTk0LjUuNzkuMjA2OjExMTY2Om9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnT0c0Lz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2U3cmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://MTkzLjM4LjUwLjIxNjoxMTE2NjpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ09HNC8_b2Jmc3BhcmFtPSZyZW1hcmtzPTVMLUU1NzJYNXBhdlRBJmdyb3VwPVRHNWpiaTV2Y21j
-trojan://43e50191-ba23-4fc1-94f4-626625f936b6@tratw1.bitznet.one:32003?security=tls&sni=cert.bitbyte.one&type=tcp&headerType=none#US%2037
-trojan://43e50191-ba23-4fc1-94f4-626625f936b6@trasg1.bitznet.one:32007?security=tls&sni=cert.bitbyte.one&type=tcp&headerType=none#US%2039
-trojan://43e50191-ba23-4fc1-94f4-626625f936b6@trajp1.bitznet.one:32004?security=tls&sni=cert.bitbyte.one&type=tcp&headerType=none#US%2038
-trojan://fffe09c3-32c3-44ac-9201-27e12dc2bd7c@trade1.bitznet.one:32011?security=tls&sni=cert.bitbyte.one&type=tcp&headerType=none#US%2049
-ss://YWVzLTEyOC1nY206NDI2OTE2Y2QtNWQ0YS00ZTY3LWIyMDktOTgwZjhjMjRhZTM0@relay1.wl-node1.com:39004#CN%2073
-trojan://43e50191-ba23-4fc1-94f4-626625f936b6@dtar1.bitznet.one:33015?security=tls&sni=cert.bitbyte.one&type=tcp&headerType=none#US%2033
+ss://YWVzLTI1Ni1nY206NjFlMmQwMjQtMzFhYy00YzhhLThjYTgtNmVhODVhZTc5NDFi@gtm-cn-7mz2vfdwc01.gtm-a3b6.com:60001#CN
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozNWIwZjU3OC04OTYxLTRhMmItOTlhMS1kYjk1NTVlNTIyZTQ=@mf01.xmss.vip:18888#RU
