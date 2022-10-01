@@ -10,8 +10,12 @@ ssr://MTc2LjMyLjMzLjI0MjoxMTU1MjpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ2VEYy8_b2
 ssr://Mi41Ni4yNDEuMTYzOjExNTUyOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnZURjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2U2cmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://MTk0LjUuNzkuMjA2OjExNTUyOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnZURjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2U3cmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://MTkzLjM4LjUwLjIxNjoxMTU1MjpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ2VEYy8_b2Jmc3BhcmFtPSZyZW1hcmtzPTVMLUU1NzJYNXBhdlRBJmdyb3VwPVRHNWpiaTV2Y21j
-trojan://80bcf4f2-12f7-11ed-bb74-f23c9164ca5d@ssl.tcpbbr.net:12163?security=tls&type=tcp&headerType=none#HK%203
+trojan://b62a64c0-4b87-436e-aef1-28eb22da69b7@927tw01.tfzhc.top:44319?security=tls&type=tcp&headerType=none#CA%2012
+trojan://1ff040d2-3fa5-4998-9e48-505af8389f1e@dtph1.bitznet.one:33013?security=tls&sni=cert.bitbyte.one&type=tcp&headerType=none#US%2051
+trojan://bbab60b8-779f-31e2-916e-571f7d7023c4@jd100.zahuopu.top:35100?security=tls&type=tcp&headerType=none#UM
+trojan://1ff040d2-3fa5-4998-9e48-505af8389f1e@dtde1.bitznet.one:33011?security=tls&sni=cert.bitbyte.one&type=tcp&headerType=none#US%2027
+ss://YWVzLTI1Ni1nY206ekROVmVkUkZQUWV4Rzl2@139.99.68.21:6379#SG%2037
+trojan://5d36674a-1a01-41e9-b246-72bc762faa82@sssvip01.goumaituijian.xyz:19586?security=tls&type=tcp&headerType=none#HK%2001
+trojan://4bc92fb7-2d61-484c-a5e8-561f81197271@sssvip02.goumaituijian.xyz:19587?security=tls&type=tcp&headerType=none#US%2018
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozNWIwZjU3OC04OTYxLTRhMmItOTlhMS1kYjk1NTVlNTIyZTQ=@mf01.xmss.vip:18888#RU
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.81:443#GB
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.194:443#GB
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.78:443#IE%2011
+trojan://4bc92fb7-2d61-484c-a5e8-561f81197271@sssvip09.goumaituijian.xyz:29556?security=tls&type=tcp&headerType=none#US%2021
