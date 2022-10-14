@@ -10,9 +10,7 @@ ssr://MTkzLjM4LjUxLjE5MzoxNjU1MjpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ2N6Yy8_b2
 ssr://NDUuODkuMjI5Ljk2OjE2NTUyOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnY3pjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2U3cmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://NDUuODkuMjI5LjI0OToxNjU1MjpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ2N6Yy8_b2Jmc3BhcmFtPSZyZW1hcmtzPTVMLUU1NzJYNXBhdldBJmdyb3VwPVRHNWpiaTV2Y21j
 ssr://MTk0LjE1Ni4xMjEuMjUyOjE2NTUyOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnY3pjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2V1EmZ3JvdXA9VEc1amJpNXZjbWM
-trojan://7b30dbe2-5fd9-4f87-a733-facef379632b@hk-tj.superyuluo.asia:30002?security=tls&type=tcp&headerType=none#AN%2031
-ss://YWVzLTI1Ni1nY206cEtFVzhKUEJ5VFZUTHRN@172.99.190.149:443#US_724
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.194:443#GB
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.78:443#IE%2011
 ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.81:443#GB
-trojan://f2117e99-9b6e-47fd-b0a9-634a0b15b998@jgw2.gaox.ml:443?security=tls&sni=jgw2.gaox.ml&type=tcp&headerType=none#KR_72
+trojan://f2117e99-9b6e-47fd-b0a9-634a0b15b998@jgw2.gaox.ml:443?security=tls&sni=jgw2.gaox.ml&type=tcp&headerType=none#KR_720
+trojan://0f5e6d9a-49af-4bc0-b04b-503102382144@ukt1.sshocean.net:443?security=tls&type=tcp&headerType=none#GB%2036
+ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.78:443#GB
