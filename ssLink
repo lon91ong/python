@@ -10,9 +10,10 @@ ssr://MTkzLjM4LjUxLjE5MzoxOTg1MjpvcmlnaW46cmM0OnBsYWluOmJHNWpiaTV2Y21jZ2F6Yy8_b2
 ssr://NDUuODkuMjI5Ljk2OjE5ODUyOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnYXpjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2U3cmZ3JvdXA9VEc1amJpNXZjbWM
 ssr://MTk0LjE1Ni4xMjEuMzE6MTk4NTI6b3JpZ2luOnJjNDpwbGFpbjpiRzVqYmk1dmNtY2daRGMvP29iZnNwYXJhbT0mcmVtYXJrcz01TC1FNTcyWDVwYXZXQSZncm91cD1URzVqYmk1dmNtYw
 ssr://MTk0LjE1Ni4xMjEuMjUyOjE5ODUyOm9yaWdpbjpyYzQ6cGxhaW46Ykc1amJpNXZjbWNnYXpjLz9vYmZzcGFyYW09JnJlbWFya3M9NUwtRTU3Mlg1cGF2V1EmZ3JvdXA9VEc1amJpNXZjbWM
-trojan://469eb2d7-c86c-3484-ba85-4f26f0645b9b@do-sg-01.vvsoga.net:1234?security=tls&type=tcp&headerType=none#SG%2022
-ss://YWVzLTI1Ni1nY206cEtFVzhKUEJ5VFZUTHRN@172.99.190.149:443#US_724
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.78:443#GB
+trojan://862e68d2-05f3-4253-9116-819623bb7335@aewfhe5z1pokrkw8bi9g10.xingbayun.buzz:10002?security=tls&sni=aewfhe5z1pokrkw8bi9g10.xingbayun.buzz&type=tcp&headerType=none#SG
+trojan://862e68d2-05f3-4253-9116-819623bb7335@aewfhe5z1pokrkw8bi9g25.xingbayun.buzz:10001?security=tls&sni=aewfhe5z1pokrkw8bi9g25.xingbayun.buzz&type=tcp&headerType=none#AU
+trojan://7a566d21dfcd0f12490275fd3dd3cfc4@trs04.bolab.net:443?security=tls&type=tcp&headerType=none#JP%201
 ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.81:443#GB
 trojan://f2117e99-9b6e-47fd-b0a9-634a0b15b998@jgw2.gaox.ml:443?security=tls&sni=jgw2.gaox.ml&type=tcp&headerType=none#KR_720
 trojan://0f5e6d9a-49af-4bc0-b04b-503102382144@ukt1.sshocean.net:443?security=tls&type=tcp&headerType=none#GB%2036
+ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@212.102.53.78:443#GB
