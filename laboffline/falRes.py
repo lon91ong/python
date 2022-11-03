@@ -14,9 +14,10 @@ from funApi import lab_root as workpth
 
 # falcon类
 class FalRes(object):
-    def __init__(self):
+    def __init__(self, downPort='9562'):
         self.tree = ElementTree()
         self.labroot = self.tree.parse(workpth + '/Download/Updata/Download/download.xml')
+        self.dp = downPort
         
     def on_get(self, req, resp, labfile):
         #print('URL:{}\nPath:{}'.format(req.url,req.path))
@@ -45,7 +46,7 @@ class FalRes(object):
                 #self.curLab=labid
                 try: # online
                     headers = {'Content-Type': 'text/xml; charset=utf-8','SOAPAction': 'http://www.ustcori.com/2009/10/IBizService/DoService','Host': 'aryun.ustcori.com:9542'}
-                    xmls = fromstring(requests.post('http://aryun.ustcori.com:9542'+req.path,data=xmls,headers=headers).text)
+                    xmls = fromstring(requests.post('http://aryun.ustcori.com:'+self.dp+req.path,data=xmls,headers=headers).text)
                     #print('Online Mode!')
                     dataStr = '<DataString>{}</DataString>'.format(xmls.findall(".//{http://www.ustcori.com/2009/10}DataString")[0].text)
                 except: # offline
