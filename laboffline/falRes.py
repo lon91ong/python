@@ -21,8 +21,8 @@ class FalRes(object):
         
     def on_get(self, req, resp, labfile):
         #print('URL:{}\nPath:{}'.format(req.url,req.path))
-        print('Get Labfile:',labfile)
-        requ ='http://aryun.ustcori.com:9542'+quote(req.path,encoding='gb2312')
+        requ ='http://aryun.ustcori.com:'+self.dp+quote(req.path,encoding='gb2312')
+        print('Get Labfile:',labfile) #, '\nURL:',requ, '\nDownPort:',self.dp)
         resp.downloadable_as=labfile.encode("utf-8").decode("latin1") #编码问题,参见https://github.com/Pylons/waitress/issues/318
         resp.set_headers(dict(list(requests.head(requ).headers.items())[:3])) #'Content-Length', 'Content-Type', 'Last-Modified'
         chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))
@@ -45,7 +45,7 @@ class FalRes(object):
                 labid = fromstring(xmls).findall(".//{http://schemas.microsoft.com/2003/10/Serialization/Arrays}Value")[0].text
                 #self.curLab=labid
                 try: # online
-                    headers = {'Content-Type': 'text/xml; charset=utf-8','SOAPAction': 'http://www.ustcori.com/2009/10/IBizService/DoService','Host': 'aryun.ustcori.com:9542'}
+                    headers = {'Content-Type': 'text/xml; charset=utf-8','SOAPAction': 'http://www.ustcori.com/2009/10/IBizService/DoService','Host': 'aryun.ustcori.com:'+self.dp}
                     xmls = fromstring(requests.post('http://aryun.ustcori.com:'+self.dp+req.path,data=xmls,headers=headers).text)
                     #print('Online Mode!')
                     dataStr = '<DataString>{}</DataString>'.format(xmls.findall(".//{http://www.ustcori.com/2009/10}DataString")[0].text)
@@ -77,15 +77,15 @@ class Serv(Thread):
         Thread.__init__(self)
         self.port = svrp
         self.svrRes = mRes
-        self.app = falcon.API()
+        self.app = falcon.App()
 
     def run(self):
         from waitress import serve
         apilst = ['/Upload/lab/{labfile}','/BizService.svc','/ServiceAPI/SetLabTimeRecordStart','/ServiceAPI/UpdateRecord','/FileTransfer.svc']
         for apistr in apilst: self.app.add_route(apistr, self.svrRes)
-        print("\n服务端启动...\n")
+        print(f"\n服务端启动...端口{self.port}\n")
         try:
             serve(self.app, listen = '127.0.0.1:'+self.port)
         except:
-            print('错误:网络端口({})可能被占用!'.format(self.port))
+            print(f'错误:网络端口({self.port})可能被占用!')
             exit(0)
