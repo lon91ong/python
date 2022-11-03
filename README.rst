@@ -260,7 +260,7 @@ Selenium
  driver.get('http://data.eastmoney.com/bbsj/202206/lrb.html')
  print("Chrome Browser Invoked")
  
-精简Python环境
-----------------
+精简Python环境 `简书 <https://www.jianshu.com/p/e0724d8248b2>`_
+---------------------------------------
 
 `参考 <https://www.misaraty.com/2022-02-08_python打包#embeddable-plus>`_ , `嵌入环境补充pip <https://bootstrap.pypa.io/get-pip.py>`_
