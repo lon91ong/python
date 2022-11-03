@@ -11,11 +11,12 @@ system('mode con cols=52 lines=120')
 
 # falcon类
 class QuRes(FalRes):
-    def __init__(self):
+    def __init__(self, downPort):
         self.curLab = ''
         self.labSort = '未分类'
         self.lablist = open('lablist.xml',mode='w+',encoding='utf-8')
         self.lablist.write('<?xml version="1.0" encoding="utf-8"?>\n<root>')
+        self.dp = downPort
         #self.tree = ElementTree()
         
     def on_get(self, req, resp, labfile):
@@ -46,8 +47,8 @@ if __name__ == '__main__':
     from base64 import b64encode
     from itertools import chain
     
-    falRes = QuRes()
     port = argv[1] if len(argv) in [2,4] else '9650' # 指定端口
+    falRes = QuRes(port)
     mySvr=Serv(falRes,port)
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
