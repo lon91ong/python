@@ -21,7 +21,7 @@ MessageBox = windll.user32.MessageBoxW
 
 def start_App():
     from falRes import FalRes, Serv
-    mySvr=Serv(FalRes(),port)
+    mySvr=Serv(FalRes(port),port)
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
 
