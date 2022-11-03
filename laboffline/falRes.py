@@ -83,7 +83,7 @@ class Serv(Thread):
         from waitress import serve
         apilst = ['/Upload/lab/{labfile}','/BizService.svc','/ServiceAPI/SetLabTimeRecordStart','/ServiceAPI/UpdateRecord','/FileTransfer.svc']
         for apistr in apilst: self.app.add_route(apistr, self.svrRes)
-        print(f"\n服务端启动...端口{self.port}\n")
+        print(f"\n服务端启动...端口:{self.port}\n")
         try:
             serve(self.app, listen = '127.0.0.1:'+self.port)
         except:
