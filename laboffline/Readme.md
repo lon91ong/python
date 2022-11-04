@@ -33,6 +33,9 @@
 
 全不包, 无回显黑窗: `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --windows-disable-console --file-reference-choice=runtime --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
+编译模块为pyd：
+`nuitka --mingw64 --module --show-progress --full-compat --plugin-enable=upx --output-dir=out falRes.py`
+
 ### pyinstaller笔记
 
 **用例**: `pyinstaller --onefile --clean -i Artua.ico pySvr.py`
