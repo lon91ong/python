@@ -54,7 +54,7 @@ if __name__ == '__main__':
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
     exeProg = workpth+r'\Download\Updata\WebLabClient.exe'
-    chal = range(int(argv[-2]),int(argv[-1])) if len(argv)>2 else chain(range(320,460),range(465,650))
+    chal = range(int(argv[-2]),int(argv[-1])) if len(argv)>2 else chain(range(355,400),range(500,520))
     sleep(2)
     if(mySvr.is_alive()):
         print("查询到如下的实验项目:")
