@@ -12,17 +12,23 @@ from xml.etree.ElementTree import ElementTree, fromstring
 from sys import exit
 from funApi import lab_root as workpth
 
+from json import load
+with open('config.json','r') as json_f:
+    downSvr = load(json_f)["FileSever"]
+json_f.close()
+
 # falcon类
 class FalRes(object):
-    def __init__(self, downPort='9562'):
+    def __init__(self):
         self.tree = ElementTree()
         self.labroot = self.tree.parse(workpth + '/Download/Updata/Download/download.xml')
-        self.dp = downPort
+        self.port = downSvr["Port"]
+        self.fileSvr = downSvr["Host"]
         
     def on_get(self, req, resp, labfile):
         #print('URL:{}\nPath:{}'.format(req.url,req.path))
-        requ ='http://aryun.ustcori.com:'+self.dp+quote(req.path,encoding='gb2312')
-        print('Get Labfile:',labfile) #, '\nURL:',requ, '\nDownPort:',self.dp)
+        requ =f'http://{self.fileSvr}:{self.port}'+quote(req.path,encoding='gb2312')
+        print('Get Labfile:',labfile) #, '\nURL:',requ, '\nDownPort:',self.port)
         resp.downloadable_as=labfile.encode("utf-8").decode("latin1") #编码问题,参见https://github.com/Pylons/waitress/issues/318
         resp.set_headers(dict(list(requests.head(requ).headers.items())[:3])) #'Content-Length', 'Content-Type', 'Last-Modified'
         chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))
@@ -45,8 +51,8 @@ class FalRes(object):
                 labid = fromstring(xmls).findall(".//{http://schemas.microsoft.com/2003/10/Serialization/Arrays}Value")[0].text
                 #self.curLab=labid
                 try: # online
-                    headers = {'Content-Type': 'text/xml; charset=utf-8','SOAPAction': 'http://www.ustcori.com/2009/10/IBizService/DoService','Host': 'aryun.ustcori.com:'+self.dp}
-                    xmls = fromstring(requests.post('http://aryun.ustcori.com:'+self.dp+req.path,data=xmls,headers=headers).text)
+                    headers = {'Content-Type': 'text/xml; charset=utf-8','SOAPAction': 'http://www.ustcori.com/2009/10/IBizService/DoService','Host': f'{self.fileSvr}:{self.port}'}
+                    xmls = fromstring(requests.post(f'http://{self.fileSvr}:{self.port}'+req.path,data=xmls,headers=headers).text)
                     #print('Online Mode!')
                     dataStr = '<DataString>{}</DataString>'.format(xmls.findall(".//{http://www.ustcori.com/2009/10}DataString")[0].text)
                 except: # offline
