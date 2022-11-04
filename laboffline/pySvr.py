@@ -21,7 +21,7 @@ MessageBox = windll.user32.MessageBoxW
 
 def start_App():
     from falRes import FalRes, Serv
-    mySvr=Serv(FalRes(port),port)
+    mySvr=Serv(FalRes(),port)
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
 
@@ -30,7 +30,8 @@ def on_quit(systray):
     running = False
 
 def on_left_click(systray):
-    about = '脱机仿真 v0.9.9\n\nhttp://aryun.ustcori.com:9999/'
+    from falRes import downSvr
+    about = f'脱机仿真 v0.9.9\n\n文件服务器: http://{downSvr["Host"]}:{downSvr["Port"]}/'
     MessageBox(None, about, '关于', 0)
 
 def on_right_click(systray):
