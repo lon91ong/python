@@ -5,19 +5,20 @@
 参数说明: 三种情况 [[port], [start, end], [port, start, end]]
 """
 from os import system
-from falRes import workpth, FalRes, Serv
+from falRes import workpth, FalRes, Serv, downSvr
 
 system('mode con cols=52 lines=120')
 
 # falcon类
 class QuRes(FalRes):
-    def __init__(self, downPort):
+    def __init__(self):
+        #super().__init__()
         self.curLab = ''
         self.labSort = '未分类'
         self.lablist = open('lablist.xml',mode='w+',encoding='utf-8')
         self.lablist.write('<?xml version="1.0" encoding="utf-8"?>\n<root>')
-        self.dp = downPort
-        #self.tree = ElementTree()
+        self.port = downSvr["Port"]
+        self.fileSvr = downSvr["Host"]
         
     def on_get(self, req, resp, labfile):
         from falcon import HTTP_400
@@ -48,12 +49,12 @@ if __name__ == '__main__':
     from itertools import chain
     
     port = argv[1] if len(argv) in [2,4] else '9650' # 指定端口
-    falRes = QuRes(port)
+    falRes = QuRes()
     mySvr=Serv(falRes,port)
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
     exeProg = workpth+r'\Download\Updata\WebLabClient.exe'
-    chal = range(int(argv[-2]),int(argv[-1])) if len(argv)>2 else chain(range(355,400),range(495,520))
+    chal = range(int(argv[-2]),int(argv[-1])) if len(argv)>2 else chain(range(320,460),range(465,650))
     sleep(2)
     if(mySvr.is_alive()):
         print("查询到如下的实验项目:")
