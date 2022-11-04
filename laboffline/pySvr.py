@@ -10,7 +10,6 @@ from logging import getLogger
 from subprocess import Popen as subOpen
 from funApi import app_root, lab_root, single_instance, labDic
 from winsystray import SysTrayIcon
-from winsystray.win32_adapter import MFS_DISABLED #, NIIF_USER, NIIF_LARGE_ICON
 
 single_instance('oflLab.win_tray')
 logger = getLogger('[log]')
@@ -29,16 +28,20 @@ def on_quit(systray):
     global running
     running = False
 
-def on_left_click(systray):
-    from falRes import downSvr
-    about = f'脱机仿真 v0.9.9\n\n文件服务器: http://{downSvr["Host"]}:{downSvr["Port"]}/'
-    MessageBox(None, about, '关于', 0)
+from falRes import downSvr
+def balloons_info(systray, infostr = '脱机仿真 v0.9.9\n-----------------\n'+
+                f'http://{downSvr["Host"]}:{downSvr["Port"]}'):
+    from winsystray.win32_adapter import NIIF_USER, NIIF_NOSOUND
+#    about = f'脱机仿真 v0.9.9\n\n文件服务器: http://{downSvr["Host"]}:{downSvr["Port"]}/'
+#    MessageBox(None, about, '关于', 0)
+    systray.show_balloon(infostr, '提示', NIIF_USER | NIIF_NOSOUND, 5)
 
 def on_right_click(systray):
     build_menu(systray)
     systray._show_menu()
     
 def build_menu(systray):
+    from winsystray.win32_adapter import MFS_DISABLED
     global last_main_menu, labs
     main_menu = []
     for k in labs.keys():
@@ -54,10 +57,6 @@ def build_menu(systray):
         systray.update(menu=main_menu)
         last_main_menu = main_menu
         
-#def balloons_info(text, title='通知'):
-#    global my_tray
-#    my_tray.show_balloon(text, title, NIIF_USER | NIIF_LARGE_ICON)
-    
 last_main_menu = None
 if len(argv)==2 and argv[1][-3:]=='xml':
     labs = labDic(argv[1])
@@ -66,11 +65,12 @@ else:
 quit_item = '退出', on_quit
 icon_pth = path.join(app_root, 'Artua.ico')
 my_tray = SysTrayIcon(icon_pth, '实验服务端', None, quit_item,
-                            left_click=on_left_click, right_click=on_right_click)
+                      left_click=balloons_info, right_click=on_right_click)
 my_tray.start()
 start_App()
 sleep(2)
-#balloons_info('服务端已经启动。\n\n 右键选择实验')
+balloons_info(my_tray, f'服务端成功启动，端口:{port}。\n'+
+          '------------------------------\n  ---> 右击下方图标选择实验\n')
 running = True
 while running:
     sleep(2)
