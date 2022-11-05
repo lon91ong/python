@@ -2,27 +2,8 @@
 #-*- coding: UTF-8 -*-
 
 from time import sleep
-from os import path, _exit
-from sys import executable
 from logging import warning as warnlog, error as errlog
 from threading import _start_new_thread as start_new_thread
-from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
-
-app_root = path.join(path.dirname(path.realpath(executable)))
-
-try:
-    key = OpenKey(HKEY_CLASSES_ROOT,'Lab\shell\open\command')
-    lab_root = path.dirname(QueryValue(key,'').split('"')[1])
-    CloseKey(key)
-except:
-    if path.isfile(path.join(app_root,r'USTCORi.WebLabClient.exe')):
-        lab_root = app_root
-    elif path.isfile(path.join(app_root,'..\\USTCORi.WebLabClient.exe')):
-        lab_root = path.dirname(app_root)
-    else:
-        print('仿真环境未安装!')
-        _exit(-1)
-    pass
     
 def spawn_later(seconds, target, *args, **kwargs):
     def wrap(*args, **kwargs):
@@ -52,9 +33,9 @@ def wait_exit(msg, *msgargs, exc_info=False, wait=30, code=-1):
     input()
     _exit(code)
 
-def single_instance(name):
+def single_instance(name, workpth):
     from os import remove
-    lock_file = path.join(app_root, name + '.lock')
+    lock_file = workpth +'/'+ name + '.lock'
 
     def unlock():
         lock.close()
