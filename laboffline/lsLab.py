@@ -5,7 +5,7 @@
 参数说明: 三种情况 [[port], [start, end], [port, start, end]]
 """
 from os import system
-from falRes import workpth, FalRes, Serv, downSvr
+from falRes import lab_root, FalRes, Serv, downSvr
 
 system('mode con cols=52 lines=120')
 
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     mySvr=Serv(falRes,port)
     mySvr.daemon = True #服务线程与主线程共存亡
     mySvr.start()
-    exeProg = workpth+r'\Download\Updata\WebLabClient.exe'
+    exeProg = lab_root+r'\Download\Updata\WebLabClient.exe'
     chal = range(int(argv[-2]),int(argv[-1])) if len(argv)>2 else chain(range(355,400),range(500,520))
     sleep(2)
     if(mySvr.is_alive()):
@@ -68,7 +68,7 @@ if __name__ == '__main__':
             pp.kill()
             sleep(0.5)
             if not falRes.curLab.isdigit():
-                cleanDir(workpth+r'\Download\Updata\Download', falRes.curLab)
+                cleanDir(lab_root+r'\Download\Updata\Download', falRes.curLab)
         print("\n项目查询完毕!")
     else:
         print("\n服务端启动失败, 查询程序退出!")
