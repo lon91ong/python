@@ -3,12 +3,10 @@
 
 from sys import argv
 from time import sleep
-from logging import getLogger
 from funApi import single_instance, labDic
 from falRes import LabTray, app_root, lab_root
 
 single_instance('oflLab.win_tray', app_root)
-logger = getLogger('[log]')
 port = argv[1] if len(argv)==2 and argv[1].isdigit() else '9542'
 #print('Lab_root:',lab_root,'\napproot',app_root)
 
