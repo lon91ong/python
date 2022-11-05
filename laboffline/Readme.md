@@ -31,10 +31,12 @@
 
 全包: `nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
-全不包, 无回显黑窗: `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --windows-disable-console --file-reference-choice=runtime --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
+全不包, 无回显黑窗: `nuitka --mingw64 --nofollow-imports --full-compat --include-package=funApi --plugin-enable=upx --windows-disable-console --file-reference-choice=runtime --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
+
+lsLab `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --file-reference-choice=runtime --windows-icon-from-ico=Artua.ico --output-dir=out lsLab.py`
 
 编译模块为pyd：
-`nuitka --mingw64 --module --show-progress --full-compat --plugin-enable=upx --output-dir=out falRes.py`
+`nuitka --mingw64 --module --show-progress --include-package=winsystray --full-compat --plugin-enable=upx --output-dir=out falRes.py`
 
 ### pyinstaller笔记
 
