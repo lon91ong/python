@@ -9,21 +9,37 @@ from urllib.parse import quote
 import requests, falcon
 from threading import Thread
 from xml.etree.ElementTree import ElementTree, fromstring
-from sys import exit
-from funApi import lab_root as workpth
-from winsystray import SysTrayIcon
-from winsystray.win32_adapter import NIIF_USER, NIIF_NOSOUND
+from sys import exit, executable
+from os import path, _exit
+from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
 
 from json import load
 with open('config.json','r') as json_f:
     downSvr = load(json_f)["FileSever"]
 json_f.close()
-WebClient_app = workpth + '/USTCORi.WebLabClient.exe'
+
+app_root = path.dirname(path.realpath(executable))
+
+try:
+    key = OpenKey(HKEY_CLASSES_ROOT,'Lab\shell\open\command')
+    lab_root = path.dirname(QueryValue(key,'').split('"')[1])
+    CloseKey(key)
+except:
+    if path.isfile(path.join(app_root,r'USTCORi.WebLabClient.exe')):
+        lab_root = app_root
+    elif path.isfile(path.join(app_root,'..\\USTCORi.WebLabClient.exe')):
+        lab_root = path.dirname(app_root)
+    else:
+        print('仿真环境未安装!')
+        _exit(-1)
+    pass
+#print(f'LabRoot:{lab_root}\nAppRoot:{app_root}')
+WebClient_app = lab_root + '/USTCORi.WebLabClient.exe'
 # falcon类
 class FalRes(object):
     def __init__(self):
         self.tree = ElementTree()
-        self.labroot = self.tree.parse(workpth + '/Download/Updata/Download/download.xml')
+        self.labroot = self.tree.parse(lab_root + '/Download/Updata/Download/download.xml')
         self.port = downSvr["Port"]
         self.fileSvr = downSvr["Host"]
         
@@ -47,7 +63,7 @@ class FalRes(object):
             method = search(r'(?<=<MethodName>).*(?=</MethodName>)',xmls)[0]
             null = None; false = False
             if method == 'FindNewExamRoom':
-                labroom = self.tree.parse(workpth + '/Download/download.xml')[0].attrib
+                labroom = self.tree.parse(lab_root + '/Download/download.xml')[0].attrib
                 dataStr = '<DataString>{"ROOMID":'+labroom['ID']+',"VERSION":"'+labroom['Version']+'"}</DataString>'
             elif method == 'FindByLABID':
                 labid = fromstring(xmls).findall(".//{http://schemas.microsoft.com/2003/10/Serialization/Arrays}Value")[0].text
@@ -97,6 +113,9 @@ class Serv(Thread):
         except:
             print(f'错误:网络端口({self.port})可能被占用!')
             exit(0)
+
+from winsystray import SysTrayIcon
+from winsystray.win32_adapter import NIIF_USER, NIIF_NOSOUND
 
 class LabTray(SysTrayIcon):
     def __init__(self, icon, labs, port):
