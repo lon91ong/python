@@ -9,14 +9,24 @@ from urllib.parse import quote
 import requests, falcon
 from threading import Thread
 from xml.etree.ElementTree import ElementTree, fromstring
-from sys import exit, executable
+from sys import exc_info, exit, executable
 from os import path, _exit
 from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
 
 from json import load
-with open('config.json','r') as json_f:
-    downSvr = load(json_f)["FileSever"]
-json_f.close()
+try:
+    with open('config.json','r') as json_f:
+        downSvr = load(json_f)["FileSever"]
+    json_f.close()
+except:
+    from ctypes import windll
+    MessageBox = windll.user32.MessageBoxW
+    info_str = '配置文件(config.json)加载失败，请检查！'
+    print("Unexpected error:", exc_info()[1])
+    # MB_ICONSTOP = MB_ICONERROR = 0x10; MB_ICONWARNING = 0x30; MB_ICONINFORMATION = 0x40
+    # MB_OK = 0; MB_OKCANCEL = 1; MB_YESNOCANCEL = 3
+    MessageBox(None, info_str, '错误', 0x10 | 0)
+    _exit(-1)
 
 app_root = path.dirname(path.realpath(executable))
 
@@ -129,10 +139,6 @@ class LabTray(SysTrayIcon):
         self.running = False
 
     def balloons_info(self, infostr = ''):
-        # from ctypes import windll
-        # MessageBox = windll.user32.MessageBoxW
-        # about = f'脱机仿真 v0.9.9\n\n文件服务器: http://{downSvr["Host"]}:{downSvr["Port"]}/'
-        # MessageBox(None, about, '关于', 0)
         self.show_balloon(infostr, '提示', NIIF_USER | NIIF_NOSOUND, 5)
         
     def on_left_click(self, systray):
