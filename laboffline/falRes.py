@@ -11,12 +11,14 @@ from threading import Thread
 from xml.etree.ElementTree import ElementTree, fromstring
 from sys import exit
 from funApi import lab_root as workpth
+from winsystray import SysTrayIcon
+from winsystray.win32_adapter import NIIF_USER, NIIF_NOSOUND
 
 from json import load
 with open('config.json','r') as json_f:
     downSvr = load(json_f)["FileSever"]
 json_f.close()
-
+WebClient_app = workpth + '/USTCORi.WebLabClient.exe'
 # falcon类
 class FalRes(object):
     def __init__(self):
@@ -95,3 +97,49 @@ class Serv(Thread):
         except:
             print(f'错误:网络端口({self.port})可能被占用!')
             exit(0)
+
+class LabTray(SysTrayIcon):
+    def __init__(self, icon, labs, port):
+        super().__init__(icon,'实验服务端',None, ('退出', self.on_quit),
+                    left_click=self.on_left_click, right_click=self.on_right_click)
+        self.labs, self.port = labs, port
+        self.running = True
+        self.last_main_menu = None
+    
+    def on_quit(self, systray):
+        self.running = False
+
+    def balloons_info(self, infostr = ''):
+        # from ctypes import windll
+        # MessageBox = windll.user32.MessageBoxW
+        # about = f'脱机仿真 v0.9.9\n\n文件服务器: http://{downSvr["Host"]}:{downSvr["Port"]}/'
+        # MessageBox(None, about, '关于', 0)
+        self.show_balloon(infostr, '提示', NIIF_USER | NIIF_NOSOUND, 5)
+        
+    def on_left_click(self, systray):
+        from falRes import downSvr
+        self.show_balloon('脱机仿真 v0.9.9\n-----------------\n'+
+                    f'http://{downSvr["Host"]}:{downSvr["Port"]}', 
+                    '提示', NIIF_USER | NIIF_NOSOUND, 5)
+        
+    def on_right_click(self, systray):
+        self.build_menu()
+        self._show_menu()
+        
+    def build_menu(self):
+        from base64 import b64encode
+        from subprocess import Popen as subOpen
+        from winsystray.win32_adapter import MFS_DISABLED
+        main_menu = []
+        for k in self.labs.keys():
+            main_menu.append((k, 'pass', MFS_DISABLED))
+            for j in self.labs[k]:
+                burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/userid/op/1/2',encoding='utf-8')
+                burl = r'lab:\\{}/'.format(b64encode(burl).decode('utf-8'))
+                main_menu.append(('   '+j['Lab'], lambda x, arg=burl: subOpen(WebClient_app+' '+arg)))
+            main_menu.append((None, '-'))
+        main_menu.append((None, '-'))
+        main_menu = tuple(main_menu)
+        if main_menu != self.last_main_menu:
+            self.update(menu=main_menu)
+            self.last_main_menu = main_menu
