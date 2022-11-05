@@ -3,11 +3,11 @@
 
 from sys import argv
 from time import sleep
-from os import path
 from logging import getLogger
-from funApi import app_root, lab_root, single_instance, labDic
+from funApi import single_instance, labDic
+from falRes import LabTray, app_root, lab_root
 
-single_instance('oflLab.win_tray')
+single_instance('oflLab.win_tray', app_root)
 logger = getLogger('[log]')
 port = argv[1] if len(argv)==2 and argv[1].isdigit() else '9542'
 #print('Lab_root:',lab_root,'\napproot',app_root)
@@ -23,8 +23,7 @@ if len(argv)==2 and argv[1][-3:]=='xml':
 else:
     labs = labDic(lab_root + '/Download/Updata/Download/download.xml')  
 
-from falRes import LabTray
-my_tray = LabTray(path.join(app_root, 'Artua.ico'), labs, port)
+my_tray = LabTray(app_root+'/Artua.ico', labs, port)
 my_tray.start()
 serviceSvr()
 sleep(2)
