@@ -67,12 +67,13 @@ class FalRes(object):
 
     def on_post(self, req, resp):
         resp.content_type = 'text/xml; charset=utf-8'
-        #print('Path:', req.path)
+        #print(f'Path:{req.path}')
         if req.path == '/BizService.svc':
             dataStr = '' # 响应数据
             # 响应文本预制
             respStr = '<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><DoServiceResponse xmlns="http://www.ustcori.com/2009/10"><DoServiceResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Data i:nil="true"/><Message/><RecordCount>0</RecordCount><Status>Success</Status></DoServiceResult></DoServiceResponse></s:Body></s:Envelope>'
             xmls = req.stream.read().decode('utf-8') #req.media
+            #print("ReqTextInXML:", xmls)
             method = search(r'(?<=<MethodName>).*(?=</MethodName>)',xmls)[0]
             null = None; false = False
             if method == 'FindNewExamRoom':
@@ -89,8 +90,7 @@ class FalRes(object):
                 except: # offline
                     lab = self.labroot.findall('.//Experiment[@ID='+labid+']')[0].attrib
                     print('实验:',lab['Name'],'分类:',lab['Sort'])
-                    dataStr = '<DataString>[{"LabID":'+labid+',"LABNAME":"'+lab['Name']+'","LABTYPEID":null,"LABTYPENAME":"'+lab['Sort']+'","INTRODUTION":"","CONTENT":null,"THEORY":null,"INSTRUMENT":null,"QualifiedTime":null,"LabFileUrl":"'+lab['Name']+'.lab","LabUpTime":null,"SourceFileUrl":null,"SourceUpTime":null,"UpTime":"'+lab['UpTime']+'","UPUSER":null,"LabWeight":null,"ReportWeight":null,"ReportFileUrl":null,"ReportUpTime":null}]</DataString>'
-                
+                    dataStr = '<DataString>[{' + f'"LabID":{labid},"LABNAME":"{lab["Name"]}","LABTYPEID":null,"LABTYPENAME":"{lab["Sort"]}","INTRODUTION":"","CONTENT":null,"THEORY":null,"INSTRUMENT":null,"QualifiedTime":null,"LabFileUrl":"{lab["Name"]}.lab","LabUpTime":null,"SourceFileUrl":null,"SourceUpTime":null,"UpTime":"{lab["UpTime"]}","UPUSER":{loc_user["ID"]},"LabWeight":null,"ReportWeight":null,"ReportFileUrl":null,"ReportUpTime":null'+'}]</DataString>'
             elif method == 'ucControlMethod':
                 dataStr = '<DataString>192</DataString>'
             elif method == 'SetLabTimeRecord':
@@ -104,6 +104,8 @@ class FalRes(object):
         elif req.path == '/ServiceAPI/SetLabTimeRecordStart':
             resp.data = '7777'.encode('utf-8')
         elif req.path == '/ServiceAPI/UpdateRecord':
+            #xml_text = req.stream.read().decode('utf-8') # 加密后的实验操作数据
+            #print("ReqTextInXML:", xml_text)            
             resp.data = '1'.encode('utf-8')
         else:   # /FileTransfer.svc
             resp.data = '<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><UploadFileResponse xmlns="http://tempuri.org/"/></s:Body></s:Envelope>'.encode('utf-8')
@@ -161,7 +163,7 @@ class LabTray(SysTrayIcon):
         for k in self.labs.keys():
             main_menu.append((k, 'pass', MFS_DISABLED))
             for j in self.labs[k]:
-                burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/userid/op/1/2',encoding='utf-8')
+                burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/{loc_user["ID"]}/op/1/2',encoding='utf-8')
                 burl = r'lab:\\{}/'.format(b64encode(burl).decode('utf-8'))
                 main_menu.append(('   '+j['Lab'], lambda x, arg=burl: subOpen(WebClient_app+' '+arg)))
             main_menu.append((None, '-'))
