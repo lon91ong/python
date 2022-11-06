@@ -14,6 +14,7 @@ from os import path, _exit
 from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
 from json import load
 from ctypes import windll
+from random import randint
 
 MessageBox = windll.user32.MessageBoxW
 try:
@@ -92,9 +93,10 @@ class FalRes(object):
                     print('实验:',lab['Name'],'分类:',lab['Sort'])
                     dataStr = '<DataString>[{' + f'"LabID":{labid},"LABNAME":"{lab["Name"]}","LABTYPEID":null,"LABTYPENAME":"{lab["Sort"]}","INTRODUTION":"","CONTENT":null,"THEORY":null,"INSTRUMENT":null,"QualifiedTime":null,"LabFileUrl":"{lab["Name"]}.lab","LabUpTime":null,"SourceFileUrl":null,"SourceUpTime":null,"UpTime":"{lab["UpTime"]}","UPUSER":{loc_user["ID"]},"LabWeight":null,"ReportWeight":null,"ReportFileUrl":null,"ReportUpTime":null'+'}]</DataString>'
             elif method == 'ucControlMethod':
-                dataStr = '<DataString>192</DataString>'
+                dataStr = f'<DataString>{randint(100, 240)}</DataString>'
+                print(method, "随机因素:", dataStr[12:15])
             elif method == 'SetLabTimeRecord':
-                dataStr = '<DataString>9000</DataString>'
+                dataStr = f'<DataString>{7000+randint(1, 500)}</DataString>'
             elif method == 'AddOneToLabFileDownLoadCount':
                 dataStr = '<DataString>"1"</DataString>'
             elif method == 'JFIsAccess':
@@ -102,7 +104,7 @@ class FalRes(object):
             insp = respStr.index('<Message/>') # 定位插入点
             resp.data = bytes(respStr[:insp] + dataStr + respStr[insp:],encoding='utf-8')            
         elif req.path == '/ServiceAPI/SetLabTimeRecordStart':
-            resp.data = '7777'.encode('utf-8')
+            resp.data = '7000'.encode('utf-8')
         elif req.path == '/ServiceAPI/UpdateRecord':
             #xml_text = req.stream.read().decode('utf-8') # 加密后的实验操作数据
             #print("ReqTextInXML:", xml_text)            
