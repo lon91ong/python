@@ -10,7 +10,7 @@ import requests, falcon
 from threading import Thread
 from xml.etree.ElementTree import ElementTree, fromstring
 from sys import exc_info, exit, executable
-from os import path, getenv, _exit
+from os import path, _exit
 from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
 from json import load
 from ctypes import windll
@@ -49,15 +49,6 @@ except:
     pass
 #print(f'LabRoot:{lab_root}\nAppRoot:{app_root}')
 
-def changeLabConf():
-    # 妄图通过修改labConfig.xml文件"IsEncrypt"项为"false"解决加密问题
-    conf = getenv('TEMP')+ r'\lab\labConfig.xml'
-    if path.isfile(conf):
-        with open(conf,'r+') as con_f:
-            confStr = con_f.read()
-            con_f.seek(0,0)
-            con_f.write(confStr.replace('true','false', 1))
-
 WebClient_app = lab_root + '/USTCORi.WebLabClient.exe'
 # falcon类
 class FalRes(object):
@@ -89,7 +80,6 @@ class FalRes(object):
             method = search(r'(?<=<MethodName>).*(?=</MethodName>)',xmls)[0]
             #null = None; false = False
             if method == 'FindNewExamRoom':
-                changeLabConf() #妄图解决加密问题
                 self.seedLock = int(process_time()*100) #for seed lock
                 labroom = self.tree.parse(lab_root + '/Download/download.xml')[0].attrib
                 dataStr = '<DataString>{"ROOMID":'+labroom['ID']+',"VERSION":"'+labroom['Version']+'"}</DataString>'
@@ -113,7 +103,7 @@ class FalRes(object):
                 dataStr = f'<DataString>{str(self.seedLock +6000)}</DataString>'
             elif method == 'AddOneToLabFileDownLoadCount':
                 dataStr = '<DataString>"1"</DataString>'
-            elif method == 'JFIsAccess': #计费与否
+            elif method == 'JFIsAccess': #缴费了没
                 dataStr = '<DataString>""</DataString>'
             print(f'Path:{req.path}, Method:{method}, Seed:{self.seedLock}')  #, Data:{dataStr[12:-13]}')
             insp = respStr.index('<Message/>') # 定位插入点
@@ -180,7 +170,7 @@ class LabTray(SysTrayIcon):
         for k in self.labs.keys():
             main_menu.append((k, 'pass', MFS_DISABLED))
             for j in self.labs[k]:
-                burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/{loc_user["ID"]}/op/1/0',encoding='utf-8')
+                burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/{loc_user["ID"]}/op/1/2',encoding='utf-8')
                 burl = r'lab:\\{}/'.format(b64encode(burl).decode('utf-8'))
                 # 迈克尔逊 lab://LzM2Mi8xMjcuMC4wLjEvOTU0Mi8yMDIxMTU1MzEwMDEvb3AvMS8y/
                 main_menu.append(('   '+j['Lab'], lambda x, arg=burl: subOpen(WebClient_app+' '+arg)))
