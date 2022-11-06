@@ -10,7 +10,7 @@ import requests, falcon
 from threading import Thread
 from xml.etree.ElementTree import ElementTree, fromstring
 from sys import exc_info, exit, executable
-from os import path, _exit
+from os import path, getenv, _exit
 from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
 from json import load
 from ctypes import windll
@@ -49,6 +49,15 @@ except:
     pass
 #print(f'LabRoot:{lab_root}\nAppRoot:{app_root}')
 
+def changeLabConf():
+    # 妄图通过修改labConfig.xml文件"IsEncrypt"项为"false"解决加密问题
+    conf = getenv('TEMP')+ r'\lab\labConfig.xml'
+    if path.isfile(conf):
+        with open(conf,'r+') as con_f:
+            confStr = con_f.read()
+            con_f.seek(0,0)
+            con_f.write(confStr.replace('true','false', 1))
+
 WebClient_app = lab_root + '/USTCORi.WebLabClient.exe'
 # falcon类
 class FalRes(object):
@@ -70,16 +79,18 @@ class FalRes(object):
 
     def on_post(self, req, resp):
         resp.content_type = 'text/xml; charset=utf-8'
-        #print(f'Path:{req.path}')
+        print(f'\nPath:{req.path}', end='') # 输出末尾不换行
         if req.path == '/BizService.svc':
             dataStr = '' # 响应数据
             # 响应文本预制
             respStr = '<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><DoServiceResponse xmlns="http://www.ustcori.com/2009/10"><DoServiceResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Data i:nil="true"/><Message/><RecordCount>0</RecordCount><Status>Success</Status></DoServiceResult></DoServiceResponse></s:Body></s:Envelope>'
             xmls = req.stream.read().decode('utf-8') #req.media
             #print("ReqTextInXML:", xmls)
+            
             method = search(r'(?<=<MethodName>).*(?=</MethodName>)',xmls)[0]
             #null = None; false = False
             if method == 'FindNewExamRoom':
+                changeLabConf() #妄图解决加密问题
                 self.seedLock = int(process_time()*100) #for seed lock
                 labroom = self.tree.parse(lab_root + '/Download/download.xml')[0].attrib
                 dataStr = '<DataString>{"ROOMID":'+labroom['ID']+',"VERSION":"'+labroom['Version']+'"}</DataString>'
@@ -97,22 +108,22 @@ class FalRes(object):
                     dataStr = '<DataString>[{' + f'"LabID":{labid},"LABNAME":"{lab["Name"]}","LABTYPEID":null,"LABTYPENAME":"{lab["Sort"]}","INTRODUTION":"","CONTENT":null,"THEORY":null,"INSTRUMENT":null,"QualifiedTime":null,"LabFileUrl":"{lab["Name"]}.lab","LabUpTime":null,"SourceFileUrl":null,"SourceUpTime":null,"UpTime":"{lab["UpTime"]}","UPUSER":{loc_user["ID"]},"LabWeight":null,"ReportWeight":null,"ReportFileUrl":null,"ReportUpTime":null'+'}]</DataString>'
             elif method == 'ucControlMethod':
                 seed(self.seedLock) # 随机种子, 同一会话期间保持不变
-                dataStr = f'<DataString>{randint(100, 240)}</DataString>'
-                #print(method, "随机因素:", dataStr[12:15])
+                dataStr = f'<DataString>{randint(160, 260)}</DataString>'
             elif method == 'SetLabTimeRecord':
                 dataStr = f'<DataString>{str(self.seedLock +6000)}</DataString>'
             elif method == 'AddOneToLabFileDownLoadCount':
                 dataStr = '<DataString>"1"</DataString>'
-            elif method == 'JFIsAccess': #缴费了没
+            elif method == 'JFIsAccess': #计费与否
                 dataStr = '<DataString>""</DataString>'
-            print(f'Path:{req.path}, Method:{method}, Seed:{self.seedLock}')  #, Data:{dataStr[12:-13]}')
+            print(f', Method:{method}, Seed:{self.seedLock}', end='')  #, Data:{dataStr[12:-13]}')
             insp = respStr.index('<Message/>') # 定位插入点
             resp.data = bytes(respStr[:insp] + dataStr + respStr[insp:],encoding='utf-8')            
         elif req.path == '/ServiceAPI/SetLabTimeRecordStart':
             resp.data = str(self.seedLock +6000).encode('utf-8')
         elif req.path == '/ServiceAPI/UpdateRecord':
             xml_text = req.stream.read().decode('utf-8') # 加密后的实验操作数据
-            print("ReqTextInXML:", xml_text)            
+            #print(f" FileName:{xml_text[xml_text.index('FileName=')+9:xml_text.index('.xml&')+4]}", end='')
+            print(', ' + xml_text.split('&',5)[-2], end='')
             resp.data = '1'.encode('utf-8')
         else:   # /FileTransfer.svc
             resp.data = '<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><UploadFileResponse xmlns="http://tempuri.org/"/></s:Body></s:Envelope>'.encode('utf-8')
@@ -129,7 +140,7 @@ class Serv(Thread):
         from waitress import serve
         apilst = ['/Upload/lab/{labfile}','/BizService.svc','/ServiceAPI/SetLabTimeRecordStart','/ServiceAPI/UpdateRecord','/FileTransfer.svc']
         for apistr in apilst: self.app.add_route(apistr, self.svrRes)
-        print(f"\n服务端启动...端口:{self.port}\n")
+        print(f"\n服务端启动...端口:{self.port}")
         try:
             serve(self.app, listen = '127.0.0.1:'+self.port)
         except:
@@ -170,7 +181,7 @@ class LabTray(SysTrayIcon):
         for k in self.labs.keys():
             main_menu.append((k, 'pass', MFS_DISABLED))
             for j in self.labs[k]:
-                burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/{loc_user["ID"]}/op/1/2',encoding='utf-8')
+                burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/{loc_user["ID"]}/op/1/0',encoding='utf-8')
                 burl = r'lab:\\{}/'.format(b64encode(burl).decode('utf-8'))
                 # 迈克尔逊 lab://LzM2Mi8xMjcuMC4wLjEvOTU0Mi8yMDIxMTU1MzEwMDEvb3AvMS8y/
                 main_menu.append(('   '+j['Lab'], lambda x, arg=burl: subOpen(WebClient_app+' '+arg)))
