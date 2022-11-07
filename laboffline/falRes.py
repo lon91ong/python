@@ -23,7 +23,6 @@ try:
         loc_user, downSvr = tuple(load(json_f).values())
         #downSvr = load(json_f)["FileSever"]
 except:
-    
     info_str = '配置文件(config.json)加载失败，请检查！'
     print("Unexpected error:", exc_info()[0:2])
     # MB_ICONSTOP = MB_ICONERROR = 0x10; MB_ICONWARNING = 0x30; MB_ICONINFORMATION = 0x40
@@ -49,21 +48,11 @@ except:
     pass
 #print(f'LabRoot:{lab_root}\nAppRoot:{app_root}')
 
-def changeLabConf():
-    # 妄图通过修改labConfig.xml文件"IsEncrypt"项为"false"解决加密问题
-    conf = getenv('TEMP')+ r'\lab\labConfig.xml'
-    if path.isfile(conf):
-        with open(conf,'r+') as con_f:
-            confStr = con_f.read()
-            con_f.seek(0,0)
-            con_f.write(confStr.replace('true','false', 1))
-
-WebClient_app = lab_root + '/USTCORi.WebLabClient.exe'
 # falcon类
 class FalRes(object):
     def __init__(self):
         self.tree = ElementTree()
-        self.labroot = self.tree.parse(lab_root + '/Download/Updata/Download/download.xml')
+        self.labroot = self.tree.parse(app_root + '/lablist.xml')
         self.port = downSvr["Port"]
         self.fileSvr = downSvr["Host"]
         self.seedLock = 0
@@ -71,10 +60,10 @@ class FalRes(object):
     def on_get(self, req, resp, labfile):
         #print('URL:{}\nPath:{}'.format(req.url,req.path))
         requ =f'http://{self.fileSvr}:{self.port}'+quote(req.path,encoding='gb2312')
-        print('Get Labfile:',labfile) #, '\nURL:',requ, '\nDownPort:',self.port)
+        print('\nGet Labfile:',labfile, end='')
         resp.downloadable_as=labfile.encode("utf-8").decode("latin1") #编码问题,参见https://github.com/Pylons/waitress/issues/318
         resp.set_headers(dict(list(requests.head(requ).headers.items())[:3])) #'Content-Length', 'Content-Type', 'Last-Modified'
-        chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))
+        chunk = lambda u: (yield from requests.get(u,stream=True).iter_content(chunk_size=8192))          
         resp.stream = chunk(requ)
 
     def on_post(self, req, resp):
@@ -86,26 +75,17 @@ class FalRes(object):
             respStr = '<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><DoServiceResponse xmlns="http://www.ustcori.com/2009/10"><DoServiceResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Data i:nil="true"/><Message/><RecordCount>0</RecordCount><Status>Success</Status></DoServiceResult></DoServiceResponse></s:Body></s:Envelope>'
             xmls = req.stream.read().decode('utf-8') #req.media
             #print("ReqTextInXML:", xmls)
-            
             method = search(r'(?<=<MethodName>).*(?=</MethodName>)',xmls)[0]
             #null = None; false = False
             if method == 'FindNewExamRoom':
-                changeLabConf() #妄图解决加密问题
                 self.seedLock = int(process_time()*100) #for seed lock
                 labroom = self.tree.parse(lab_root + '/Download/download.xml')[0].attrib
                 dataStr = '<DataString>{"ROOMID":'+labroom['ID']+',"VERSION":"'+labroom['Version']+'"}</DataString>'
             elif method == 'FindByLABID':
                 labid = fromstring(xmls).findall(".//{http://schemas.microsoft.com/2003/10/Serialization/Arrays}Value")[0].text[1:-1]
-                #self.curLab=labid
-                try: # online
-                    headers = {'Content-Type': 'text/xml; charset=utf-8','SOAPAction': 'http://www.ustcori.com/2009/10/IBizService/DoService','Host': f'{self.fileSvr}:{self.port}'}
-                    xmls = fromstring(requests.post(f'http://{self.fileSvr}:{self.port}'+req.path,data=xmls,headers=headers).text)
-                    #print('Online Mode!')
-                    dataStr = '<DataString>{}</DataString>'.format(xmls.findall(".//{http://www.ustcori.com/2009/10}DataString")[0].text)
-                except: # offline
-                    lab = self.labroot.findall('.//Experiment[@ID='+labid+']')[0].attrib
-                    print('实验:',lab['Name'],'分类:',lab['Sort'])
-                    dataStr = '<DataString>[{' + f'"LabID":{labid},"LABNAME":"{lab["Name"]}","LABTYPEID":null,"LABTYPENAME":"{lab["Sort"]}","INTRODUTION":"","CONTENT":null,"THEORY":null,"INSTRUMENT":null,"QualifiedTime":null,"LabFileUrl":"{lab["Name"]}.lab","LabUpTime":null,"SourceFileUrl":null,"SourceUpTime":null,"UpTime":"{lab["UpTime"]}","UPUSER":{loc_user["ID"]},"LabWeight":null,"ReportWeight":null,"ReportFileUrl":null,"ReportUpTime":null'+'}]</DataString>'
+                lab = self.labroot.findall('.//Experiment[@ID="'+labid+'"]')[0].attrib
+                print('实验:',lab['Name'],'分类:',lab['Sort'])
+                dataStr = '<DataString>[{' + f'"LabID":{labid},"LABNAME":"{lab["Name"]}","LABTYPEID":null,"LABTYPENAME":"{lab["Sort"]}","INTRODUTION":"","CONTENT":null,"THEORY":null,"INSTRUMENT":null,"QualifiedTime":null,"LabFileUrl":"{lab["LabFile"]}","LabUpTime":null,"SourceFileUrl":null,"SourceUpTime":null,"UpTime":"{lab["UpTime"]}","UPUSER":{loc_user["ID"]},"LabWeight":null,"ReportWeight":null,"ReportFileUrl":null,"ReportUpTime":null'+'}]</DataString>'
             elif method == 'ucControlMethod':
                 seed(self.seedLock) # 随机种子, 同一会话期间保持不变
                 dataStr = f'<DataString>{randint(160, 260)}</DataString>'
@@ -156,6 +136,7 @@ class LabTray(SysTrayIcon):
         self.labs, self.port = labs, port
         self.running = True
         self.last_main_menu = None
+        self.WebClient_app = lab_root + '/USTCORi.WebLabClient.exe'
     
     def on_quit(*self):
         self[0].running = False
@@ -184,7 +165,7 @@ class LabTray(SysTrayIcon):
                 burl = bytes('/'+j['ID']+f'/127.0.0.1/{self.port}/{loc_user["ID"]}/op/1/0',encoding='utf-8')
                 burl = r'lab:\\{}/'.format(b64encode(burl).decode('utf-8'))
                 # 迈克尔逊 lab://LzM2Mi8xMjcuMC4wLjEvOTU0Mi8yMDIxMTU1MzEwMDEvb3AvMS8y/
-                main_menu.append(('   '+j['Lab'], lambda x, arg=burl: subOpen(WebClient_app+' '+arg)))
+                main_menu.append(('   '+j['Lab'], lambda x, arg=burl: subOpen(self.WebClient_app+' '+arg)))
             main_menu.append((None, '-'))
         main_menu.append((None, '-'))
         main_menu = tuple(main_menu)
