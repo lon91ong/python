@@ -53,14 +53,3 @@ def single_instance(name, workpth):
             from atexit import register as regi
             regi(unlock)
             break
-
-def labDic(xmlfile):
-    from xml.etree.ElementTree import parse
-    keys = ('ID','Lab')
-    labs={}
-    for lab in parse(xmlfile).findall("Experiment"):
-        k = lab.attrib['Sort']
-        if k not in labs.keys():
-            labs[k]=[]
-        labs[k].append(dict(zip(keys,(lab.attrib['ID'], lab.attrib['Name']))))
-    return labs
