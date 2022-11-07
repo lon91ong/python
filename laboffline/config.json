@@ -1,8 +1,10 @@
 {
- "ID":"202115531001",
- "Pass":"666666",
+ "User":{
+   "ID":"202115531001",
+   "Pass":"666666"
+ },
  "FileSever":{
-    "Host":"aryun.ustcori.com",
-    "Port": "9662"
+   "Host":"aryun.ustcori.com",
+   "Port": "9662"
     }
  }
