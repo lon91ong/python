@@ -18,7 +18,7 @@ def labDic(xmlfile):
         k = lab.attrib['Sort']
         if k not in labs.keys():
             labs[k]=[]
-            labs[k].append(dict(zip(keys,(lab.attrib['ID'], lab.attrib['Name']))))
+        labs[k].append(dict(zip(keys,(lab.attrib['ID'], lab.attrib['Name']))))
     return labs
 
 if len(argv)==2 and argv[1][-3:]=='xml':
