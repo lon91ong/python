@@ -15,7 +15,7 @@
 
 > --plugin-enable=upx 启用upx压缩;
 > 
-> --follow-imports 在嵌入环境中等于把site-packages打包进exe文件
+> --follow-imports 在嵌入环境中等于把site-packages、DLLs、python3xx.zip中需要的依赖打包进exe文件，只需要保留一个python3xx.dll即可
 > 
 > --nofollow-imports 对应的就是不打包任何依赖包进exe, 编译速度快, 也可以减少问题
 >
