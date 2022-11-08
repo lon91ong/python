@@ -12,7 +12,7 @@ from urllib3 import disable_warnings
 
 disable_warnings()
 app_root = path.dirname(path.realpath(__file__))
-wx_exe = app_root if path.isfile(app_root + r'\WinXray.exe') else path.dirname(app_root) + r'\WinXray.exe'
+wx_exe = (app_root if path.isfile(app_root + r'\WinXray.exe') else path.dirname(app_root)) + r'\WinXray.exe'
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
 }
@@ -26,6 +26,7 @@ def decode_b64(data):
 
 def getProxy(rawurl):
     urlst = [rawurl]+['https://raw.iqiq.io/lon91ong/python/master/sslink64',
+             'https://raw.fastgit.org/lon91ong/python/master/sslink64',
              'https://fastly.jsdelivr.net/gh/lon91ong/python@master/sslink64',
              'https://cdn.staticaly.com/gh/lon91ong/python/master/sslink64',
              'https://gcore.jsdelivr.net/gh/lon91ong/python@master/sslink64']
@@ -46,8 +47,8 @@ with open(path.join(app_root, 'proxy_bak.table'), 'r', encoding='utf-8-sig') as 
 f.close()
 
 try:
-    proxies = getProxy(search('http[\w,:/\.\-]+', prtab[5])[0])
-    prtab[5] = sub('http[\w,:/\.\-]+', proxies[0], prtab[5], 1)
+    proxies = getProxy(search('http[\w,:/\.\-]+', prtab[4])[0])
+    prtab[4] = sub('http[\w,:/\.\-]+', proxies[0], prtab[4], 1)
     n = 1
     result = ''
     for locp in proxies[1:]:
@@ -59,11 +60,11 @@ try:
                       f'network="{ssrl[2]}";security="{ssrl[3]}"' + '};'
             n += 1
     print(f'Total of {n - 1} SSR nodes written!')
-    prtab[6] = 'outbounds={' + result[:-1] + '};'
+    prtab[5] = 'outbounds={' + result[:-1] + '};'
     with open(getenv('LocalAppData') + '/winXray/proxy.table', 'w', encoding='utf-8-sig') as f:
         f.writelines(sl for sl in prtab)
     f.close()
 except:
-    print("Unexpected error:", exc_info()[0])
+    print("Unexpected error:", exc_info()[0:2])
 finally:
     startfile(wx_exe)
