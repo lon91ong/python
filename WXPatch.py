@@ -25,8 +25,7 @@ def decode_b64(data):
     return urlsafe_b64decode(data).decode()
 
 def getProxy(rawurl):
-    urlst = [rawurl]+['https://raw.iqiq.io/lon91ong/python/master/sslink64',
-             'https://raw.fastgit.org/lon91ong/python/master/sslink64',
+    urlst = [rawurl]+['https://raw.fastgit.org/lon91ong/python/master/sslink64',
              'https://fastly.jsdelivr.net/gh/lon91ong/python@master/sslink64',
              'https://cdn.staticaly.com/gh/lon91ong/python/master/sslink64',
              'https://gcore.jsdelivr.net/gh/lon91ong/python@master/sslink64']
