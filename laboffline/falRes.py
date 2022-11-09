@@ -9,8 +9,8 @@ from urllib.parse import quote
 import requests, falcon
 from threading import Thread
 from xml.etree.ElementTree import ElementTree, fromstring
-from sys import exc_info, exit, executable
-from os import path, getenv, _exit
+from sys import exc_info, exit
+from os import path, _exit
 from winreg import OpenKey, QueryValue, CloseKey, HKEY_CLASSES_ROOT
 from json import load
 from ctypes import windll
@@ -30,7 +30,7 @@ except:
     MessageBox(None, info_str, '错误', 0x10 | 0)
     _exit(-1)
 
-app_root = path.dirname(path.realpath(executable))
+app_root = path.dirname(path.realpath(__file__)) # onefile不适用
 
 try:
     key = OpenKey(HKEY_CLASSES_ROOT,'Lab\shell\open\command')
