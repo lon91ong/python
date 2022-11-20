@@ -13,7 +13,7 @@ from urllib3 import disable_warnings
 
 disable_warnings()
 app_root = path.dirname(path.realpath(__file__))
-wx_exe = app_root if path.isfile(app_root + r'\WinXray.exe') else path.dirname(app_root) + r'\WinXray.exe'
+wx_exe = (app_root if path.isfile(app_root + r'\WinXray.exe') else path.dirname(app_root)) + r'\WinXray.exe'
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
 }
@@ -33,17 +33,14 @@ def getProxy(rawurl):
              'https://gcore.jsdelivr.net/gh/lon91ong/python@master/sslink64']
     proxies = []
     for ral in urlst:
-        print(ral)
         try:
             resp = requests.get(ral, headers=headers, verify=False, timeout=6)
+            proxies = [ral] + b64decode(resp.content).decode().split('\n')
         except:
             print(f'{ral} get failed with error:', exc_info()[0])
             continue
         else:
-            #print(resp.content)
-            proxies = [ral] + b64decode(resp.content).decode().split('\n')
             break
-    #print(proxies)
     return proxies
 
 with open(path.join(app_root, 'proxy_bak.table'), 'r', encoding='utf-8-sig') as f:
@@ -85,7 +82,6 @@ try:
     prtab[5] = 'outbounds={' + result[:-1] + '};'
     with open(getenv('LocalAppData') + '/winXray/proxy.table', 'w', encoding='utf-8-sig') as f:
         f.writelines(sl for sl in prtab)
-    f.close()
 except:
     print("Unexpected error:", exc_info()[0:2])
     pass
