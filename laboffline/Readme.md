@@ -23,7 +23,7 @@
 > 
 > --full-compat 适配嵌入式的python包
 > 
-> --file-reference-choice=runtime 需要读取程序运行路径下的文件时适用(会绑定编译时环境设置，portable目标不适用)
+> --file-reference-choice=runtime 需要读取程序运行路径下的文件时适用(portable目标不适用)
 > 
 > --include-package=requests 等于单独把把site-packages中的requests打包进exe文件, 可以解决系列报错 requests - urllib3 - six - No module named http.client
 
@@ -38,7 +38,7 @@ lsLab `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --w
 编译模块为pyd：
 `nuitka --mingw64 --module --show-progress --include-package=winsystray --full-compat --plugin-enable=upx --output-dir=out falRes.py`
 
-wXPatch
+wXPatch 
 `nuitka --mingw64 --follow-imports --full-compat --plugin-enable=upx --windows-disable-console --windows-icon-from-ico=GotoX.ico --output-dir=out wXPatch.py`
 
 ### pyinstaller笔记
