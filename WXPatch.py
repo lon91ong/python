@@ -5,14 +5,14 @@ winXray配置丢失补丁
 
 import requests
 from os import path, getenv, startfile
-from sys import exc_info
+from sys import exc_info, executable
 from base64 import b64decode
 from json import loads
 from re import split, search, sub
 from urllib3 import disable_warnings
 
 disable_warnings()
-app_root = path.dirname(path.realpath(__file__))
+app_root = path.dirname(path.realpath(executable))
 wx_exe = (app_root if path.isfile(app_root + r'\WinXray.exe') else path.dirname(app_root)) + r'\WinXray.exe'
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
