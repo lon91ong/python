@@ -23,7 +23,7 @@
 > 
 > --full-compat 适配嵌入式的python包
 > 
-> --file-reference-choice=runtime 需要读取程序运行路径下的文件时适用
+> --file-reference-choice=runtime 需要读取程序运行路径下的文件时适用(会绑定编译时环境设置，portable目标不适用)
 > 
 > --include-package=requests 等于单独把把site-packages中的requests打包进exe文件, 可以解决系列报错 requests - urllib3 - six - No module named http.client
 
@@ -33,10 +33,13 @@
 
 全不包, 无回显黑窗: `nuitka --mingw64 --nofollow-imports --full-compat --include-package=funApi --plugin-enable=upx --windows-disable-console --file-reference-choice=runtime --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
-lsLab `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --file-reference-choice=runtime --windows-icon-from-ico=Artua.ico --output-dir=out lsLab.py`
+lsLab `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out lsLab.py`
 
 编译模块为pyd：
 `nuitka --mingw64 --module --show-progress --include-package=winsystray --full-compat --plugin-enable=upx --output-dir=out falRes.py`
+
+wXPatch
+`nuitka --mingw64 --follow-imports --full-compat --plugin-enable=upx --windows-disable-console --windows-icon-from-ico=GotoX.ico --output-dir=out wXPatch.py`
 
 ### pyinstaller笔记
 
