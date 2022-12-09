@@ -31,7 +31,7 @@
 
 全包: `nuitka --mingw64 --follow-imports --full-compat --include-package=requests --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
-全不包, 无回显黑窗: `nuitka --mingw64 --nofollow-imports --full-compat --include-package=funApi --plugin-enable=upx --windows-disable-console --file-reference-choice=runtime --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
+全不包, 无回显黑窗: `nuitka --mingw64 --nofollow-imports --full-compat --include-package=funApi --plugin-enable=upx --windows-disable-console --windows-icon-from-ico=Artua.ico --output-dir=out pySvr.py`
 
 lsLab `nuitka --mingw64 --nofollow-imports --full-compat --plugin-enable=upx --windows-icon-from-ico=Artua.ico --output-dir=out lsLab.py`
 
