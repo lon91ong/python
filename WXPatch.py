@@ -78,9 +78,14 @@ try:
             result += f'[{n}' + ']={' + f'port={ssrl[3]};network="tcp";address="{ssrl[2]}";id="{ssrl[1]}";' + \
                       f'ps="{ssrl[4]}";protocol="shadowsocks";security="{ssrl[0]}"' + '};'
         elif locp[:6] == 'trojan':
-            ssrl = split(':|&|@|\?|#', locp[9:])
-            result += f'[{n}' + ']={' + f'tls="{split("=",ssrl[3])[1]}";port={ssrl[2]};protocol="trojan";address="{ssrl[1]}";id="{ssrl[0]}";' + \
-                      f'ps="{ssrl[-1]}";subscribeUrl="{proxies[0]}";network="{split("=",ssrl[4])[1]}' + '"};'
+            ssrl = split('#|\?', locp[9:])
+            ssrl[0] = split('@|:', ssrl[0])
+            ssrl[1] = loads('{"' + ssrl[1].replace('&','","').replace('=','":"') + '"}')
+            result += f'[{n}' + ']={' + f'tls="{ssrl[1]["security"]}";port={ssrl[0][2]};protocol="trojan";address="{ssrl[0][1]}";id="{ssrl[0][0]}";' + \
+                      f'ps="{ssrl[-1]}";subscribeUrl="{proxies[0]}";'
+            result += f'sni="{ssrl[1]["sni"]}";' if "sni" in ssrl[1] else ''
+            result += f'host="{ssrl[1]["host"]}";' if "host" in ssrl[1] else ''
+            result += f'network="{ssrl[1]["type"]}' + '"};'
         elif locp[:5] == 'vless':
             ssrl = split('#|\?', locp[8:])
             ssrl[0] = split('@|:', ssrl[0])
