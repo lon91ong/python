@@ -11,6 +11,10 @@ ssLink
 
 `sslink64 <https://cdn.staticaly.com/gh/lon91ong/python/master/sslink64>`_
 
+whl下载
+----------
+`simple <https://pypi.org/simple/pip>`_
+
 MaoTV
 ---------
 
