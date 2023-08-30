@@ -11,9 +11,16 @@ ssLink
 
 `sslink64 <https://cdn.staticaly.com/gh/lon91ong/python/master/sslink64>`_
 
-whl下载
-----------
-`simple <https://pypi.org/simple/pip>`_
+精简Python环境
+---------------
+whl下载： `simple <https://pypi.org/simple/pip>`_
+
+用humpty转换成egg格式, `参考 <https://www.coder.work/article/1278893>`_
+
+.. code:: bat
+  python -m humpty -d . idna-2.10-py2.py3-none-any.whl
+  %批量处理
+  for /F "delims=" %i in ('dir /B *.whl') do python -m humpty -d . %i
 
 MaoTV
 ---------
