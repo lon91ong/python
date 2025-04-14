@@ -1,4 +1,8 @@
 proxies:
+  - {name: CF_V10_www.visa.com.tw_2053, type: vless, server: www.visa.com.tw, port: 2053, uuid: 7e59e7d6-001a-49ba-b826-564a0ad2a6bf, udp: false, tls: true, network: ws, servername: 1.sobweb.ddns-ip.net, ws-opts:{path: "/?ed=2560", headers:{Host: 1.sobweb.ddns-ip.net}}}
+  - {name: CF_V11_www.visaeurope.ch_2083, type: vless, server: www.visaeurope.ch, port: 2083, uuid: 7e59e7d6-001a-49ba-b826-564a0ad2a6bf, udp: false, tls: true, network: ws, servername: 1.sobweb.ddns-ip.net, ws-opts:{path: "/?ed=2560", headers:{Host: 1.sobweb.ddns-ip.net}}}
+  - {name: CF_V12_www.visa.com.br_2087, type: vless, server: www.visa.com.br, port: 2087, uuid: 7e59e7d6-001a-49ba-b826-564a0ad2a6bf, udp: false, tls: true, network: ws, servername: 1.sobweb.ddns-ip.net, {ws-opts:path: "/?ed=2560", headers:{Host: 1.sobweb.ddns-ip.net}}}
+  - {name: CF_V13_www.visasoutheasteurope.com_2096, type: vless, server: www.visasoutheasteurope.com, port: 2096, uuid: 7e59e7d6-001a-49ba-b826-564a0ad2a6bf, udp: false, tls: true, network: ws, servername: 1.sobweb.ddns-ip.net, ws-opts:{path: "/?ed=2560", headers:{Host: 1.sobweb.ddns-ip.net}}}
   - {name: 🇭🇰 香港NO.2, server: xdd.dashuai.cyou, port: 45051, type: vmess, uuid: b48b7ba1-ced4-4e9e-90d9-5c84552e6001, alterId: 0, cipher: auto, tls: false, udp: true}
   - {name: 🇩🇪 德国, server: freeyx.cloudflare88.eu.org, port: 443, type: vmess, uuid: 465b9ddf-7700-45d6-a2c4-cc7438bdd029, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /, headers: {Host: go.daluquan.top}}, udp: true}
   - {name: 🇭🇰 香港06-备用, server: qqa813.198139.xyz, port: 45640, type: ss, cipher: chacha20-ietf-poly1305, password: 91deeea6-1321-4757-83ca-727d778ca9dc, udp: true}
