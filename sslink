@@ -10,9 +10,3 @@ vless://d60fc3c5-9f07-4cdb-b81f-70af27936bdc@www.visa.com.tw:2053?encryption=non
 vless://d60fc3c5-9f07-4cdb-b81f-70af27936bdc@www.visaeurope.ch:2083?encryption=none&security=tls&sni=ex.sue.x10.mx&fp=randomized&type=ws&host=ex.sue.x10.mx&path=%2F%3Fed%3D2560#CF_V11_sue
 vless://d60fc3c5-9f07-4cdb-b81f-70af27936bdc@www.visa.com.br:2087?encryption=none&security=tls&sni=ex.sue.x10.mx&fp=randomized&type=ws&host=ex.sue.x10.mx&path=%2F%3Fed%3D2560#CF_V12_sue
 vless://d60fc3c5-9f07-4cdb-b81f-70af27936bdc@www.visasoutheasteurope.com:2096?encryption=none&security=tls&sni=ex.sue.x10.mx&fp=randomized&type=ws&host=ex.sue.x10.mx&path=%2F%3Fed%3D2560#CF_V13_sue
-trojan://mn123pwd@usa.visa.com:443?security=tls&sni=ex.exedu.x10.mx&fp=randomized&type=ws&host=ex.exedu.x10.mx&path=%2F%3Fed%3D2560#CF_T8_exedu
-trojan://mn123pwd@myanmar.visa.com:8443?security=tls&sni=ex.exedu.x10.mx&fp=randomized&type=ws&host=ex.exedu.x10.mx&path=%2F%3Fed%3D2560#CF_T9_exedu
-trojan://mn123pwd@www.visa.com.tw:2053?security=tls&sni=ex.exedu.x10.mx&fp=randomized&type=ws&host=ex.exedu.x10.mx&path=%2F%3Fed%3D2560#CF_T10_exedu
-trojan://mn123pwd@www.visaeurope.ch:2083?security=tls&sni=ex.exedu.x10.mx&fp=randomized&type=ws&host=ex.exedu.x10.mx&path=%2F%3Fed%3D2560#CF_T11_exedu
-trojan://mn123pwd@www.visa.com.br:2087?security=tls&sni=ex.exedu.x10.mx&fp=randomized&type=ws&host=ex.exedu.x10.mx&path=%2F%3Fed%3D2560#CF_T12_exedu
-trojan://mn123pwd@www.visasoutheasteurope.com:2096?security=tls&sni=ex.exedu.x10.mx&fp=randomized&type=ws&host=ex.exedu.x10.mx&path=%2F%3Fed%3D2560#CF_T13_exedu
