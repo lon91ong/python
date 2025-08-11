@@ -1,129 +1,24 @@
 proxies:
-  - {name: 🇯🇵 日本04-1B, server: wa.xunyunnode.sbs, port: 25856, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇬🇧 英国1, server: haa.dashuai.cyou, port: 45066, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇨🇦 加拿大03-1B, server: qs.xunyunnode.sbs, port: 20321, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇩🇪 1.5xIEPL专线 德国1, server: jzgz.tcity8.monster, port: 22230, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 2xIEPL专线 香港5, server: jzgz.tcity8.monster, port: 22003, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇸🇬 新加坡02-1C, server: i2plcwjnhrl6.gym0boy.com, port: 17377, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇹🇼 台湾1, server: haa.dashuai.cyou, port: 45078, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇦🇺 澳大利亚原生1, server: haa.dashuai.cyou, port: 45062, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国NO.2, server: xdd.dashuai.cyou, port: 45053, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇮🇳 印度1, server: haa.dashuai.cyou, port: 45074, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾03-1C, server: wujrnbitcet.gym0boy.com, port: 40034, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇩🇪 1.5xIEPL专线 德国2, server: dzgz.tcity8.monster, port: 35222, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇨🇦 加拿大02-1B, server: abc.xunyunnode.sbs, port: 64182, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇸🇬 新加坡01-1C, server: wujrnbitcet.gym0boy.com, port: 21878, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇹🇼 台湾03-1B, server: qs.xunyunnode.sbs, port: 11240, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇺🇸 美国03-1B, server: qs.xunyunnode.sbs, port: 15765, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇨🇦 1.5xIEPL专线 加拿大1, server: jzgz.tcity8.monster, port: 22236, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇮🇳 印度2, server: xdd.dashuai.cyou, port: 45073, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇨🇦 1.5xIEPL专线 加拿大2, server: dzgz.tcity8.monster, port: 35216, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇻🇳 越南01-1B, server: mo.xunyunnode.sbs, port: 10326, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇭🇰 2xIEPL专线 香港2, server: dzgz.tcity8.monster, port: 35212, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾02-1C, server: i2plcwjnhrl6.gym0boy.com, port: 50796, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇯🇵 日本04-1C, server: i2plcwjnhrl6.gym0boy.com, port: 28799, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇸🇬 新加坡02-1A, server: abc.xunyunnode.sbs, port: 19673, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇰🇷 韩国 专线NO1, server: haa.dashuai.cyou, port: 45076, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾02-1A, server: abc.xunyunnode.sbs, port: 58456, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇺🇸 1.5xIEPL专线 美国原生3, server: jzgz.tcity8.monster, port: 22002, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国03-1A, server: qs.xunyunnode.sbs, port: 15765, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇫🇷 法国1, server: haa.dashuai.cyou, port: 45072, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港03-1A, server: qs.xunyunnode.sbs, port: 11976, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇯🇵 日本04-1A, server: wa.xunyunnode.sbs, port: 25856, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇹🇼 1.5xIEPL专线 台湾1, server: jzgz.tcity8.monster, port: 22240, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇻🇳 越南02-1B, server: abc.xunyunnode.sbs, port: 37837, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇺🇸 美国02-1A, server: abc.xunyunnode.sbs, port: 59079, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇸🇬 1.5xIEPL专线 新加坡2, server: dzgz.tcity8.monster, port: 35217, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾03-1A, server: qs.xunyunnode.sbs, port: 11240, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇯🇵 日本03-1C, server: wujrnbitcet.gym0boy.com, port: 49812, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇭🇰 香港03-1C, server: wujrnbitcet.gym0boy.com, port: 57037, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇺🇸 美国NO.1, server: haa.dashuai.cyou, port: 45052, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇨🇦 加拿大03-1A, server: qs.xunyunnode.sbs, port: 20321, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇨🇦 加拿大04-1B, server: wa.xunyunnode.sbs, port: 50737, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇬🇧 英国03-1B, server: qs.xunyunnode.sbs, port: 15953, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇭🇰 香港04-1A, server: wa.xunyunnode.sbs, port: 35301, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇹🇼 1.5xIEPL专线 台湾2, server: dzgz.tcity8.monster, port: 35224, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港04-1C, server: i2plcwjnhrl6.gym0boy.com, port: 15034, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇸🇬 新加坡04-1B, server: wa.xunyunnode.sbs, port: 50764, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇭🇰 香港NO.2, server: xdd.dashuai.cyou, port: 45051, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港-线路1, server: 156.224.77.215, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: 4ee1d339-0677-42f7-b34a-a7c9e8f147a4, udp: true}
-  - {name: 🇭🇰 香港02-1A, server: abc.xunyunnode.sbs, port: 55587, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇭🇰 2xIEPL专线 香港1, server: jzgz.tcity8.monster, port: 22224, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇬🇧 英国01-1A, server: mo.xunyunnode.sbs, port: 17587, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇨🇦 加拿大04-1A, server: wa.xunyunnode.sbs, port: 50737, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇭🇰 香港01-1A, server: mo.xunyunnode.sbs, port: 13058, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇺🇸 美国02-1B, server: abc.xunyunnode.sbs, port: 59079, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇯🇵 日本02-1B, server: abc.xunyunnode.sbs, port: 16720, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇬🇧 英国02-1A, server: abc.xunyunnode.sbs, port: 63862, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇮🇳 1.5xIEPL专线 印度2, server: dzgz.tcity8.monster, port: 35223, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国04-1A, server: wa.xunyunnode.sbs, port: 22041, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇯🇵 2xIEPL专线 日本1, server: jzgz.tcity8.monster, port: 22235, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇯🇵 日本01, server: wujrnbitcet.gym0boy.com, port: 27663, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇸🇬 新加坡03-1B, server: qs.xunyunnode.sbs, port: 34949, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇨🇦 加拿大01-1B, server: mo.xunyunnode.sbs, port: 44306, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇬🇧 英国01-1B, server: mo.xunyunnode.sbs, port: 17587, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇺🇸 1.5xIEPL专线 美国原生4, server: dzgz.tcity8.monster, port: 35208, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇦🇺 1.5xIEPL专线 澳大利亚1, server: jzgz.tcity8.monster, port: 22237, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国01-1A, server: mo.xunyunnode.sbs, port: 45823, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇸🇬 1.5xIEPL专线 新加坡1, server: jzgz.tcity8.monster, port: 22231, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港01-1B, server: mo.xunyunnode.sbs, port: 13058, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇨🇦 加拿大01-1A, server: mo.xunyunnode.sbs, port: 44306, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇸🇬 新加坡03-1C, server: wujrnbitcet.gym0boy.com, port: 37908, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇻🇳 越南04-1B, server: wa.xunyunnode.sbs, port: 43680, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇨🇦 加拿大2, server: xdd.dashuai.cyou, port: 45065, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 2xIEPL专线 香港6, server: dzgz.tcity8.monster, port: 35214, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇸🇬 新加坡04-1C, server: i2plcwjnhrl6.gym0boy.com, port: 12600, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇯🇵 日本NO.1, server: haa.dashuai.cyou, port: 45056, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇸🇬 新加坡NO.2, server: xdd.dashuai.cyou, port: 45055, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇮🇳 1.5xIEPL专线 印度1, server: jzgz.tcity8.monster, port: 22238, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇯🇵 日本02-1C, server: i2plcwjnhrl6.gym0boy.com, port: 22609, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇹🇼 台湾01-1A, server: mo.xunyunnode.sbs, port: 16755, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇺🇸 美国02-1C, server: i2plcwjnhrl6.gym0boy.com, port: 52448, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇯🇵 日本03-1B, server: qs.xunyunnode.sbs, port: 57353, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇬🇧 英国04-1B, server: wa.xunyunnode.sbs, port: 25174, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇸🇬 新加坡NO.1, server: haa.dashuai.cyou, port: 45054, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国01-1C, server: wujrnbitcet.gym0boy.com, port: 59270, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇭🇰 2xIEPL专线 香港4, server: dzgz.tcity8.monster, port: 35213, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇦🇺 1.5xIEPL专线 澳大利亚2, server: dzgz.tcity8.monster, port: 35220, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国04-1C, server: i2plcwjnhrl6.gym0boy.com, port: 32656, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇺🇸 1.5xIEPL专线 美国原生2, server: dzgz.tcity8.monster, port: 35209, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇻🇳 越南03-1B, server: qs.xunyunnode.sbs, port: 25845, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇮🇪 爱尔兰-都柏林, server: 107.175.187.181, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: 4ee1d339-0677-42f7-b34a-a7c9e8f147a4, udp: true}
-  - {name: 🇨🇦 加拿大02-1A, server: abc.xunyunnode.sbs, port: 64182, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇯🇵 2xIEPL专线 日本2, server: dzgz.tcity8.monster, port: 35218, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇨🇦 加拿大1, server: haa.dashuai.cyou, port: 45064, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇸🇬 新加坡01-1B, server: mo.xunyunnode.sbs, port: 14195, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇯🇵 日本NO.2, server: xdd.dashuai.cyou, port: 45057, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇻🇳 越南01-1A, server: mo.xunyunnode.sbs, port: 10326, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇻🇳 越南04-1A, server: wa.xunyunnode.sbs, port: 43680, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇹🇼 台湾01-1C, server: wujrnbitcet.gym0boy.com, port: 30372, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇸🇬 新加坡04-1A, server: wa.xunyunnode.sbs, port: 50764, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇹🇼 台湾01-1B, server: mo.xunyunnode.sbs, port: 16755, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇭🇰 香港02-1C, server: i2plcwjnhrl6.gym0boy.com, port: 52005, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇯🇵 日本02-1A, server: abc.xunyunnode.sbs, port: 16720, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇹🇼 台湾2, server: xdd.dashuai.cyou, port: 45077, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港03-1B, server: qs.xunyunnode.sbs, port: 11976, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇹🇼 台湾04-1A, server: wa.xunyunnode.sbs, port: 12009, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇹🇼 台湾04-1C, server: i2plcwjnhrl6.gym0boy.com, port: 30555, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇬🇧 英国2, server: xdd.dashuai.cyou, port: 45067, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港04-1B, server: wa.xunyunnode.sbs, port: 35301, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇻🇳 越南02-1A, server: abc.xunyunnode.sbs, port: 37837, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇸🇬 新加坡03-1A, server: qs.xunyunnode.sbs, port: 34949, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇭🇰 2xIEPL专线 香港3, server: jzgz.tcity8.monster, port: 22226, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港02-1B, server: abc.xunyunnode.sbs, port: 55587, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇦🇺 澳大利亚原生2, server: xdd.dashuai.cyou, port: 45063, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾02-1B, server: abc.xunyunnode.sbs, port: 58456, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇸🇬 新加坡01-1A, server: mo.xunyunnode.sbs, port: 14195, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇻🇳 越南03-1A, server: qs.xunyunnode.sbs, port: 25845, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇬🇧 英国02-1B, server: abc.xunyunnode.sbs, port: 63862, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇹🇼 台湾04-1B, server: wa.xunyunnode.sbs, port: 12009, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇺🇸 美国01-1B, server: mo.xunyunnode.sbs, port: 45823, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇺🇸 美国04-1B, server: wa.xunyunnode.sbs, port: 22041, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇰🇷 韩国 专线NO1 2, server: xdd.dashuai.cyou, port: 45075, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇸🇬 新加坡02-1B, server: abc.xunyunnode.sbs, port: 19673, type: ss, cipher: chacha20-ietf-poly1305, password: 8b63ac6c-954e-4377-bb70-5dd51a06f5e2, udp: true}
-  - {name: 🇬🇧 英国04-1A, server: wa.xunyunnode.sbs, port: 25174, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇬🇧 英国03-1A, server: qs.xunyunnode.sbs, port: 15953, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
-  - {name: 🇺🇸 美国03-1C, server: wujrnbitcet.gym0boy.com, port: 29646, type: ss, cipher: aes-256-gcm, password: 19a6712f-b852-4aca-ab12-44eb916eeb33, udp: true}
-  - {name: 🇺🇸 1.5xIEPL专线 美国原生1, server: jzgz.tcity8.monster, port: 22000, type: vmess, uuid: 2889a744-d0a3-45f1-9fbb-c16e48597a37, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇫🇷 法国2, server: xdd.dashuai.cyou, port: 45071, type: vmess, uuid: cc2ae5b6-b2be-48e6-ad5c-741a750138dd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇯🇵 日本03-1A, server: qs.xunyunnode.sbs, port: 57353, type: ss, cipher: chacha20-ietf-poly1305, password: 9150b79e-85f3-49eb-a564-a3a44c432678, udp: true}
+  - {name: 🇫🇷 法国2, server: xdd.dashuai.cyou, port: 45071, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇸🇬 新加坡NO.2, server: xdd.dashuai.cyou, port: 45055, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇦🇺 澳大利亚原生2, server: xdd.dashuai.cyou, port: 45063, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇰🇷 韩国 专线NO1, server: haa.dashuai.cyou, port: 45076, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇮🇳 印度2, server: xdd.dashuai.cyou, port: 45073, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇮🇪 爱尔兰-都柏林, server: 107.175.187.181, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: cf72375a-918d-4105-aa80-6adbbc9bb1c6, udp: true}
+  - {name: 🇭🇰 香港-线路1, server: 156.224.77.215, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: cf72375a-918d-4105-aa80-6adbbc9bb1c6, udp: true}
+  - {name: 🇮🇳 印度1, server: haa.dashuai.cyou, port: 45074, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇰🇷 韩国 专线NO2, server: xdd.dashuai.cyou, port: 45075, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇹🇼 台湾2, server: xdd.dashuai.cyou, port: 45077, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇨🇦 加拿大2, server: xdd.dashuai.cyou, port: 45065, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇭🇰 香港NO.2, server: xdd.dashuai.cyou, port: 45051, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇬🇧 英国1, server: haa.dashuai.cyou, port: 45066, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇯🇵 日本NO.1, server: haa.dashuai.cyou, port: 45056, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇯🇵 日本NO.2, server: xdd.dashuai.cyou, port: 45057, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇫🇷 法国1, server: haa.dashuai.cyou, port: 45072, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇬🇧 英国2, server: xdd.dashuai.cyou, port: 45067, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇨🇦 加拿大1, server: haa.dashuai.cyou, port: 45064, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇸🇬 新加坡NO.1, server: haa.dashuai.cyou, port: 45054, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇹🇼 台湾1, server: haa.dashuai.cyou, port: 45078, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇦🇺 澳大利亚原生1, server: haa.dashuai.cyou, port: 45062, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇺🇸 美国NO.1, server: haa.dashuai.cyou, port: 45052, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇺🇸 美国NO.2, server: xdd.dashuai.cyou, port: 45053, type: vmess, uuid: 07060d6a-882e-45f2-873b-b0ac99e96037, alterId: 0, cipher: auto, tls: false, udp: true}
