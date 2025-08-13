@@ -1,47 +1,50 @@
 proxies:
-  - {name: 🇺🇸 美国NO.2, server: xdd.dashuai.cyou, port: 45053, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾2, server: xdd.dashuai.cyou, port: 45077, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇸🇬 新加坡01, server: wujrnbitcet.gym0boy.com, port: 21878, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇭🇰 香港04, server: i2plcwjnhrl6.gym0boy.com, port: 15034, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇭🇰 香港-线路1, server: 156.224.77.215, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: 2f3243e4-3d0a-4c3c-b86a-9e5f2285e06b, udp: true}
-  - {name: 🇩🇪 德国之一, server: 185.183.181.242, port: 5968, type: ss, cipher: chacha20-ietf-poly1305, password: 28ad4340-c361-477d-8e8b-d3a414184e3e, udp: true}
-  - {name: 🇯🇵 日本02, server: i2plcwjnhrl6.gym0boy.com, port: 22609, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇸🇬 新加坡NO.1, server: haa.dashuai.cyou, port: 45054, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇯🇵 日本NO.2, server: xdd.dashuai.cyou, port: 45057, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇯🇵 日本NO.1, server: haa.dashuai.cyou, port: 45056, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国NO.1, server: haa.dashuai.cyou, port: 45052, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇦🇺 澳大利亚原生1, server: haa.dashuai.cyou, port: 45062, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港03, server: wujrnbitcet.gym0boy.com, port: 57037, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇦🇺 澳大利亚原生2, server: xdd.dashuai.cyou, port: 45063, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾03, server: wujrnbitcet.gym0boy.com, port: 40034, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇬🇧 英国2, server: xdd.dashuai.cyou, port: 45067, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾1, server: haa.dashuai.cyou, port: 45078, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾04, server: i2plcwjnhrl6.gym0boy.com, port: 30555, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇸🇬 新加坡03, server: wujrnbitcet.gym0boy.com, port: 37908, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇯🇵 日本04, server: i2plcwjnhrl6.gym0boy.com, port: 28799, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇸🇬 新加坡04, server: i2plcwjnhrl6.gym0boy.com, port: 12600, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇸🇬 新加坡02, server: i2plcwjnhrl6.gym0boy.com, port: 17377, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇰🇷 韩国 专线NO1, server: haa.dashuai.cyou, port: 45076, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇮🇳 印度1, server: haa.dashuai.cyou, port: 45074, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇫🇷 法国2, server: xdd.dashuai.cyou, port: 45071, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇺🇸 美国04, server: i2plcwjnhrl6.gym0boy.com, port: 32656, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇨🇦 加拿大2, server: xdd.dashuai.cyou, port: 45065, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇨🇦 加拿大1, server: haa.dashuai.cyou, port: 45064, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇬🇧 英国1, server: haa.dashuai.cyou, port: 45066, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇯🇵 日本03, server: wujrnbitcet.gym0boy.com, port: 49812, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇺🇸 美国02, server: i2plcwjnhrl6.gym0boy.com, port: 52448, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇺🇸 美国01, server: wujrnbitcet.gym0boy.com, port: 59270, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇰🇷 韩国 专线NO2, server: xdd.dashuai.cyou, port: 45075, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇩🇪 德国之二, server: 31.22.10.139, port: 1569, type: ss, cipher: chacha20-ietf-poly1305, password: 28ad4340-c361-477d-8e8b-d3a414184e3e, udp: true}
-  - {name: 🇯🇵 日本01, server: wujrnbitcet.gym0boy.com, port: 27663, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇹🇼 台湾02, server: i2plcwjnhrl6.gym0boy.com, port: 50796, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇺🇸 美国之一, server: 23.27.176.120, port: 23589, type: ss, cipher: chacha20-ietf-poly1305, password: 28ad4340-c361-477d-8e8b-d3a414184e3e, udp: true}
-  - {name: 🇹🇼 台湾01, server: wujrnbitcet.gym0boy.com, port: 30372, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇺🇸 美国03, server: wujrnbitcet.gym0boy.com, port: 29646, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
-  - {name: 🇸🇬 新加坡NO.2, server: xdd.dashuai.cyou, port: 45055, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇮🇪 爱尔兰-都柏林, server: 107.175.187.181, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: 2f3243e4-3d0a-4c3c-b86a-9e5f2285e06b, udp: true}
-  - {name: 🇮🇳 印度2, server: xdd.dashuai.cyou, port: 45073, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇭🇰 香港NO.2, server: xdd.dashuai.cyou, port: 45051, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇫🇷 法国1, server: haa.dashuai.cyou, port: 45072, type: vmess, uuid: 2b9e849b-d054-4b34-b7a4-bc09ef7ebedd, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 保加之一, server: 193.9.47.81, port: 19347, type: ss, cipher: chacha20-ietf-poly1305, password: 28ad4340-c361-477d-8e8b-d3a414184e3e, udp: true}
-  - {name: 🇭🇰 香港02, server: i2plcwjnhrl6.gym0boy.com, port: 52005, type: ss, cipher: aes-256-gcm, password: e7cbe208-d5cf-431d-9077-dd262a103117, udp: true}
+  - {name: 🇦🇺 澳大利亚原生2, server: xdd.dashuai.cyou, port: 45063, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇹🇼 台湾2, server: xdd.dashuai.cyou, port: 45077, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇦🇺 澳大利亚原生1, server: haa.dashuai.cyou, port: 45062, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇩🇪 德国之一, server: 185.183.181.242, port: 8581, type: ss, cipher: chacha20-ietf-poly1305, password: c525d06e-5b7e-44a2-9fd0-cb4cbb834838, udp: true}
+  - {name: 🇸🇬 新加坡02, server: i2plcwjnhrl6.gym0boy.com, port: 17377, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇭🇰 香港03, server: wujrnbitcet.gym0boy.com, port: 57037, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇯🇵 日本之一, server: 23.27.201.149, port: 7281, type: ss, cipher: chacha20-ietf-poly1305, password: c525d06e-5b7e-44a2-9fd0-cb4cbb834838, udp: true}
+  - {name: 保加之一, server: 193.9.47.81, port: 9478, type: ss, cipher: chacha20-ietf-poly1305, password: c525d06e-5b7e-44a2-9fd0-cb4cbb834838, udp: true}
+  - {name: 🇫🇷 法国2, server: xdd.dashuai.cyou, port: 45071, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇺🇸 美国03, server: wujrnbitcet.gym0boy.com, port: 29646, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇰🇷 韩国 专线NO1, server: haa.dashuai.cyou, port: 45076, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇯🇵 日本NO.2, server: xdd.dashuai.cyou, port: 45057, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇭🇰 香港02, server: i2plcwjnhrl6.gym0boy.com, port: 52005, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇯🇵 日本01, server: wujrnbitcet.gym0boy.com, port: 27663, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇮🇪 爱尔兰-都柏林, server: 107.175.187.181, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: c002f0d9-1066-4f97-a3dc-3266e7b0abcd, udp: true}
+  - {name: 🇹🇼 台湾03, server: wujrnbitcet.gym0boy.com, port: 40034, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇸🇬 新加坡04, server: i2plcwjnhrl6.gym0boy.com, port: 12600, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇹🇼 台湾01, server: wujrnbitcet.gym0boy.com, port: 30372, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇭🇰 香港-线路1, server: 156.224.77.215, port: 22800, type: ss, cipher: chacha20-ietf-poly1305, password: c002f0d9-1066-4f97-a3dc-3266e7b0abcd, udp: true}
+  - {name: 🇬🇧 英国1, server: haa.dashuai.cyou, port: 45066, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇭🇰 香港04, server: i2plcwjnhrl6.gym0boy.com, port: 15034, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇯🇵 日本NO.1, server: haa.dashuai.cyou, port: 45056, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇹🇼 台湾04, server: i2plcwjnhrl6.gym0boy.com, port: 30555, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇯🇵 日本03, server: wujrnbitcet.gym0boy.com, port: 49812, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇨🇦 加拿大1, server: haa.dashuai.cyou, port: 45064, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇰🇷 韩国 专线NO2, server: xdd.dashuai.cyou, port: 45075, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇮🇳 印度2, server: xdd.dashuai.cyou, port: 45073, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇬🇧 英国2, server: xdd.dashuai.cyou, port: 45067, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇫🇷 法国1, server: haa.dashuai.cyou, port: 45072, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇹🇼 台湾1, server: haa.dashuai.cyou, port: 45078, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇸🇬 新加坡01, server: wujrnbitcet.gym0boy.com, port: 21878, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇨🇦 加拿大2, server: xdd.dashuai.cyou, port: 45065, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇩🇪 德国之二, server: 31.22.10.139, port: 3122, type: ss, cipher: chacha20-ietf-poly1305, password: c525d06e-5b7e-44a2-9fd0-cb4cbb834838, udp: true}
+  - {name: 🇹🇼 台湾02, server: i2plcwjnhrl6.gym0boy.com, port: 50796, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇺🇸 美国04, server: i2plcwjnhrl6.gym0boy.com, port: 32656, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇺🇸 美国之二, server: 45.132.74.212, port: 3596, type: ss, cipher: chacha20-ietf-poly1305, password: c525d06e-5b7e-44a2-9fd0-cb4cbb834838, udp: true}
+  - {name: 🇺🇸 美国02, server: i2plcwjnhrl6.gym0boy.com, port: 52448, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇺🇸 美国01, server: wujrnbitcet.gym0boy.com, port: 59270, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇭🇰 香港NO.2, server: xdd.dashuai.cyou, port: 45051, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇮🇳 印度1, server: haa.dashuai.cyou, port: 45074, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇯🇵 日本02, server: i2plcwjnhrl6.gym0boy.com, port: 22609, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇺🇸 美国NO.2, server: xdd.dashuai.cyou, port: 45053, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇸🇬 新加坡03, server: wujrnbitcet.gym0boy.com, port: 37908, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇺🇸 美国之一, server: 23.27.176.120, port: 11496, type: ss, cipher: chacha20-ietf-poly1305, password: c525d06e-5b7e-44a2-9fd0-cb4cbb834838, udp: true}
+  - {name: 🇸🇬 新加坡NO.2, server: xdd.dashuai.cyou, port: 45055, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇯🇵 日本04, server: i2plcwjnhrl6.gym0boy.com, port: 28799, type: ss, cipher: aes-256-gcm, password: 39583951-50e2-4f8c-9508-a4baa9e57a47, udp: true}
+  - {name: 🇸🇬 新加坡NO.1, server: haa.dashuai.cyou, port: 45054, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: 🇺🇸 美国之三, server: 165.140.240.2, port: 1122, type: ss, cipher: chacha20-ietf-poly1305, password: c525d06e-5b7e-44a2-9fd0-cb4cbb834838, udp: true}
+  - {name: 🇺🇸 美国NO.1, server: haa.dashuai.cyou, port: 45052, type: vmess, uuid: ea434180-8961-4a48-b091-160df993db2e, alterId: 0, cipher: auto, tls: false, udp: true}
