@@ -1,18 +1,15 @@
 proxies:
-  - {name: 🇺🇸 美国高速节点1, server: 144.34.178.66, port: 1443, type: trojan, password: 8901ede4-e0b9-4205-afda-fbb946b05c54, sni: node4.yuntongclouds.com, skip-cert-verify: true, udp: true}
-  - {name: 8443-1B, server: hwtqcp.uhomdex.shop, port: 8443, type: vmess, uuid: 55a2dbe7-ae64-4960-8591-9d5a4dc79f17, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: hwtqcp.uhomdex.shop}}, udp: true}
-  - {name: NODE1-VPN, server: node1-vpn.hrzy.me, port: 443, type: trojan, password: ad52b251-165c-483e-9562-45e9045f8f6e, skip-cert-verify: false, udp: true}
-  - {name: 🇺🇸 US-01, server: cloud.bluexray.net, port: 5501, type: ss, cipher: chacha20-ietf-poly1305, password: 5e2af137-6178-42e0-b415-036df2aeb7c6, udp: true}
-  - {name: PV-IEJ, server: empty.node, port: 443, type: trojan, password: 2265a902-4d96-4efe-8405-d486b5a8019c, sni: empty.node, skip-cert-verify: false, udp: true}
-  - {name: M8-CLP, server: empty.node, port: 443, type: trojan, password: 3b970ba9-116d-40d1-8ca3-2772a55bb225, sni: empty.node, skip-cert-verify: false, udp: true}
-  - {name: 40006, server: gtkgwycedblxi.jkdddvews.com, port: 40006, type: vmess, uuid: 5d33bc03-e251-4cda-ae2f-61e5c2b5de8f, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 8443-1A, server: hwtqcp.uhomdex.shop, port: 8443, type: vmess, uuid: 15bd4989-38a1-4318-b35e-581ffd4ac880, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: hwtqcp.uhomdex.shop}}, udp: true}
-  - {name: 40011, server: gtkgwycedblxi.jkdddvews.com, port: 40011, type: vmess, uuid: 5d33bc03-e251-4cda-ae2f-61e5c2b5de8f, alterId: 0, cipher: auto, tls: false, udp: true}
-  - {name: 🇹🇼 台湾高速节点3, server: 118.232.199.14, port: 443, type: trojan, password: 8901ede4-e0b9-4205-afda-fbb946b05c54, sni: node3.yuntongclouds.com, skip-cert-verify: true, udp: true}
-  - {name: 🇨🇳 中国联通节点1, server: 115.231.220.33, port: 5443, type: trojan, password: 8901ede4-e0b9-4205-afda-fbb946b05c54, sni: nodecn1.jiayinetwork.es, skip-cert-verify: true, udp: true}
-  - {name: NODE2-VPN, server: node2-vpn.hrzy.me, port: 443, type: trojan, password: ad52b251-165c-483e-9562-45e9045f8f6e, skip-cert-verify: false, udp: true}
-  - {name: 8443-1C, server: hwtqcp.uhomdex.shop, port: 8443, type: vmess, uuid: 5066d3c2-9534-40d7-9bf7-e1f5118708ec, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: hwtqcp.uhomdex.shop}}, udp: true}
-  - {name: PH-KTI, server: empty.node, port: 443, type: trojan, password: fd83d969-e4fd-4d82-972b-30be769adf17, sni: empty.node, skip-cert-verify: false, udp: true}
-  - {name: 🇹🇼 台湾高速节点2, server: 118.232.199.29, port: 443, type: trojan, password: 8901ede4-e0b9-4205-afda-fbb946b05c54, sni: node2.yuntongclouds.com, skip-cert-verify: true, udp: true}
-  - {name: 🇹🇼 台湾高速节点, server: 103.137.63.77, port: 443, type: trojan, password: 8901ede4-e0b9-4205-afda-fbb946b05c54, sni: node1.yuntongclouds.com, skip-cert-verify: true, udp: true}
-  - {name: 40017, server: gtkgwycedblxi.jkdddvews.com, port: 40017, type: vmess, uuid: 5d33bc03-e251-4cda-ae2f-61e5c2b5de8f, alterId: 0, cipher: auto, tls: false, udp: true}
+  - {name: MA-NMO, server: empty.node, port: 443, type: trojan, password: 69d98ce3-f487-4b48-bea5-153f4c77b352, sni: empty.node, skip-cert-verify: false, udp: true}
+  - {name: 8443-1A, server: hwtqcp.uhomdex.shop, port: 8443, type: vmess, uuid: 8fb1b13f-d56e-44e0-bc26-5f5f8e012055, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: hwtqcp.uhomdex.shop}}, udp: true}
+  - {name: 🇹🇼 台湾高速节点, server: 103.137.63.77, port: 443, type: trojan, password: cb8700db-bbc3-48a5-b983-573fb211cf46, sni: node1.yuntongclouds.com, skip-cert-verify: true, udp: true}
+  - {name: 🇹🇼 台湾高速节点3, server: 118.232.199.14, port: 443, type: trojan, password: cb8700db-bbc3-48a5-b983-573fb211cf46, sni: node3.yuntongclouds.com, skip-cert-verify: true, udp: true}
+  - {name: 8443-1C, server: hwtqcp.uhomdex.shop, port: 8443, type: vmess, uuid: 18a43a94-32f6-41de-977d-3c8cbb637fc9, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: hwtqcp.uhomdex.shop}}, udp: true}
+  - {name: NODE1-VPN, server: node1-vpn.hrzy.me, port: 443, type: trojan, password: d78d5724-c1cc-4e4e-a1b3-966d376d6d00, skip-cert-verify: false, udp: true}
+  - {name: 8443-1B, server: hwtqcp.uhomdex.shop, port: 8443, type: vmess, uuid: 82256489-b1e5-4178-9145-70f5df4a2fcd, alterId: 0, cipher: auto, tls: true, network: ws, ws-opts: {path: /, headers: {Host: hwtqcp.uhomdex.shop}}, udp: true}
+  - {name: 🇺🇸 US-01, server: cloud.bluexray.net, port: 5501, type: ss, cipher: chacha20-ietf-poly1305, password: 6564c98d-8dbb-4559-ac24-d4f86511c66e, udp: true}
+  - {name: 🇺🇸 美国高速节点1, server: 144.34.178.66, port: 1443, type: trojan, password: cb8700db-bbc3-48a5-b983-573fb211cf46, sni: node4.yuntongclouds.com, skip-cert-verify: true, udp: true}
+  - {name: NODE2-VPN, server: node2-vpn.hrzy.me, port: 443, type: trojan, password: d78d5724-c1cc-4e4e-a1b3-966d376d6d00, skip-cert-verify: false, udp: true}
+  - {name: PO-ECX, server: empty.node, port: 443, type: trojan, password: 14d04ea8-c5ce-4b1c-a71c-c9c16799481e, sni: empty.node, skip-cert-verify: false, udp: true}
+  - {name: 🇨🇳 中国联通节点1, server: 115.231.220.33, port: 5443, type: trojan, password: cb8700db-bbc3-48a5-b983-573fb211cf46, sni: nodecn1.jiayinetwork.es, skip-cert-verify: true, udp: true}
+  - {name: 🇹🇼 台湾高速节点2, server: 118.232.199.29, port: 443, type: trojan, password: cb8700db-bbc3-48a5-b983-573fb211cf46, sni: node2.yuntongclouds.com, skip-cert-verify: true, udp: true}
+  - {name: PU-MJG, server: empty.node, port: 443, type: trojan, password: af540659-b24b-429e-a73b-2ba2040c8805, sni: empty.node, skip-cert-verify: false, udp: true}
